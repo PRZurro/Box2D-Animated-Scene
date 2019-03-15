@@ -1,11 +1,11 @@
 // Created 14/03/2019
 
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef SHAPE_H
+#define SHAPE_H
 
 namespace prz
 {
-	class Scene
+	class Shape
 	{
 
 	};

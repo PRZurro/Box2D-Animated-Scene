@@ -15,21 +15,36 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\code\headers\GameObject.hpp">
+    <ClInclude Include="..\..\Code\Headers\GameObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\Joint.hpp">
+    <ClInclude Include="..\..\Code\Headers\Joint.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\RigidBody.hpp">
+    <ClInclude Include="..\..\Code\Headers\RigidBody.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\Scene.hpp">
+    <ClInclude Include="..\..\Code\Headers\Scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Headers\Particle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Headers\ParticlesManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Headers\Shape.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Headers\Fixture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\code\sources\main.cpp">
+    <ClCompile Include="..\..\Code\Sources\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
