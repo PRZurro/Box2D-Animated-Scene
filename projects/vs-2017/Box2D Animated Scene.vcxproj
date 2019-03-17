@@ -19,15 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Code\Headers\Fixture.hpp" />
     <ClInclude Include="..\..\Code\Headers\GameObject.hpp" />
     <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp" />
-    <ClInclude Include="..\..\Code\Headers\Joint.hpp" />
     <ClInclude Include="..\..\Code\Headers\Particle.hpp" />
     <ClInclude Include="..\..\Code\Headers\ParticlesManager.hpp" />
     <ClInclude Include="..\..\Code\Headers\RigidBody.hpp" />
     <ClInclude Include="..\..\Code\Headers\Scene.hpp" />
-    <ClInclude Include="..\..\Code\Headers\Shape.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Code\Sources\main.cpp" />

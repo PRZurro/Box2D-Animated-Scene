@@ -1,4 +1,13 @@
-//Created 14/03/2019
+/**
+ * @file GameObject.hpp
+ * @author Pablo Rodríguez Zurro (przuro@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019-03-14
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
@@ -10,8 +19,31 @@ namespace prz
 {
 	class GameObject
 	{
-		PBuffer<b2Body>
+	private:
+
+		PBuffer< PSptr< b2Body > >	bodies;
+		PBuffer< PSptr< b2Joint > > joints;
+
+	public:
+
+		GameObject()
+		{
+
+		}
+
+		GameObject(b2BodyDef * firstBodyDef, b2BodyDef * lastBodyDef)
+		{
+
+		}
+
+		~GameObject()
+		{
+
+		}
+
+
+	
 	};
 }
 
-#endif // !PARTICLE_HEADER
+#endif // !GAMEOBJECT_H

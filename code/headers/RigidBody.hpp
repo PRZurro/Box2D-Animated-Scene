@@ -1,7 +1,16 @@
-// Created 14/03/2019
+/**
+ * @file RigidBody.hpp
+ * @author Pablo Rodríguez Zurro (przuro@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019-03-14
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 
-#ifndef PARTICLE_H
-#define PARTICLE_H
+#ifndef RIGIDBODY_H
+#define RIGIDBODY_H
 
 namespace prz
 {
@@ -11,4 +20,4 @@ namespace prz
 	};
 }
 
-#endif // !PARTICLE_HEADER
+#endif // !RIGIDBODY_H

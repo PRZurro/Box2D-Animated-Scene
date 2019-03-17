@@ -98,7 +98,7 @@ namespace
 
             body_definition.type = b2_staticBody;
             body_definition.position.Set (0.f, 50.f);                                       // Posición inicial absoluta
-            body_definition.angle = 0.f;
+            body_definition.angle = -45.f;
 
             b2Body * body = physics_world->CreateBody (&body_definition);
 

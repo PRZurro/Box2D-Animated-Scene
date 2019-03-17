@@ -3,25 +3,25 @@
 #include <memory>
 #include <vector>
 #include <unordered_map>
+#include <string>
 
-namespace przurro
+namespace prz
 {
-	namespace prz = przurro;
-
 	template<typename T>
-	using PSptr = std::shared_ptr<T>;
+	using PSptr = std::shared_ptr<T>; // Shared pointer
 
 	template<typename T, typename Y>
 	using PMap = std::unordered_map<T, Y>;
 
 	template<typename T>
-	using PBuffer = Vector<T>; //Same as vector but renamed
+	using PBuffer = std::vector<T>; // Same as vector but renamed
 
+	using PString = std::string;
 
 	enum BodyType
 	{
-		Static,
-		Dynamic,
-		Kinematic
+		Static = 0,
+		Kinematic,
+		Dynamic
 	};
 }

@@ -1,14 +1,44 @@
-// Created 14/03/2019
+/**
+ * @file Scene.hpp
+ * @author Pablo Rodríguez Zurro (przuro@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019-03-14
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "Internal/Declarations/Declarations.hpp"
+#include "Box2D/Box2D.h"
+
 namespace prz
 {
+	class GameObject;
+
 	class Scene
 	{
+	private:
+		
+		PSptr< b2World > physicsWorld;
 
+		PMap<PString, GameObject> gameObjects;
+
+	public:
+
+		Scene()
+		{
+
+		}
+
+		~Scene()
+		{
+
+		}
 	};
 }
 
-#endif // !PARTICLE_HEADER
+#endif // !SCENE_H
