@@ -13,6 +13,7 @@
 #define PARTICLES_MANAGER_H
 
 #include "Internal/Declarations/Declarations.hpp"
+#include "Particle.hpp"
 
 namespace prz
 {
@@ -22,7 +23,12 @@ namespace prz
 	{
 	private:
 
-		PBuffer<Particle> particlesPool;
+		PBuffer< PSptr < Particle > > activeParticles;
+		PBuffer< PSptr < Particle > > inactiveParticles;
+
+	private:
+
+		size_t maxParticlesN;
 
 	public:
 
@@ -36,6 +42,16 @@ namespace prz
 
 		}
 
+
+	public:
+
+		void update(float deltaTime)
+		{
+			for (auto & particle : activeParticles)
+			{
+				particle->update(deltaTime);
+			}
+		}
 	};
 }
 

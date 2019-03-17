@@ -1,5 +1,5 @@
 /**
- * @file GameObject.hpp
+ * @file Entity.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief 
  * @version 0.1
@@ -17,32 +17,45 @@
 
 namespace prz
 {
-	class GameObject
+	class Entity
 	{
 	private:
 
 		PBuffer< PSptr< b2Body > >	bodies;
 		PBuffer< PSptr< b2Joint > > joints;
 
+		bool isActive;
+
 	public:
 
-		GameObject()
+		Entity()
 		{
 
 		}
 
-		GameObject(b2BodyDef * firstBodyDef, b2BodyDef * lastBodyDef)
+		Entity(b2BodyDef * firstBodyDef, b2BodyDef * lastBodyDef)
 		{
 
 		}
 
-		~GameObject()
+		~Entity()
 		{
 
 		}
 
+	public:
 
-	
+		void update(float deltaTime)
+		{
+
+		}
+
+	public:
+
+		void set_active(bool state = true)
+		{
+			isActive = state; 
+		}
 	};
 }
 

@@ -17,7 +17,7 @@
 
 namespace prz
 {
-	class GameObject;
+	class Entity;
 
 	class Scene
 	{
@@ -25,7 +25,7 @@ namespace prz
 		
 		PSptr< b2World > physicsWorld;
 
-		PMap<PString, GameObject> gameObjects;
+		PMap<PString, Entity> gameObjects;
 
 	public:
 

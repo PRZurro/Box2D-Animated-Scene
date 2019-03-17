@@ -1,4 +1,5 @@
-#pragma once
+#ifndef DECLARATIONS_H
+#define DECLARATIONS_H
 
 #include <memory>
 #include <vector>
@@ -25,3 +26,7 @@ namespace prz
 		Dynamic
 	};
 }
+
+
+#endif // !DECLARATIONS_H
+
