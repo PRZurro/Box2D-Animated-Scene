@@ -21,15 +21,10 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, b2BodyDef* fBodyDef, b2BodyDef* lBodyDef, bool active = true)
+		Entity(Scene & scene, bool active = true)
 			:
 			scene_(scene)
-		{
-			for (b2BodyDef* bodyDef = fBodyDef; bodyDef <= fBodyDef; ++bodyDef)
-			{
-				bodies_.push_back(scene_.create_body(bodyDef));
-			}
-		}
+		{}
 
 		~Entity()
 		{
@@ -45,17 +40,35 @@ namespace prz
 
 	public:
 
-		bool joint(const PString & nameBody1, const PString & nameBody2)
+		
+		void add_body(const b2BodyDef* bodyDefinition, const PString & name, bool isSensor = false)
+		{
+			bodies_[name] = scene_.create_body(bodyDefinition);
+
+			if (isSensor)
+			{
+			}
+		}
+
+		void add_sensor(b2BodyDef* bodyDefinition, const PString & name)
+		{
+			
+		}
+
+
+		bool create_joint(const PString& nameBody1, const PString& nameBody2, b2JointDef* jointDefinition)
 		{
 			auto end = bodies_.end();
 			if (bodies_.find(nameBody1) != end && bodies_.find(nameBody2) != end)
 			{
-				b2JointDef jointDef;
-				joints_.push_back(PShared_ptr<b2Joint>(new b2Joint(jointDef))
+				joints_.push_back(scene_.create_joint(jointDefinition));
+				return true;
 			}
 
 			return false;
 		}
+
+	public:
 
 		void handle_contact(const Entity & other)
 		{
@@ -72,6 +85,16 @@ namespace prz
 			isActive_ = state; 
 		}
 
+		bool body_exists(const PString& name)
+		{
+			if (bodies_.find(name) != bodies_.end())
+			{
+				return true;
+			}
+
+			return false;
+		}
+
 	public:
 
 		bool isActive()
@@ -79,16 +102,26 @@ namespace prz
 			return isActive_;
 		}
 
-		const PString & name()
+		const PString& name()
 		{
 			return name_;
+		}
+
+		PShared_ptr<b2Body> get_body(const PString& name)
+		{
+			if (body_exists(name))
+			{
+				return PShared_ptr<b2Body>(bodies_[name]);
+			}
+
+			return PShared_ptr<b2Body>();
 		}
 
 	protected:
 
 		PMap< PString, PShared_ptr<b2Body> >	bodies_;
-		PBuffer< PShared_ptr<b2Joint> >	joints_;
-		PBuffer< b2Body&>				sensors_;
+		PBuffer< PShared_ptr<b2Joint> >			joints_;
+		PBuffer< b2Body& >						sensors_;
 
 	protected:
 
@@ -96,7 +129,6 @@ namespace prz
 		EntityCategory entityCategory_;
 
 		PString name_;
-
 		bool isActive_;
 	};
 }

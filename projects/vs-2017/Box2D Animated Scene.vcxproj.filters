@@ -30,10 +30,10 @@
     <ClInclude Include="..\..\Code\Headers\Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Headers\ParticlesGenerator.hpp">
+    <ClInclude Include="..\..\Code\Headers\ContactListener.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Headers\ContactListener.hpp">
+    <ClInclude Include="..\..\Code\Headers\ParticleSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,5 @@
 /**
- * @file ParticlesGenerator.hpp
+ * @file ParticleSystem.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief 
  * @version 0.1
@@ -19,11 +19,11 @@ namespace prz
 {
 	class Particle;
 
-	class ParticlesGenerator
+	class ParticleSystem
 	{
 	public:
 
-		ParticlesGenerator(size_t nParticles, float timeToRefresh)
+		ParticleSystem(size_t nParticles, float timeToRefresh)
 			:
 			nParticles_(nParticles),
 			timeToRefresh_(timeToRefresh),
@@ -31,7 +31,7 @@ namespace prz
 			inactiveParticles_()
 		{}
 
-		~ParticlesGenerator()
+		~ParticleSystem()
 		{}
 
 	public:

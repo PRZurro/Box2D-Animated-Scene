@@ -22,7 +22,7 @@ namespace prz
 {
 	class Entity;
 
-	class Scene : public b2ContactListener
+	class Scene
 	{
 	public:
 
@@ -38,12 +38,6 @@ namespace prz
 		{
 
 		}
-
-	public:
-
-		void BeginContact(b2Contact* contact) override;
-		void EndContact(b2Contact* contact) override;
-
 	public:
 
 		void create_level();
@@ -63,15 +57,6 @@ namespace prz
 		{
 			return PShared_ptr<b2Joint>(physicsWorld_->CreateJoint(jointDefinition));
 		}
-
-		PShared_ptr<b2Joint> create_revolute_joint(const b2JointDef * jointDefinition) const
-		{
-			return PShared_ptr<b2RevoluteJoint>(physicsWorld_->CreateJoint(jointDefinition));
-		}
-
-
-
-		
 
 	private:
 

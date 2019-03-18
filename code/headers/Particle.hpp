@@ -21,7 +21,7 @@ using namespace sf;
 
 namespace prz
 {
-	class Particle : public Entity
+	class Particle
 	{
 	public:
 
@@ -32,7 +32,7 @@ namespace prz
 			Texture texture; 
 			texture.loadFromFile(*firstTexturePath);
 
-			sprite_->setTexture(texture);
+			set_texture(texture);
 		}
 
 		~Particle()
