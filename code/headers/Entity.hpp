@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#ifndef BOX2D_ANIMATED_SCENE_ENTITY_H_
+#define BOX2D_ANIMATED_SCENE_ENTITY_H_
 
 #include "Internal/Declarations/Declarations.hpp"
 #include "Box2D/Box2D.h"
@@ -19,23 +19,16 @@ namespace prz
 {
 	class Entity
 	{
-	private:
-
-		PBuffer< PSptr< b2Body > >	bodies;
-		PBuffer< PSptr< b2Joint > > joints;
-
-		bool isActive;
-
 	public:
 
-		Entity()
+		Entity(Scene & scene, b2BodyDef* fBodyDef, b2BodyDef* lBodyDef, bool active = true)
+			:
+			scene_(scene)
 		{
-
-		}
-
-		Entity(b2BodyDef * firstBodyDef, b2BodyDef * lastBodyDef)
-		{
-
+			for (b2BodyDef* bodyDef = fBodyDef; bodyDef <= fBodyDef; ++bodyDef)
+			{
+				bodies_.push_back(scene_.create_body(bodyDef));
+			}
 		}
 
 		~Entity()
@@ -52,11 +45,60 @@ namespace prz
 
 	public:
 
+		bool joint(const PString & nameBody1, const PString & nameBody2)
+		{
+			auto end = bodies_.end();
+			if (bodies_.find(nameBody1) != end && bodies_.find(nameBody2) != end)
+			{
+				b2JointDef jointDef;
+				joints_.push_back(PShared_ptr<b2Joint>(new b2Joint(jointDef))
+			}
+
+			return false;
+		}
+
+		void handle_contact(const Entity & other)
+		{
+			if (isActive_)
+			{
+				//handle contact
+			}
+		}
+
+	public:
+
 		void set_active(bool state = true)
 		{
-			isActive = state; 
+			isActive_ = state; 
 		}
+
+	public:
+
+		bool isActive()
+		{
+			return isActive_;
+		}
+
+		const PString & name()
+		{
+			return name_;
+		}
+
+	protected:
+
+		PMap< PString, PShared_ptr<b2Body> >	bodies_;
+		PBuffer< PShared_ptr<b2Joint> >	joints_;
+		PBuffer< b2Body&>				sensors_;
+
+	protected:
+
+		Scene & scene_;
+		EntityCategory entityCategory_;
+
+		PString name_;
+
+		bool isActive_;
 	};
 }
 
-#endif // !GAMEOBJECT_H
+#endif // !BOX2D_ANIMATED_SCENE_ENTITY_H_

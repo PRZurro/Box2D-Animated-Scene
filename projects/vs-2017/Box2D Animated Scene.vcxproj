@@ -22,7 +22,7 @@
     <ClInclude Include="..\..\Code\Headers\Entity.hpp" />
     <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp" />
     <ClInclude Include="..\..\Code\Headers\Particle.hpp" />
-    <ClInclude Include="..\..\Code\Headers\ParticlesManager.hpp" />
+    <ClInclude Include="..\..\Code\Headers\ParticlesGenerator.hpp" />
     <ClInclude Include="..\..\Code\Headers\RigidBody.hpp" />
     <ClInclude Include="..\..\Code\Headers\Scene.hpp" />
   </ItemGroup>

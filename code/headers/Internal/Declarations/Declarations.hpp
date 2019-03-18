@@ -9,10 +9,10 @@
 namespace prz
 {
 	template<typename T>
-	using PSptr = std::shared_ptr<T>; // Shared pointer
+	using PShared_ptr = std::shared_ptr<T>; // Shared pointer
 
-	template<typename T, typename Y>
-	using PMap = std::unordered_map<T, Y>;
+	template<typename Key, typename Val>
+	using PMap = std::unordered_map<Key, Val>;
 
 	template<typename T>
 	using PBuffer = std::vector<T>; // Same as vector but renamed
@@ -25,6 +25,15 @@ namespace prz
 		Kinematic,
 		Dynamic
 	};
+
+	enum EntityCategory {
+		Floor = 0,
+		Platform,
+		Car,
+		ParticleGenerator,
+		Finish
+	};
+
 }
 
 

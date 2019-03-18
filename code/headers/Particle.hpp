@@ -23,22 +23,16 @@ namespace prz
 {
 	class Particle : public Entity
 	{
-	private:
-
-		float m_CurTimeOfLife;
-		float m_MaxTimeOfLife;
-
-		PSptr<Sprite> sprite;
-
 	public:
 
-		Particle(PString* firstTexturePath, size_t nSprites, float maxTimeOfLife)
+		Particle(PString* firstTexturePath, size_t nSprite)
 			:
-			m_CurTimeOfLife(.0f),
-			m_MaxTimeOfLife(maxTimeOfLife)
+			curTimeOfLife_(.0f)
 		{
-				shapes.push_back(PSptr<Texture>(new Texture()));
-				shapes.back()-
+			Texture texture; 
+			texture.loadFromFile(*firstTexturePath);
+
+			sprite_->setTexture(texture);
 		}
 
 		~Particle()
@@ -50,19 +44,22 @@ namespace prz
 
 		void update(float deltaTime)
 		{
-
+			curTimeOfLife_ += deltaTime;
 		}
 
 	public:
 
-		void setTexture(Texture & texture)
+		void set_texture(Texture & texture)
 		{
-			sprite->setTexture(texture);
+			sprite_->setTexture(texture);
 		}
 
-	public:
+	private:
 
-		curTi
+		PShared_ptr<Sprite> sprite_;
+
+		float curTimeOfLife_;
+
 	};
 }
 

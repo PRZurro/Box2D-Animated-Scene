@@ -27,10 +27,10 @@
     <ClInclude Include="..\..\Code\Headers\Particle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Headers\ParticlesManager.hpp">
+    <ClInclude Include="..\..\Code\Headers\Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Headers\Entity.hpp">
+    <ClInclude Include="..\..\Code\Headers\ParticlesGenerator.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
