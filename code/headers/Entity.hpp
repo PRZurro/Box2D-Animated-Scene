@@ -54,6 +54,8 @@ namespace prz
 			{
 				PTransform* tempT = bodiesStartPositions_[pair.first].get();
 				pair.second->SetTransform(tempT->p, tempT->q.GetAngle());
+				pair.second->SetLinearVelocity(b2Vec2(0, 0));
+				pair.second->SetAngularVelocity(0);
 			}
 		}
 

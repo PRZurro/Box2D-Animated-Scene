@@ -1,12 +1,9 @@
 #include "internal/declarations/Declarations.hpp"
 
-#include "Scene.hpp"
 #include "SampleScene.hpp"
 #include "ContactListener.hpp"
 #include "GameController.hpp"
 
-#include <memory>
-#include <vector>
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
@@ -15,7 +12,7 @@ using namespace prz;
 using namespace sf;
 using namespace std;
 
-namespace
+namespace prz
 {
 
 
@@ -107,7 +104,6 @@ namespace
 
         return physics_world;
     }
-
 }
 
 int main ()
@@ -116,11 +112,11 @@ int main ()
 
 	window.setVerticalSyncEnabled(true);
 
-	SampleScene sampleScene(0.f, -100.f);
-	
+	SampleScene sampleScene(0.0f, -100.f);
+
 	GameController gameController(sampleScene);
 
-	ContactListener<GameController> contactListener (GameController::handle_contact, &gameController);
+	//ContactListener<GameController> contactListener (GameController::handle_contact, &gameController);
 
     bool running = true;
 

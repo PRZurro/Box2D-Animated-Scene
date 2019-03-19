@@ -16,6 +16,7 @@
 
 #include "Entity.hpp"
 #include "GameController.hpp"
+#include "ContactListener.hpp"
 
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
@@ -25,17 +26,14 @@ using namespace sf;
 
 namespace prz
 {
-	class Entity;
-
 	class Scene
 	{
 	public:
 
-		Scene(const b2Vec2& worldPosition) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
-			:
-			physicsWorld_( new b2World(worldPosition))
+		Scene(float posX, float posY) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
+			/*:
+			physicsWorld_(new b2World(b2Vec2(0.0f, -100.f))*/
 		{}
-
 		~Scene()
 		{
 
@@ -49,7 +47,7 @@ namespace prz
 
 	public:
 
-		PShared_ptr<Entity> create_entity(const PString& name, bool active)
+		PShared_ptr<Entity> create_entity(const PString& name, bool active = true)
 		{
 			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, active));
 		}
@@ -66,7 +64,8 @@ namespace prz
 
 	public:
 
-		void set_contact_listener(ContactListener& contactListener)
+		template<class T>
+		void set_contact_listener(ContactListener<T>& contactListener)
 		{
 			physicsWorld_->SetContactListener(contactListener);
 		}

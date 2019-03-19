@@ -12,8 +12,8 @@
 #ifndef BOX2D_ANIMATED_SCENE_GAME_CONTROLLER_H_
 #define BOX2D_ANIMATED_SCENE_GAME_CONTROLLER_H_
 
+#include "Internal/Declarations/Declarations.hpp"
 #include "Scene.hpp"
-#include "ContactListener.hpp"
 
 #include <Box2D/Box2D.h>
 

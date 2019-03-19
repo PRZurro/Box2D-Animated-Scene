@@ -19,17 +19,16 @@ namespace prz
 	template<class ContactHandler>
 	class ContactListener : public b2ContactListener
 	{
-		typedef void (*ContactHandler::ContactHandlerFn) (b2Contact* contact, const ContactState& state);
-
+		using ContactHandlerFn = void(ContactHandler::*) (b2Contact* contact, const ContactState& state);
+	
 	public:
 
 		ContactListener()
 			:
 			fnContactHandler_(nullptr),
 			contactHandler_(nullptr)
+		{}
 
-		{
-		}
 		ContactListener(ContactHandlerFn fnContactHandler, ContactHandler* contactHandler)
 			:
 			fnContactHandler_(fnContactHandler),
@@ -39,6 +38,7 @@ namespace prz
 	public:
 
 		void BeginContact(b2Contact* contact) override;
+
 		void EndContact(b2Contact* contact) override;
 
 	public:

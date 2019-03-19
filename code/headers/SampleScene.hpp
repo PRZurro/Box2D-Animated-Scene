@@ -20,7 +20,10 @@ namespace prz
 	{
 	public:
 
-		SampleScene(float posX, float posY);
+		SampleScene(float posX, float posY)
+			:
+			Scene(posX, posY)
+		{}
 
 	private:
 
