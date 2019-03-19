@@ -1,1 +1,82 @@
-#pragma once
+/**
+ * @file Scene.hpp
+ * @author Pablo Rodríguez Zurro (przuro@gmail.com)
+ * @brief 
+ * @version 0.1
+ * @date 2019-03-14
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
+#ifndef BOX2D_ANIMATED_SCENE_SCENE_H_
+#define BOX2D_ANIMATED_SCENE_SCENE_H_
+
+#include "internal/declarations/Declarations.hpp"
+
+#include "Entity.hpp"
+#include "GameController.hpp"
+
+#include <Box2D/Box2D.h>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
+using namespace sf;
+
+namespace prz
+{
+	class Entity;
+
+	class Scene
+	{
+	public:
+
+		Scene(const b2Vec2& worldPosition) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
+			:
+			physicsWorld_( new b2World(worldPosition))
+		{}
+
+		~Scene()
+		{
+
+		}
+
+	public:
+
+		void update(float deltaTime);
+
+		void render(RenderWindow& window);
+
+	public:
+
+		PShared_ptr<Entity> create_entity(const PString& name, bool active)
+		{
+			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, active));
+		}
+
+		PShared_ptr<b2Body> create_body(const b2BodyDef* bodyDefinition) const
+		{
+			return PShared_ptr<b2Body>(physicsWorld_->CreateBody(bodyDefinition));
+		}
+
+		PShared_ptr<b2Joint> create_joint(const b2JointDef* jointDefinition) const
+		{
+			return PShared_ptr<b2Joint>(physicsWorld_->CreateJoint(jointDefinition));
+		}
+
+	public:
+
+		void set_contact_listener(ContactListener& contactListener)
+		{
+			physicsWorld_->SetContactListener(contactListener);
+		}
+
+	private:
+
+		PShared_ptr< b2World > physicsWorld_;
+
+		PMap< PString, PShared_ptr<Entity> > entities_;
+	};
+}
+
+#endif // !BOX2D_ANIMATED_SCENE_SCENE_H_
