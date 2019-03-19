@@ -9,14 +9,18 @@
  * 
  */
 
-#ifndef SCENE_H
-#define SCENE_H
+#ifndef BOX2D_ANIMATED_SCENE_SCENE_H_
+#define BOX2D_ANIMATED_SCENE_SCENE_H_
 
-#include "Internal/Declarations/Declarations.hpp"
+#include "internal/declarations/Declarations.hpp"
 
 #include "Entity.hpp"
 
 #include <Box2D/Box2D.h>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+
+using namespace sf;
 
 namespace prz
 {
@@ -26,18 +30,21 @@ namespace prz
 	{
 	public:
 
-		Scene()
+		Scene(const b2Vec2& worldPosition)
+			:
+			physicsWorld_( new b2World(worldPosition))
 		{
-			b2BodyDef b2Bodies[3];
-
-			Entity car{physicsWorld_.get(), b2Bodies, b2Bodies + 2, true };
-			
 		}
 
 		~Scene()
 		{
 
 		}
+
+	public:
+
+		void render(RenderWindow& window);
+
 	public:
 
 		void create_level();
@@ -48,12 +55,17 @@ namespace prz
 
 	public:
 
-		PShared_ptr<b2Body> create_body(const b2BodyDef * bodyDefinition) const
+		PShared_ptr<Entity> create_entity(const PString& name, bool active)
+		{
+			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, active));
+		}
+
+		PShared_ptr<b2Body> create_body(const b2BodyDef* bodyDefinition) const
 		{
 			return PShared_ptr<b2Body>(physicsWorld_->CreateBody(bodyDefinition));
 		}
 
-		PShared_ptr<b2Joint> create_joint(const b2JointDef * jointDefinition) const
+		PShared_ptr<b2Joint> create_joint(const b2JointDef* jointDefinition) const
 		{
 			return PShared_ptr<b2Joint>(physicsWorld_->CreateJoint(jointDefinition));
 		}
@@ -62,8 +74,8 @@ namespace prz
 
 		PShared_ptr< b2World > physicsWorld_;
 
-		PMap<PString, Entity> entities_;
+		PMap< PString, PShared_ptr<Entity> > entities_;
 	};
 }
 
-#endif // !SCENE_H
+#endif // !BOX2D_ANIMATED_SCENE_SCENE_H_

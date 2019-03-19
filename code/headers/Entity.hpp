@@ -12,62 +12,51 @@
 #ifndef BOX2D_ANIMATED_SCENE_ENTITY_H_
 #define BOX2D_ANIMATED_SCENE_ENTITY_H_
 
-#include "Internal/Declarations/Declarations.hpp"
+#include "internal/declarations/Declarations.hpp"
 #include "Box2D/Box2D.h"
 
 namespace prz
 {
+	class Scene;
+
 	class Entity
 	{
 	public:
 
-		Entity(Scene & scene, bool active = true)
+		Entity(Scene & scene, const PString & name, bool active = true)
 			:
-			scene_(scene)
+			scene_(scene),
+			name_(name),
+			isActive_(active)
 		{}
 
 		~Entity()
-		{
-
-		}
+		{}
 
 	public:
 
-		void update(float deltaTime)
+		void render(float deltaTime)
 		{
-
-		}
-
-	public:
-
-		
-		void add_body(const b2BodyDef* bodyDefinition, const PString & name, bool isSensor = false)
-		{
-			bodies_[name] = scene_.create_body(bodyDefinition);
-
-			if (isSensor)
+			for (auto& pair : bodies_)
 			{
 			}
 		}
 
-		void add_sensor(b2BodyDef* bodyDefinition, const PString & name)
-		{
-			
-		}
+	public:
 
+		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const PBodyType& bodyType = b2BodyType::b2_staticBody);
 
-		bool create_joint(const PString& nameBody1, const PString& nameBody2, b2JointDef* jointDefinition)
+		void add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
 		{
-			auto end = bodies_.end();
-			if (bodies_.find(nameBody1) != end && bodies_.find(nameBody2) != end)
+			if (exists_body(bodyName))
 			{
-				joints_.push_back(scene_.create_joint(jointDefinition));
-				return true;
+				fixtureDef->isSensor = isSensor;
+				bodies_[bodyName]->CreateFixture(fixtureDef);
 			}
-
-			return false;
 		}
 
+		b2Joint* join(const PString& bodyNameA, const PString& bodyNameB, bool collide = false, bool revolute = false);
+	
 	public:
 
 		void handle_contact(const Entity & other)
@@ -80,14 +69,28 @@ namespace prz
 
 	public:
 
+		void reset()
+		{
+			for (auto& pair : bodies_)
+			{
+				PTransform* tempT = bodiesStartPositions_[pair.first].get();
+				pair.second->SetTransform(tempT->p, tempT->q.GetAngle());
+			}
+		}
+
 		void set_active(bool state = true)
 		{
 			isActive_ = state; 
+
+			for (auto& pair : bodies_)
+			{
+				pair.second->SetActive(isActive_);
+			}
 		}
 
-		bool body_exists(const PString& name)
+		bool exists_body(const PString& bodyName)
 		{
-			if (bodies_.find(name) != bodies_.end())
+			if (bodies_.find(bodyName) != bodies_.end())
 			{
 				return true;
 			}
@@ -97,19 +100,24 @@ namespace prz
 
 	public:
 
-		bool isActive()
+		bool isActive() const
 		{
 			return isActive_;
 		}
 
-		const PString& name()
+		const PString& name() const
 		{
 			return name_;
 		}
 
+		const PMap< PString, PShared_ptr<b2Body> >& bodies() const
+		{
+			return bodies_;
+		}
+
 		PShared_ptr<b2Body> get_body(const PString& name)
 		{
-			if (body_exists(name))
+			if (exists_body(name))
 			{
 				return PShared_ptr<b2Body>(bodies_[name]);
 			}
@@ -119,9 +127,15 @@ namespace prz
 
 	protected:
 
-		PMap< PString, PShared_ptr<b2Body> >	bodies_;
-		PBuffer< PShared_ptr<b2Joint> >			joints_;
-		PBuffer< b2Body& >						sensors_;
+		PMap< PString, PShared_ptr<b2Body> >		bodies_;
+		PMap< PString, PShared_ptr<PTransform> >	bodiesStartPositions_;
+
+		PBuffer< PShared_ptr<b2Joint> >				joints_;
+		PBuffer< b2Body& >							sensors_;
+
+	protected:
+
+		b2Vec2 startPosition_;
 
 	protected:
 

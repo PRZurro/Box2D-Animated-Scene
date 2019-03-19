@@ -15,13 +15,17 @@
 
 #include <Box2D/Box2D.h>
 
-class ContactListener : public b2ContactListener
+namespace prz
 {
-public:
+	class ContactListener : public b2ContactListener
+	{
+	public:
 
-	void BeginContact(b2Contact* contact) override;
-	void EndContact(b2Contact* contact) override;
+		void BeginContact(b2Contact* contact) override;
+		void EndContact(b2Contact* contact) override;
 
-};
+	};
+}
+
 
 #endif // !BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_

@@ -22,12 +22,15 @@
     <ClInclude Include="..\..\Code\Headers\ContactListener.hpp" />
     <ClInclude Include="..\..\Code\Headers\Entity.hpp" />
     <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp" />
+    <ClInclude Include="..\..\code\headers\internal\ExternalLibrariesUtilities.hpp" />
     <ClInclude Include="..\..\Code\Headers\Particle.hpp" />
     <ClInclude Include="..\..\Code\Headers\ParticleSystem.hpp" />
-    <ClInclude Include="..\..\Code\Headers\RigidBody.hpp" />
+    <ClInclude Include="..\..\code\headers\SampleSceneMaker.hpp" />
     <ClInclude Include="..\..\Code\Headers\Scene.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\code\headers\ContactListener.cpp" />
+    <ClCompile Include="..\..\code\headers\Entity.cpp" />
     <ClCompile Include="..\..\Code\Headers\Scene.cpp" />
     <ClCompile Include="..\..\Code\Sources\main.cpp" />
   </ItemGroup>
@@ -85,19 +88,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\Binaries\x86\Debug\</OutDir>
+    <OutDir>..\..\bin\x86\Debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\Binaries\x64\Debug\</OutDir>
+    <OutDir>..\..\bin\x64\debug\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\Binaries\x86\Release\</OutDir>
+    <OutDir>..\..\bin\x86\release\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\Binaries\x64\Release\</OutDir>
+    <OutDir>..\..\bin\x64\release\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

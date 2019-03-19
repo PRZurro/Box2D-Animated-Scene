@@ -12,7 +12,7 @@
 #ifndef BOX2D_ANIMATED_SCENE_PARTICLES_MANAGER_H_
 #define BOX2D_ANIMATED_SCENE_PARTICLES_MANAGER_H_
 
-#include "Internal/Declarations/Declarations.hpp"
+#include "internal/declarations/Declarations.hpp"
 #include "Particle.hpp"
 
 namespace prz

@@ -6,6 +6,8 @@
 #include <unordered_map>
 #include <string>
 
+#include <Box2D/Box2D.h>
+
 namespace prz
 {
 	template<typename T>
@@ -19,12 +21,11 @@ namespace prz
 
 	using PString = std::string;
 
-	enum BodyType
-	{
-		Static = 0,
-		Kinematic,
-		Dynamic
-	};
+	using PBodyType = b2BodyType;
+	using PTransform = b2Transform;
+
+	#define DEG_TO_RAD 0.0174533f
+	#define RAD_TO_DEG 57.295779513f;
 
 	enum EntityCategory {
 		Floor = 0x0001,
@@ -33,9 +34,6 @@ namespace prz
 		ParticleGenerator = 0x0008,
 		Finish = 0x00010
 	};
-
 }
 
-
 #endif // !DECLARATIONS_H
-

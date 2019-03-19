@@ -12,7 +12,7 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
-#include "Internal/Declarations/Declarations.hpp"
+#include "internal/declarations/Declarations.hpp"
 #include "Entity.hpp"
 
 #include <SFML/Graphics.hpp>
