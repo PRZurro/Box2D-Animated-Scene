@@ -25,7 +25,7 @@ namespace prz
 	using PTransform = b2Transform;
 
 	#define DEG_TO_RAD 0.0174533f
-	#define RAD_TO_DEG 57.295779513f;
+	#define RAD_TO_DEG 57.295779513f
 
 	enum EntityCategory {
 		Floor = 0x0001,

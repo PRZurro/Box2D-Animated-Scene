@@ -43,15 +43,9 @@ namespace prz
 
 	public:
 
+		void update(float deltaTime);
+
 		void render(RenderWindow& window);
-
-	public:
-
-		void create_level();
-		void create_car();
-		void create_ball();
-		void create_platforms();
-		void create_fire();
 
 	public:
 

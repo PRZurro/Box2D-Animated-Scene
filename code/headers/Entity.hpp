@@ -23,11 +23,12 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, const PString & name, bool active = true)
+		Entity(Scene & scene, const PString & name, b2Transform & transform, bool active = true)
 			:
 			scene_(scene),
 			name_(name),
-			isActive_(active)
+			isActive_(active),
+			startTransform_(transform)
 		{}
 
 		~Entity()
@@ -128,22 +129,20 @@ namespace prz
 	protected:
 
 		PMap< PString, PShared_ptr<b2Body> >		bodies_;
-		PMap< PString, PShared_ptr<PTransform> >	bodiesStartPositions_;
-
 		PBuffer< PShared_ptr<b2Joint> >				joints_;
-		PBuffer< b2Body& >							sensors_;
+		PMap< PString, PShared_ptr<PTransform> >	bodiesStartPositions_;
 
 	protected:
 
-		b2Vec2 startPosition_;
+		b2Transform startTransform_;
 
 	protected:
 
 		Scene & scene_;
-		EntityCategory entityCategory_;
+		bool isActive_;
 
 		PString name_;
-		bool isActive_;
+		EntityCategory entityCategory_;
 	};
 }
 

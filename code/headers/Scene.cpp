@@ -3,6 +3,11 @@
 
 namespace prz
 {
+	void Scene::update(float deltaTime)
+	{
+		physicsWorld_->Step(deltaTime, 8, 4);
+
+	}
 	void Scene::render(RenderWindow & window)
 	{
 		// Se cachea el alto de la ventana en una variable local:

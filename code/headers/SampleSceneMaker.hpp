@@ -22,6 +22,13 @@ namespace prz
 
 		SampleSceneMaker(Scene & scene);
 
+	private:
+
+		void create_car();
+		void create_ball();
+		void create_platforms();
+		void create_floor();
+		void create_fire();
 
 	};
 }

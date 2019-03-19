@@ -1,13 +1,5 @@
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *\
- *                                                                             *
- *  Started by Ángel on april of 2016                                          *
- *                                                                             *
- *  This is free software released into the public domain.                     *
- *                                                                             *
- *  angel.rodriguez@esne.edu                                                   *
- *                                                                             *
-\* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+#include "Scene.hpp"
+#include "SampleSceneMaker.hpp"
 
 #include <memory>
 #include <vector>
@@ -15,16 +7,13 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+using namespace prz;
 using namespace sf;
 using namespace std;
 
 namespace
 {
 
-    /** En Box2D las coordenadas Y crecen hacia arriba y en SFML crecen hacia abajo desde el borde superior.
-     ** Esta función se encarga de convertir el sistema de coordenadas para que la escena no se vea invertida.
-     **/
-    
 
     shared_ptr< b2World > create_physics_world (float world_width, float world_height)
     {
@@ -119,16 +108,17 @@ namespace
 
 int main ()
 {
-    RenderWindow window(VideoMode(800, 600), "Animation Examples: Box2D Rigid Bodies", Style::Titlebar | Style::Close, ContextSettings(32));
+    RenderWindow window(VideoMode(800, 600), "Pablo Rodriguez: Box2D Animated Scene", Style::Titlebar | Style::Close, ContextSettings(32));
 
-    window.setVerticalSyncEnabled (true);
+	window.setVerticalSyncEnabled(true);
 
-    shared_ptr< b2World > physics_world = create_physics_world (800, 600);
+	Scene sampleScene(b2Vec2(0, -100.f));
+	SampleSceneMaker sampleSceneMaker(sampleScene);
 
     bool running = true;
 
     Clock timer;
-    float delta_time = 0.017f;          // ~60 fps
+    float deltaTime = 0.017f;          // ~60 fps
 
     do
     {
@@ -148,17 +138,16 @@ int main ()
 
         // Update:
 
-        physics_world->Step (delta_time, 8, 4);
-
+		sampleScene.update(deltaTime);
         // Render:
 
         window.clear ();
 
-        render (*physics_world, window);
+		sampleScene.render(window);
 
         window.display ();
 
-        delta_time = (delta_time + timer.getElapsedTime ().asSeconds ()) * 0.5f;
+        deltaTime = (deltaTime + timer.getElapsedTime ().asSeconds ()) * 0.5f;
     }
     while (running);
 
