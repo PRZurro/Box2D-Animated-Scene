@@ -39,10 +39,10 @@
     <ClInclude Include="..\..\code\headers\internal\ExternalLibrariesUtilities.hpp">
       <Filter>Header Files\Internal</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\SampleSceneMaker.hpp">
+    <ClInclude Include="..\..\code\headers\GameController.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\GameController.hpp">
+    <ClInclude Include="..\..\code\headers\SampleScene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

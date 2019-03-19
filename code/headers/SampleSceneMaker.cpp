@@ -2,7 +2,7 @@
 
 namespace prz
 {
-	SampleSceneMaker::SampleSceneMaker(Scene & scene)
+	SampleScene::SampleScene(Scene & scene)
 	{
 
 	}

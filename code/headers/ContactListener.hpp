@@ -34,8 +34,7 @@ namespace prz
 			:
 			fnContactHandler_(fnContactHandler),
 			contactHandler_(contactHandler)
-		{
-		}
+		{}
 
 	public:
 

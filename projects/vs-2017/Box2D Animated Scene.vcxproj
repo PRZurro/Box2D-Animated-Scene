@@ -26,7 +26,7 @@
     <ClInclude Include="..\..\code\headers\internal\ExternalLibrariesUtilities.hpp" />
     <ClInclude Include="..\..\Code\Headers\Particle.hpp" />
     <ClInclude Include="..\..\Code\Headers\ParticleSystem.hpp" />
-    <ClInclude Include="..\..\code\headers\SampleSceneMaker.hpp" />
+    <ClInclude Include="..\..\code\headers\SampleScene.hpp" />
     <ClInclude Include="..\..\Code\Headers\Scene.hpp" />
   </ItemGroup>
   <ItemGroup>
