@@ -15,6 +15,7 @@
 #include "internal/declarations/Declarations.hpp"
 
 #include "Entity.hpp"
+#include "GameController.hpp"
 
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
@@ -30,11 +31,10 @@ namespace prz
 	{
 	public:
 
-		Scene(const b2Vec2& worldPosition)
+		Scene(const b2Vec2& worldPosition) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
 			:
 			physicsWorld_( new b2World(worldPosition))
-		{
-		}
+		{}
 
 		~Scene()
 		{
@@ -62,6 +62,13 @@ namespace prz
 		PShared_ptr<b2Joint> create_joint(const b2JointDef* jointDefinition) const
 		{
 			return PShared_ptr<b2Joint>(physicsWorld_->CreateJoint(jointDefinition));
+		}
+
+	public:
+
+		void set_contact_listener(ContactListener& contactListener)
+		{
+			physicsWorld_->SetContactListener(contactListener);
 		}
 
 	private:

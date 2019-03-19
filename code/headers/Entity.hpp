@@ -31,18 +31,6 @@ namespace prz
 			startTransform_(transform)
 		{}
 
-		~Entity()
-		{}
-
-	public:
-
-		void render(float deltaTime)
-		{
-			for (auto& pair : bodies_)
-			{
-			}
-		}
-
 	public:
 
 		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const PBodyType& bodyType = b2BodyType::b2_staticBody);
@@ -57,16 +45,6 @@ namespace prz
 		}
 
 		b2Joint* join(const PString& bodyNameA, const PString& bodyNameB, bool collide = false, bool revolute = false);
-	
-	public:
-
-		void handle_contact(const Entity & other)
-		{
-			if (isActive_)
-			{
-				//handle contact
-			}
-		}
 
 	public:
 
@@ -101,22 +79,17 @@ namespace prz
 
 	public:
 
-		bool isActive() const
+		inline bool isActive() const
 		{
 			return isActive_;
 		}
 
-		const PString& name() const
+		inline const PString& name() const
 		{
 			return name_;
 		}
 
-		const PMap< PString, PShared_ptr<b2Body> >& bodies() const
-		{
-			return bodies_;
-		}
-
-		PShared_ptr<b2Body> get_body(const PString& name)
+		inline PShared_ptr<b2Body> get_body(const PString& name)
 		{
 			if (exists_body(name))
 			{

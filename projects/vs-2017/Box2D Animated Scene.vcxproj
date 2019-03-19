@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Code\Headers\ContactListener.hpp" />
     <ClInclude Include="..\..\Code\Headers\Entity.hpp" />
+    <ClInclude Include="..\..\code\headers\GameController.hpp" />
     <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp" />
     <ClInclude Include="..\..\code\headers\internal\ExternalLibrariesUtilities.hpp" />
     <ClInclude Include="..\..\Code\Headers\Particle.hpp" />
@@ -31,6 +32,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\code\headers\ContactListener.cpp" />
     <ClCompile Include="..\..\code\headers\Entity.cpp" />
+    <ClCompile Include="..\..\code\headers\GameController.cpp" />
     <ClCompile Include="..\..\Code\Headers\SampleSceneMaker.cpp" />
     <ClCompile Include="..\..\Code\Headers\Scene.cpp" />
     <ClCompile Include="..\..\Code\Sources\main.cpp" />

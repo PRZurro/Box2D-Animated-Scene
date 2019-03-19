@@ -1,5 +1,5 @@
 /**
- * @file SampleSceneMaker.hpp
+ * @file SampleScene.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief
  * @version 0.1
@@ -16,11 +16,11 @@
 
 namespace prz
 {
-	class SampleSceneMaker
+	class SampleScene : public Scene
 	{
 	public:
 
-		SampleSceneMaker(Scene & scene);
+		SampleScene(float posX, float posY);
 
 	private:
 

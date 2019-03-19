@@ -1,5 +1,9 @@
+#include "internal/declarations/Declarations.hpp"
+
 #include "Scene.hpp"
-#include "SampleSceneMaker.hpp"
+#include "SampleScene.hpp"
+#include "ContactListener.hpp"
+#include "GameController.hpp"
 
 #include <memory>
 #include <vector>
@@ -112,8 +116,11 @@ int main ()
 
 	window.setVerticalSyncEnabled(true);
 
-	Scene sampleScene(b2Vec2(0, -100.f));
-	SampleSceneMaker sampleSceneMaker(sampleScene);
+	SampleScene sampleScene(0.f, -100.f);
+	
+	GameController gameController(sampleScene);
+
+	ContactListener<GameController> contactListener (GameController::handle_contact, &gameController);
 
     bool running = true;
 

@@ -2,13 +2,22 @@
 
 namespace prz
 {
-	void ContactListener::BeginContact(b2Contact * contact)
+	template<class ContactHandler>
+	void ContactListener<ContactHandler>::BeginContact(b2Contact * contact)
 	{
-		contact->GetFixtureA();
+		if (fnContactHandler_ && contactHandler_)
+		{
+
+		}
 	}
 
-	void ContactListener::EndContact(b2Contact * contact)
+	template<class ContactHandler>
+	void ContactListener<ContactHandler>::EndContact(b2Contact * contact)
 	{
+		if (fnContactHandler_ && contactHandler_)
+		{
+			contactHandler_->*fnContactHandler_(contact->GetFixtureA(), contact->GetFixtureB());
+		}
 	}
 }
 
