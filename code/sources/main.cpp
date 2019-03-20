@@ -8,12 +8,14 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+#include <windows.h>
+
 using namespace prz;
 using namespace sf;
 using namespace std;
 
-#define WINDOW_WIDTH 800 
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 1280 
+#define WINDOW_HEIGHT 720
 
 	int main()
 	{
@@ -24,11 +26,14 @@ using namespace std;
 
 		GameController gameController(sampleScene);
 		ContactListener<GameController> contactListener(&GameController::handle_contact, &gameController);
+		
+		sampleScene.set_contact_listener(&contactListener);
 
 		bool running = true;
 
 		Clock timer;
-		float deltaTime = 0.017f;          // ~60 fps
+
+		float deltaTime = DELTA_TIME;
 
 		do
 		{
@@ -44,6 +49,11 @@ using namespace std;
 				{
 					running = false;
 				}
+
+				if (event.type == Event::KeyPressed)
+				{
+					 
+				}
 			}
 
 			// Update:
@@ -58,6 +68,7 @@ using namespace std;
 			window.display();
 
 			deltaTime = (deltaTime + timer.getElapsedTime().asSeconds()) * 0.5f;
+
 		} while (running);
 
 		return EXIT_SUCCESS;

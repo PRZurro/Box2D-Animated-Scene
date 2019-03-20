@@ -15,7 +15,6 @@
 
 #include "internal/declarations/Declarations.hpp"
 
-
 #include "Entity.hpp"
 #include "GameController.hpp"
 #include "ContactListener.hpp"
@@ -23,7 +22,6 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-
 
 using namespace sf;
 
@@ -37,9 +35,8 @@ namespace prz
 			:
 			physicsWorld_(new b2World(b2Vec2(posX, posY))),
 			worldWidth_(worldWidth),
-			worldHeight_(worldHeight_)
+			worldHeight_(worldHeight)
 		{
-
 		}
 
 		~Scene()
@@ -72,8 +69,7 @@ namespace prz
 
 	public:
 
-		template<class T>
-		void set_contact_listener(ContactListener<T>& contactListener)
+		void set_contact_listener(b2ContactListener* contactListener)
 		{
 			physicsWorld_->SetContactListener(contactListener);
 		}

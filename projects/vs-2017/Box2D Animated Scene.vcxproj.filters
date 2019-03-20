@@ -16,12 +16,12 @@
     <Filter Include="Header Files\Internal">
       <UniqueIdentifier>{0e47e2ce-7deb-4eb0-98d0-02c367c4f665}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Internal\Declarations">
+      <UniqueIdentifier>{f060bda9-20b1-4627-a772-4fa9214f2b32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Code\Headers\Scene.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Code\Headers\Particle.hpp">
@@ -44,6 +44,9 @@
     </ClInclude>
     <ClInclude Include="..\..\code\headers\SampleScene.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp">
+      <Filter>Header Files\Internal\Declarations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

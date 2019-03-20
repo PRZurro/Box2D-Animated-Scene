@@ -5,8 +5,12 @@ namespace prz
 	SampleScene::SampleScene(float posX, float posY, float worldWidth, float worldHeight)
 		:
 		Scene(posX, posY, worldWidth, worldHeight)
-
 	{
+
+		PShared_ptr<Entity> car = create_entity("car01", 10.0, 10.0, 0.f);
+
+		//car->add_body()
+
 		// CÍRCULO
 		{
 			// Se crea el body a partir de una definición de sus características:
@@ -70,7 +74,7 @@ namespace prz
 
 			body_definition.type = b2_staticBody;
 			body_definition.position.Set(0.f, 50.f);                                       // Posición inicial absoluta
-			body_definition.angle = -45.f;
+			body_definition.angle = 0.f;
 
 			b2Body * body = physicsWorld_->CreateBody(&body_definition);
 

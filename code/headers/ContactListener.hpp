@@ -37,7 +37,13 @@ namespace prz
 			:
 			fnContactHandler_(fnContactHandler),
 			contactHandler_(contactHandler)
-		{}
+		{
+			if(fnContactHandler_)
+				std::cout << "Function established"<< std::endl;
+
+			if(contactHandler_)
+				std::cout << "Object established"<< std::endl;
+		}
 
 	public:
 
@@ -45,8 +51,12 @@ namespace prz
 		{
 			if (fnContactHandler_ && contactHandler_)
 			{
-				//contactHandler_->*fnContactHandler_(contact, ContactState::Begin); // Non -  static functions require the bind function located in the standard library, under <functional> header
-				std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
+				std::cout << "Contact began \n" << std::endl;
+
+				/*std::function<void()> handlerCall = std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
+				handlerCall();*/ // Another method to call a generic function from generic object
+
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::Begin);
 			}
 		}
 
@@ -54,7 +64,9 @@ namespace prz
 		{
 			if (fnContactHandler_ && contactHandler_)
 			{
-				std::bind(fnContactHandler_, contactHandler_, contact, ContactState::End); 
+				std::cout << "Contact finished \n" << std::endl;
+				
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::End);
 			}
 		}
 

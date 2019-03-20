@@ -31,9 +31,6 @@ namespace prz
 			inactiveParticles_()
 		{}
 
-		~ParticleSystem()
-		{}
-
 	public:
 
 		void update(float deltaTime)
@@ -46,8 +43,9 @@ namespace prz
 
 	private:
 
-		PBuffer< PShared_ptr<Particle> > activeParticles_;
-		PBuffer< PShared_ptr<Particle> > inactiveParticles_;
+		PBuffer< Particle>		particles_;
+		PBuffer< Particle*>		activeParticles_;
+		PBuffer< Particle* >	inactiveParticles_;
 
 	private:
 

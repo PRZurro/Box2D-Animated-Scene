@@ -19,39 +19,67 @@
 
 using namespace sf;
 
+constexpr float MIN_SPEED     = 0.5f;
+constexpr float MAX_SPEED         = 5.0f;
+constexpr float MIN_AMPLITUDE     = 0.5f;
+constexpr float MAX_AMPLITUDE     = 5.0f;
+constexpr float MIN_FREQUENCY     = 0.5f;
+constexpr float MAX_FREQUENCY     = 5.0f;
+constexpr float MIN_SPEED = 0.5f;
+constexpr float MAX_SPEED = 5.0f;
+
 namespace prz
 {
 	class Particle
 	{
 	public:
 
-		Particle(PString* firstTexturePath, size_t nSprite)
+		Particle()
+		{
+
+		}
+
+		Particle(const Texture & texture, float posX, float posY, float speed, float amplitude, float frequency )
 			:
-			curTimeOfLife_(.0f)
-		{
-			Texture texture; 
-			texture.loadFromFile(*firstTexturePath);
-
-			set_texture(texture);
-		}
-
-		~Particle()
-		{
-
-		}
+			curTimeOfLife_(.0f),
+			sprite_(new Sprite(texture))
+		{}
 		
 	public:
 
 		void update(float deltaTime)
 		{
-			curTimeOfLife_ += deltaTime;
+			if (isActive_)
+			{
+				curTimeOfLife_ += deltaTime;
+
+				positionY_ *= speed_ * deltaTime;
+				positionX_ = amplitude * std::sin((2 * PI * frequency * deltaTime) + phase);
+			}
 		}
 
 	public:
 
-		void set_texture(Texture & texture)
+		void set_sprite_texture(const Texture & texture)
 		{
 			sprite_->setTexture(texture);
+		}
+
+		void set_sprite(Sprite * sprite)
+		{
+			sprite_.reset(sprite);
+		}
+
+	public:
+
+		inline float positionX()
+		{
+			return positionX_;
+		}
+
+		inline bool isActive()
+		{
+			return isActive_;
 		}
 
 	private:
@@ -59,7 +87,20 @@ namespace prz
 		PShared_ptr<Sprite> sprite_;
 
 		float curTimeOfLife_;
+		bool isActive_;
 
+	private:
+
+		float positionX_;
+		float positionY_;
+		float speed_;
+
+	private:
+
+		float amplitude;
+		float frequency;
+		float phase;
+		
 	};
 }
 
