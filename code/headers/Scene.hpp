@@ -9,10 +9,12 @@
  * 
  */
 
+
 #ifndef BOX2D_ANIMATED_SCENE_SCENE_H_
 #define BOX2D_ANIMATED_SCENE_SCENE_H_
 
 #include "internal/declarations/Declarations.hpp"
+
 
 #include "Entity.hpp"
 #include "GameController.hpp"
@@ -22,6 +24,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+
 using namespace sf;
 
 namespace prz
@@ -30,10 +33,15 @@ namespace prz
 	{
 	public:
 
-		Scene(float posX, float posY) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
-			/*:
-			physicsWorld_(new b2World(b2Vec2(0.0f, -100.f))*/
-		{}
+		Scene(float posX, float posY, float worldWidth, float worldHeight) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
+			:
+			physicsWorld_(new b2World(b2Vec2(posX, posY))),
+			worldWidth_(worldWidth),
+			worldHeight_(worldHeight_)
+		{
+
+		}
+
 		~Scene()
 		{
 
@@ -47,19 +55,19 @@ namespace prz
 
 	public:
 
-		PShared_ptr<Entity> create_entity(const PString& name, bool active = true)
+		PShared_ptr<Entity> create_entity(const PString& name, float posX, float posY, float angleDegrees, bool active = true)
 		{
-			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, active));
+			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, posX, posY , angleDegrees, active));
 		}
 
-		PShared_ptr<b2Body> create_body(const b2BodyDef* bodyDefinition) const
+		b2Body* create_body(const b2BodyDef* bodyDefinition) const
 		{
-			return PShared_ptr<b2Body>(physicsWorld_->CreateBody(bodyDefinition));
+			return physicsWorld_->CreateBody(bodyDefinition);
 		}
 
-		PShared_ptr<b2Joint> create_joint(const b2JointDef* jointDefinition) const
+		b2Joint* create_joint(const b2JointDef* jointDefinition) const
 		{
-			return PShared_ptr<b2Joint>(physicsWorld_->CreateJoint(jointDefinition));
+			return physicsWorld_->CreateJoint(jointDefinition);
 		}
 
 	public:
@@ -70,11 +78,16 @@ namespace prz
 			physicsWorld_->SetContactListener(contactListener);
 		}
 
-	private:
+	protected:
 
 		PShared_ptr< b2World > physicsWorld_;
 
 		PMap< PString, PShared_ptr<Entity> > entities_;
+
+	protected:
+
+		float worldHeight_;
+		float worldWidth_;
 	};
 }
 

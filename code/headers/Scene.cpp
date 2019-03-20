@@ -70,31 +70,30 @@ namespace prz
 
 						window.draw(line, 2, Lines);
 					}
-					else
-						if (shape_type == b2Shape::e_polygon)
+					else if (shape_type == b2Shape::e_polygon)
+					{
+						// Se toma la forma poligonal de Box2D (siempre es convexa) y se crea a partir de sus vértices un
+						// ConvexShape de SFML. Cada vértice de Box2D hay que transformarlo usando el transform del body.
+
+						b2PolygonShape * box2d_polygon = dynamic_cast<b2PolygonShape *>(fixture->GetShape());
+						ConvexShape       sfml_polygon;
+
+						int number_of_vertices = box2d_polygon->GetVertexCount();
+
+						sfml_polygon.setPointCount(number_of_vertices);
+						sfml_polygon.setFillColor(Color::Yellow);
+
+						for (int index = 0; index < number_of_vertices; index++)
 						{
-							// Se toma la forma poligonal de Box2D (siempre es convexa) y se crea a partir de sus vértices un
-							// ConvexShape de SFML. Cada vértice de Box2D hay que transformarlo usando el transform del body.
-
-							b2PolygonShape * box2d_polygon = dynamic_cast<b2PolygonShape *>(fixture->GetShape());
-							ConvexShape       sfml_polygon;
-
-							int number_of_vertices = box2d_polygon->GetVertexCount();
-
-							sfml_polygon.setPointCount(number_of_vertices);
-							sfml_polygon.setFillColor(Color::Yellow);
-
-							for (int index = 0; index < number_of_vertices; index++)
-							{
-								sfml_polygon.setPoint
-								(
-									index,
-									box2d_position_to_sfml_position(b2Mul(body_transform, box2d_polygon->GetVertex(index)), window_height)
-								);
-							}
-
-							window.draw(sfml_polygon);
+							sfml_polygon.setPoint
+							(
+								index,
+								box2d_position_to_sfml_position(b2Mul(body_transform, box2d_polygon->GetVertex(index)), window_height)
+							);
 						}
+
+						window.draw(sfml_polygon);
+					}
 			}
 		}
 	}

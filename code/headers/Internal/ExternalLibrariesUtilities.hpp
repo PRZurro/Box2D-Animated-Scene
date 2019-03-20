@@ -1,8 +1,9 @@
 #ifndef BOX2D_ANIMATED_SCENE_INTERNAL_EXTERNAL_LIBRARIES_UTILITIES_H_
 #define BOX2D_ANIMATED_SCENE_INTERNAL_EXTERNAL_LIBRARIES_UTILITIES_H_
 
-#include <SFML/Graphics.hpp>
 #include "internal/declarations/Declarations.hpp"
+#include <SFML/Graphics.hpp>
+
 #include <Box2D/Box2D.h>
 
 using namespace sf;

@@ -3,12 +3,12 @@
 
 namespace prz
 {
-	b2Body * Entity::add_body(const b2BodyDef * bodyDef, const PString & bodyName, const PBodyType & bodyType)
+	b2Body * Entity::add_body(const b2BodyDef * bodyDef, const PString & bodyName, const b2BodyType & bodyType)
 	{
 		bodies_[bodyName] = scene_.create_body(bodyDef);
 		bodies_[bodyName]->SetType(bodyType);
 
-		return bodies_[bodyName].get();
+		return bodies_[bodyName];
 	}
 	b2Joint * prz::Entity::join(const PString & bodyNameA, const PString & bodyNameB, bool collide, bool revolute)
 	{
@@ -28,11 +28,11 @@ namespace prz
 				}
 
 				// Apply the basics of the joint definition
-				jointDef->bodyA = bodies_[bodyNameA].get();
-				jointDef->bodyB = bodies_[bodyNameB].get();
+				jointDef->bodyA = bodies_[bodyNameA];
+				jointDef->bodyB = bodies_[bodyNameB];
 				jointDef->collideConnected = collide;
 
-				return joints_.back().get(); // Return the joint for external desired modifications
+				return joints_.back(); // Return the joint for external desired modifications
 			}
 		}
 

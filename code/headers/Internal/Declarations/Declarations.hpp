@@ -21,9 +21,6 @@ namespace prz
 
 	using PString = std::string;
 
-	using PBodyType = b2BodyType;
-	using PTransform = b2Transform;
-
 	#define DEG_TO_RAD 0.0174533f
 	#define RAD_TO_DEG 57.295779513f
 

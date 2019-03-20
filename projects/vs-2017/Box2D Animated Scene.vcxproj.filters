@@ -59,10 +59,10 @@
     <ClCompile Include="..\..\Code\Headers\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Code\Headers\SampleSceneMaker.cpp">
+    <ClCompile Include="..\..\code\headers\GameController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\headers\GameController.cpp">
+    <ClCompile Include="..\..\Code\Headers\SampleScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

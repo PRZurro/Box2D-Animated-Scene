@@ -12,6 +12,7 @@
 #ifndef BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_
 #define BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_
 
+#include "Internal/Declarations/Declarations.hpp"
 #include <Box2D/Box2D.h>
 
 namespace prz

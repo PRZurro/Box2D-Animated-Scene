@@ -20,11 +20,8 @@ namespace prz
 	{
 	public:
 
-		SampleScene(float posX, float posY)
-			:
-			Scene(posX, posY)
-		{}
-
+		SampleScene(float posX, float posY, float worldWidth, float worldHeight);
+	
 	private:
 
 		void create_car();

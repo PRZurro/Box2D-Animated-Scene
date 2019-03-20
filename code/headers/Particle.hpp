@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef PARTICLE_H
-#define PARTICLE_H
+#ifndef BOX2D_ANIMATED_SCENE_PARTICLE_H_
+#define BOX2D_ANIMATED_SCENE_PARTICLE_H_
 
 #include "internal/declarations/Declarations.hpp"
 #include "Entity.hpp"
@@ -63,4 +63,4 @@ namespace prz
 	};
 }
 
-#endif // !PARTICLE_H
+#endif // !BOX2D_ANIMATED_SCENE_PARTICLE_H_

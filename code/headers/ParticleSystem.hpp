@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef BOX2D_ANIMATED_SCENE_PARTICLES_MANAGER_H_
-#define BOX2D_ANIMATED_SCENE_PARTICLES_MANAGER_H_
+#ifndef BOX2D_ANIMATED_SCENE_PARTICLE_SYSTEM_H_
+#define BOX2D_ANIMATED_SCENE_PARTICLE_SYSTEM_H_
 
 #include "internal/declarations/Declarations.hpp"
 #include "Particle.hpp"
@@ -57,4 +57,4 @@ namespace prz
 
 }
 
-#endif // !BOX2D_ANIMATED_SCENE_PARTICLES_MANAGER_H_
+#endif // !BOX2D_ANIMATED_SCENE_PARTICLE_SYSTEM_H_
