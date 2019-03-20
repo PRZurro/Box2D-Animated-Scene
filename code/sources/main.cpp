@@ -8,14 +8,13 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+using namespace prz;
 using namespace sf;
 using namespace std;
 
 #define WINDOW_WIDTH 800 
 #define WINDOW_HEIGHT 600
 
-namespace prz
-{
 	int main()
 	{
 		RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pablo Rodriguez: Box2D Animated Scene", Style::Titlebar | Style::Close, ContextSettings(32));
@@ -49,19 +48,17 @@ namespace prz
 
 			// Update:
 
-			//sampleScene.update(deltaTime);
-			//// Render:
+			sampleScene.update(deltaTime);
+			// Render:
 
-			//window.clear();
+			window.clear();
 
-			//sampleScene.render(window);
+			sampleScene.render(window);
 
-			//window.display();
+			window.display();
 
 			deltaTime = (deltaTime + timer.getElapsedTime().asSeconds()) * 0.5f;
 		} while (running);
 
 		return EXIT_SUCCESS;
 	}
-}
-

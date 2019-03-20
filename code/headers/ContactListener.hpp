@@ -13,7 +13,10 @@
 #define BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_
 
 #include "Internal/Declarations/Declarations.hpp"
+
 #include <Box2D/Box2D.h>
+
+#include <functional>
 
 namespace prz
 {
@@ -38,9 +41,22 @@ namespace prz
 
 	public:
 
-		void BeginContact(b2Contact* contact) override;
+		void BeginContact(b2Contact* contact) override
+		{
+			if (fnContactHandler_ && contactHandler_)
+			{
+				//contactHandler_->*fnContactHandler_(contact, ContactState::Begin); // Non -  static functions require the bind function located in the standard library, under <functional> header
+				std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
+			}
+		}
 
-		void EndContact(b2Contact* contact) override;
+		void EndContact(b2Contact* contact) override
+		{
+			if (fnContactHandler_ && contactHandler_)
+			{
+				std::bind(fnContactHandler_, contactHandler_, contact, ContactState::End); 
+			}
+		}
 
 	public:
 

@@ -215,3 +215,10 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+
+
+#Whitelist
+!lib/box2d-2.3.1/lib/x64/Debug/*
+!lib/box2d-2.3.1/lib/x64/Release/*
+!lib/box2d-2.3.1/lib/x32/Debug/*
+!lib/box2d-2.3.1/lib/x32/Release/*
