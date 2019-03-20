@@ -48,6 +48,9 @@
     <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp">
       <Filter>Header Files\Internal\Declarations</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\code\headers\FireParticle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\code\headers\ContactListener.cpp">

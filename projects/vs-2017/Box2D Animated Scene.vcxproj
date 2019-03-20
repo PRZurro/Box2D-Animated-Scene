@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Code\Headers\ContactListener.hpp" />
     <ClInclude Include="..\..\Code\Headers\Entity.hpp" />
+    <ClInclude Include="..\..\code\headers\FireParticle.hpp" />
     <ClInclude Include="..\..\code\headers\GameController.hpp" />
     <ClInclude Include="..\..\Code\Headers\Internal\Declarations\Declarations.hpp" />
     <ClInclude Include="..\..\code\headers\internal\ExternalLibrariesUtilities.hpp" />

@@ -19,14 +19,14 @@
 
 using namespace sf;
 
-constexpr float MIN_SPEED     = 0.5f;
-constexpr float MAX_SPEED         = 5.0f;
-constexpr float MIN_AMPLITUDE     = 0.5f;
-constexpr float MAX_AMPLITUDE     = 5.0f;
-constexpr float MIN_FREQUENCY     = 0.5f;
-constexpr float MAX_FREQUENCY     = 5.0f;
-constexpr float MIN_SPEED = 0.5f;
-constexpr float MAX_SPEED = 5.0f;
+constexpr float MIN_SPEED			= 0.5f;
+constexpr float MAX_SPEED			= 5.0f;
+constexpr float MIN_AMPLITUDE		= 0.5f;
+constexpr float MAX_AMPLITUDE		= 5.0f;
+constexpr float MIN_FREQUENCY		= 0.5f;
+constexpr float MAX_FREQUENCY		= 5.0f;
+constexpr float MIN_PHASE			= 0.5f;
+constexpr float MAX_PHASE			= 5.0f;
 
 namespace prz
 {
@@ -34,12 +34,7 @@ namespace prz
 	{
 	public:
 
-		Particle()
-		{
-
-		}
-
-		Particle(const Texture & texture, float posX, float posY, float speed, float amplitude, float frequency )
+		Particle(const Texture & texture, float posX, float posY)
 			:
 			curTimeOfLife_(.0f),
 			sprite_(new Sprite(texture))
@@ -52,11 +47,12 @@ namespace prz
 			if (isActive_)
 			{
 				curTimeOfLife_ += deltaTime;
-
-				positionY_ *= speed_ * deltaTime;
-				positionX_ = amplitude * std::sin((2 * PI * frequency * deltaTime) + phase);
+				
+				auxiliar_update(deltaTime);
 			}
 		}
+
+		virtual void auxiliar_update(float deltaTime) = 0;
 
 	public:
 
@@ -72,35 +68,32 @@ namespace prz
 
 	public:
 
-		inline float positionX()
-		{
-			return positionX_;
-		}
-
 		inline bool isActive()
 		{
 			return isActive_;
 		}
 
-	private:
+		inline float positionX()
+		{
+			return positionX_;
+		}
+
+		inline float positionY()
+		{
+			return positionY_;
+		}
+
+	protected:
 
 		PShared_ptr<Sprite> sprite_;
 
 		float curTimeOfLife_;
 		bool isActive_;
 
-	private:
+	protected:
 
 		float positionX_;
 		float positionY_;
-		float speed_;
-
-	private:
-
-		float amplitude;
-		float frequency;
-		float phase;
-		
 	};
 }
 

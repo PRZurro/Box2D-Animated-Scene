@@ -46,7 +46,7 @@ namespace prz
 
 	public:
 
-		void update(float deltaTime);
+		virtual void update(float deltaTime);
 
 		void render(RenderWindow& window);
 
