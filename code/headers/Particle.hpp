@@ -28,7 +28,7 @@ namespace prz
 		Particle(const Texture & texture, float posX, float posY)
 			:
 			curTimeOfLife_(.0f),
-			sprite_(new Sprite(texture))
+			sprite_(texture)
 		{}
 		
 	public:
@@ -43,19 +43,28 @@ namespace prz
 			}
 		}
 
+
 		virtual void auxiliar_update(float deltaTime) = 0;
+
+		void reset(float posX, float posY, bool isActive = true)
+		{
+			positionX_ = posX;
+			positionY_ = posY;
+			isActive_ =	isActive;
+			curTimeOfLife_ = 0.f;
+		}
 
 	public:
 
 		void set_sprite_texture(const Texture & texture)
 		{
-			sprite_->setTexture(texture);
+			sprite_.setTexture(texture);
 		}
 
-		void set_sprite(Sprite * sprite)
-		{
-			sprite_.reset(sprite);
-		}
+		//void set_sprite(Sprite * sprite)
+		//{
+		//	sprite_.reset(sprite);
+		//}
 
 		void set_position_x(float positionX)
 		{
@@ -90,13 +99,18 @@ namespace prz
 			return positionY_;
 		}
 
+		inline float currentTimeOfLife()
+		{
+			return curTimeOfLife_;
+		}
+
 	protected:
 
-		PShared_ptr<Sprite> sprite_;
+		Sprite sprite_;
 
 		float curTimeOfLife_;
 		bool isActive_;
-
+		 
 	protected:
 
 		float positionX_;

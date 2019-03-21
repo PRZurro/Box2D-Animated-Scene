@@ -16,7 +16,7 @@
 
 namespace prz
 {
-	class FireParticle : Particle
+	class FireParticle : public Particle
 	{
 	public:
 
@@ -40,6 +40,19 @@ namespace prz
 		{
 			positionY_ += speed_ * deltaTime;
 			positionX_ = amplitude_ * std::sin((2 * PI * frequency_ * deltaTime) + phase_);
+
+			float scaleFactor = 1.f - deltaTime;
+			sprite_.scale(scaleFactor, scaleFactor);
+		}
+
+	public:
+
+		void custom_reset(float speed, float amplitude, float frequency, float phase)
+		{
+			speed_ = speed;
+			amplitude_ = amplitude;
+			frequency_ = frequency;
+			phase_ = phase;
 		}
 
 	public:

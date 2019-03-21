@@ -33,9 +33,6 @@
     <ClInclude Include="..\..\Code\Headers\ContactListener.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Code\Headers\ParticleSystem.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\code\headers\internal\ExternalLibrariesUtilities.hpp">
       <Filter>Header Files\Internal</Filter>
     </ClInclude>
@@ -51,7 +48,13 @@
     <ClInclude Include="..\..\code\headers\FireParticle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\BonfireParticleSystem.hpp">
+    <ClInclude Include="..\..\code\headers\internal\Utilities.hpp">
+      <Filter>Header Files\Internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Code\Headers\ParticleEmitter.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\BonfireParticleEmitter.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

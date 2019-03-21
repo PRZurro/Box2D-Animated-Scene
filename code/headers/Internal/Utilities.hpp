@@ -5,6 +5,12 @@
 #include <type_traits>
 #include <random>
 
+
+#include <iostream>       // std::cout
+#include <string>         // std::string
+#include <cstddef>         // std::size_t
+
+
 namespace prz
 {
 	// From: https://stackoverflow.com/questions/7560114/random-number-c-in-some-range
@@ -41,7 +47,11 @@ namespace prz
 
 		return degrees;
 	}
-}
+
+	static PString split_file_name(const PString& str, const char * separator)
+	{
+		return str.substr(str.find_last_of(separator) + 1);
+	}
 }
 
 #endif // !BOX2D_ANIMATED_SCENE_INTERNAL_UTILITIES_H_

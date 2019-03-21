@@ -19,35 +19,82 @@
 
 namespace prz
 {
+	class FireParticle;
+
 	class BonfireParticleEmitter : public ParticleEmitter<FireParticle>
 	{
+		using ParticleEmitter<FireParticle>::exists_texture_with_name;
+
 	public:
 
-		BonfireParticleEmitter(size_t nParticles, float timeToRefresh)
+		BonfireParticleEmitter
+		(
+			size_t nParticles,
+			float timeToRefresh,
+			PBuffer<PString>& texturePaths,
+			float segmentPointAX, float segmentPointAY,
+			float segmentPointBX, float segmentPointBY
+		)
 			:
-			ParticleEmitter<FireParticle>(nParticles, timeToRefresh)
+			ParticleEmitter<FireParticle>(nParticles, timeToRefresh, texturePaths, segmentPointAX, segmentPointAY, segmentPointBX, segmentPointBY)
 		{
-			for (size_t i = 0; i < nParticles; ++i)
+			if (exists_texture_with_name("fire.png"))
 			{
-				//Texture texture;
+				for (auto & fireParticle : particles_)
+				{
 
-				FireParticle & fireParticleTemp = *particles_[i].get();
 
-				FireParticle fireParticleTemp
-				(
-					texture,
-					0.f, //Ecuacion de la recta random
-					0.f, //Ecuacion de la recta random
-					random(MIN_SPEED, MAX_SPEED, true),
-					random(MIN_AMPLITUDE, MAX_AMPLITUDE),
-					random(MIN_FREQUENCY, MAX_FREQUENCY),
-					random(MIN_PHASE, MAX_PHASE)
-				);
+					reset(fireParticle, texturesByName_["fire.png"]);
+					//Texture texture;
+
+
+
+					//FireParticle fireParticleTemp
+					//(
+
+					//	0.f, //Ecuacion de la recta random
+					//	0.f, //Ecuacion de la recta random
+					//	
+					//);
+				}
 			}
 		}
 
 	protected:
 
+		virtual void auxiliar_update(float deltaTime) override
+		{
+			for (FireParticle & fireParticle : particles_)
+			{
+				if (fireParticle.isActive())
+				{
+					if(fireParticle)
+				}
+			}
+		}
+
+		void reset(FireParticle& fireParticle, const Texture& texture)
+		{
+			float posX = random(segmentPointAX, segmentPointBX);
+			float posY = (segmentPointBY - segmentPointAY) / (segmentPointBX - segmentPointAX) * (posX - segmentPointAX) + segmentPointAY;
+
+			fireParticle.reset
+			(
+				posX,
+				posY,
+				true
+			);
+
+			fireParticle.custom_reset
+			(
+				random(MIN_SPEED, MAX_SPEED, true),
+				random(MIN_AMPLITUDE, MAX_AMPLITUDE),
+				random(MIN_FREQUENCY, MAX_FREQUENCY),
+				random(MIN_PHASE, MAX_PHASE)
+			);
+		}
+
+		
 	private:
 
 		static constexpr float MIN_SPEED = 0.5f;
