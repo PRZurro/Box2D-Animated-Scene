@@ -1,5 +1,5 @@
 /**
- * @file Scene.hpp
+ * @file ContactListener.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief
  * @version 0.1
@@ -37,13 +37,7 @@ namespace prz
 			:
 			fnContactHandler_(fnContactHandler),
 			contactHandler_(contactHandler)
-		{
-			if(fnContactHandler_)
-				std::cout << "Function established"<< std::endl;
-
-			if(contactHandler_)
-				std::cout << "Object established"<< std::endl;
-		}
+		{}
 
 	public:
 

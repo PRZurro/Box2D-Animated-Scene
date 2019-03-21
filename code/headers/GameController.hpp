@@ -1,5 +1,5 @@
 /**
- * @file Scene.hpp
+ * @file GameController.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief
  * @version 0.1
@@ -30,8 +30,6 @@ namespace prz
 		
 		void handle_contact(b2Contact* contact, const ContactState& state);
 	};
-
 }
-
 
 #endif // !BOX2D_ANIMATED_GAME_CONTROLLER_H_

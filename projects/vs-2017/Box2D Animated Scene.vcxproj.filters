@@ -51,11 +51,11 @@
     <ClInclude Include="..\..\code\headers\FireParticle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\code\headers\BonfireParticleSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\code\headers\ContactListener.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\code\headers\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

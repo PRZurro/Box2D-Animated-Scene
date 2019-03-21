@@ -19,15 +19,6 @@
 
 using namespace sf;
 
-constexpr float MIN_SPEED			= 0.5f;
-constexpr float MAX_SPEED			= 5.0f;
-constexpr float MIN_AMPLITUDE		= 0.5f;
-constexpr float MAX_AMPLITUDE		= 5.0f;
-constexpr float MIN_FREQUENCY		= 0.5f;
-constexpr float MAX_FREQUENCY		= 5.0f;
-constexpr float MIN_PHASE			= 0.5f;
-constexpr float MAX_PHASE			= 5.0f;
-
 namespace prz
 {
 	class Particle
