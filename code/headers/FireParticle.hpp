@@ -30,14 +30,15 @@ namespace prz
 			float frequency,
 			float phase 
 		)
-			: Particle(texture, posX, posY)
+			: 
+			Particle(texture, posX, posY)
 		{}
 
 	public:
 
 		virtual void auxiliar_update(float deltaTime) override
 		{
-			positionY_ *= speed_ * deltaTime;
+			positionY_ += speed_ * deltaTime;
 			positionX_ = amplitude_ * std::sin((2 * PI * frequency_ * deltaTime) + phase_);
 		}
 
@@ -62,7 +63,6 @@ namespace prz
 		{
 			phase_ = phase;
 		}
-
 
 	public:
 

@@ -13,7 +13,7 @@
 #define BOX2D_ANIMATED_SCENE_ENTITY_H_
 
 #include "internal/declarations/Declarations.hpp"
-#include "Box2D/Box2D.h"
+#include <Box2D/Box2D.h>
 
 namespace prz
 {

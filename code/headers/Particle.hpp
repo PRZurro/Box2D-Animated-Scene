@@ -57,6 +57,22 @@ namespace prz
 			sprite_.reset(sprite);
 		}
 
+		void set_position_x(float positionX)
+		{
+			positionX = positionX;
+		}
+
+		void set_position_y(float positionY)
+		{
+			positionY_ = positionY;
+		}
+
+		void set_position(float positionX, float positionY)
+		{
+			positionX_ = positionX;
+			positionY_ = positionY;
+		}
+
 	public:
 
 		inline bool isActive()

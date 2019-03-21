@@ -1,5 +1,5 @@
 /**
- * @file ParticleSystem.hpp
+ * @file ParticleEmitter.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief 
  * @version 0.1
@@ -17,19 +17,19 @@
 
 namespace prz
 {
-	class Particle;
-
-	class ParticleSystem
+	template<class P>
+	class ParticleEmitter
 	{
 	public:
 
-		ParticleSystem(size_t nParticles, float timeToRefresh)
+		ParticleEmitter(size_t nParticles, float timeToRefresh)
 			:
 			nParticles_(nParticles),
 			timeToRefresh_(timeToRefresh),
 			activeParticles_(nParticles_),
 			inactiveParticles_()
-		{}
+		{
+		}
 
 	public:
 
@@ -39,20 +39,34 @@ namespace prz
 			{
 				particle->update(deltaTime);
 			}
+			
+			auxiliar_update();
 		}
 
-	private:
+	protected:
 
-		PBuffer< Particle>		particles_;
-		PBuffer< Particle*>		activeParticles_;
-		PBuffer< Particle* >	inactiveParticles_;
+		virtual void auxiliar_update() = 0;
 
-	private:
+	protected
+
+		PBuffer< PShared_ptr<P> >	particles_;
+		PBuffer< Particle*>			activeParticles_;
+		PBuffer< Particle* >		inactiveParticles_;
+
+		PBuffer<Texture>			textures;
+
+	protected:
 
 		size_t nParticles_;
 		float timeToRefresh_;
 	};
-
 }
 
+
+class 
+{
+public:
+protected:
+private:
+};
 #endif // !BOX2D_ANIMATED_SCENE_PARTICLE_SYSTEM_H_
