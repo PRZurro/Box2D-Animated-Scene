@@ -27,11 +27,28 @@ namespace prz
 			:
 			scene_(scene),
 			name_(name),
-			isActive_(active)
+			isActive_(active),
+			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees))
 		{}
+
+		Entity(const Entity& other)
+			:
+			bodies_(other.bodies_),
+			joints_(other.joints_),
+			bodiesStartPositions_(other.bodiesStartPositions_),
+			startTransform_(other.startTransform_),
+			scene_(other.scene_),
+			isActive_(other.isActive_),
+			name_(other.name_),
+			entityCategory_(other.entityCategory_)
+		{
+		}
 
 		~Entity()
 		{
+			bodies_.clear();
+			joints_.clear();
+			bodiesStartPositions_.clear();
 		}
 
 	public:
@@ -108,6 +125,7 @@ namespace prz
 
 		PMap< PString, b2Body* >		bodies_;
 		PBuffer< b2Joint* >				joints_;
+		PBuffer< b2RevoluteJoint* >		revoluteJoints_;
 		PMap< PString, b2Transform >	bodiesStartPositions_;
 
 	protected:

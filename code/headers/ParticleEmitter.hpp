@@ -19,93 +19,75 @@
 
 namespace prz
 {
-	template<class P>
-	class ParticleEmitter
-	{
-	public:
+	//template<class P>
+	//class ParticleEmitter
+	//{
+	//public:
 
-		ParticleEmitter
-		(
-			size_t nParticles,
-			float timeToRefresh,
-			PBuffer<PString>& texturePaths,
-			float segmentPointAX, float segmentPointAY,
-			float segmentPointBX, float segmentPointBY
-		)
-			:
-			nParticles_(nParticles),
-			timeToRefresh_(timeToRefresh),
-			particles_(nParticles),
-			activeParticles_(nParticles_),
-			inactiveParticles_()
-		{
-			for (PString & path : texturePaths)
-			{
-				Texture texture;
-				texture.loadFromFile(path);
-				textures_[path] = texture;
-				texturesByName_[split_file_name(path)] = &textures_[path];
-			}
-		}
+	//	ParticleEmitter
+	//	(
+	//		size_t nParticles,
+	//		float particlesLifeTime,
+	//		size_t nResetedParticles,
+	//		float timeToRefresh,
+	//		PBuffer<PString>& texturePaths,
+	//		float segmentPointAX, float segmentPointAY,
+	//		float segmentPointBX, float segmentPointBY
+	//	);
+	//	
 
-	public:
+	//public:
 
-		void update(float deltaTime)
-		{
-			for (auto & particle : activeParticles_)
-			{
-				particle->update(deltaTime);
-			}
-			
-			auxiliar_update(deltaTime);
+	//	void update(float deltaTime);
+	//	
+	//protected:
 
-			// Re establish dead particles 
-		}
+	//	virtual void auxiliar_update(float deltaTime) = 0;
+	//	virtual void particle_restablished(P& particle) = 0;
 
-	protected:
+	//protected:
 
-		bool exists_texture(const PString& texturePath) const
-		{
-			if (textures_.find(texturePath) != textures_.end())
-				return true;
+	//	bool exists_texture(const PString& texturePath) const
+	//	{
+	//		if (textures_.find(texturePath) != textures_.end())
+	//			return true;
 
-			return false;
-		}
+	//		return false;
+	//	}
 
-		bool exists_texture_with_name(const PString& textureName) const
-		{
-			if(texturesByName_.find(textureName) != texturesByName_.end())
-				return true
+	//	bool exists_texture_with_name(const PString& textureName) const
+	//	{
+	//		if (texturesByName_.find(textureName) != texturesByName_.end())
+	//			return true;
 
-			return false;
-		}
+	//		return false;
+	//	}
 
-	protected:
+	//protected:
 
-		virtual void auxiliar_update(float deltaTime) = 0;
+	//	PBuffer< P >				particles_;
+	//	PMap< int, Particle* >		activeParticles_; // 4 bytes + 1 byte, the value does nothing
+	//	PMap< int, Particle* >		inactiveParticles_; // 4 bytes + 1 byte, the value does nothing
 
-	protected:
+	//	PMap< PString, Texture >     textures_;
+	//	PMap< PString, Texture* >	 texturesByName_;
 
-		PBuffer< P >			particles_;
-		PBuffer< Particle*>		activeParticles_;
-		PBuffer< Particle* >	inactiveParticles_;
+	//protected:
 
-		PMap< PString, Texture >     textures_;
-		PMap< PString, Texture&>	 texturesByName_;
+	//	size_t nParticles_;
+	//	size_t particlesLifeTime_;
+	//	size_t nResetedParticles_;
+	//	float resetFrequency_; // In seconds
+	//	float timer_;
 
-	protected:
+	//protected:
 
-		size_t nParticles_;
-		float timeToRefresh_;
+	//	float segmentPointAX;
+	//	float segmentPointAY;
 
-	protected:
-
-		float segmentPointAX;
-		float segmentPointAY;
-
-		float segmentPointBX;
-		float segmentPointBY;
-		
-	};
+	//	float segmentPointBX;
+	//	float segmentPointBY;
+	//	
+	//};
 }
 #endif // !BOX2D_ANIMATED_SCENE_PARTICLE_SYSTEM_H_

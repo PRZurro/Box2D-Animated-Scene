@@ -1,10 +1,17 @@
 #include "Scene.hpp"
 #include "internal/ExternalLibrariesUtilities.hpp"
+#include "VehicleEntity.hpp"
 
 namespace prz
 {
 	void Scene::update(float deltaTime)
 	{
+	
+		for (VehicleEntity* vehiclePtr : vehicles_)
+		{
+			vehiclePtr->update(inputListener_);
+		}
+
 		physicsWorld_->Step(deltaTime, 8, 4);
 
 	}

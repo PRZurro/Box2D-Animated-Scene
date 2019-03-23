@@ -82,6 +82,11 @@ namespace prz
 			positionY_ = positionY;
 		}
 
+		void set_id(int id)
+		{
+			id_ = id;
+		}
+
 	public:
 
 		inline bool isActive()
@@ -104,6 +109,11 @@ namespace prz
 			return curTimeOfLife_;
 		}
 
+		inline int id()
+		{
+			return id_;
+		}
+
 	protected:
 
 		Sprite sprite_;
@@ -115,6 +125,10 @@ namespace prz
 
 		float positionX_;
 		float positionY_;
+
+	protected:
+
+		int id_;
 	};
 }
 

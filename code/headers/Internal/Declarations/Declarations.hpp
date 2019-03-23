@@ -34,8 +34,8 @@ namespace prz
 	{
 		Floor = 0x0001,
 		Platform = 0x0002,
-		Car = 0x0004,
-		ParticleGenerator = 0x0008,
+		Vehicle = 0x0004,
+		ParticleEmitter = 0x0008,
 		Finish = 0x00010
 	};
 

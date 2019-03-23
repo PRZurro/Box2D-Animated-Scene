@@ -2,9 +2,9 @@
 #define BOX2D_ANIMATED_SCENE_INTERNAL_UTILITIES_H_
 
 #include "internal/declarations/Declarations.hpp"
-#include <type_traits>
-#include <random>
 
+#include <time.h>
+#include <random>
 
 #include <iostream>       // std::cout
 #include <string>         // std::string
@@ -23,17 +23,14 @@ namespace prz
 	{
 		static bool first = true;
 
-		if (seed || first)
+		if (first || seed)
 		{
-			std::random_device rd; // obtain a random number from hardware
-			std::mt19937 eng(rd()); // seed the generator
-			first = false;
+			srand(time(NULL));
 		}
 
-		std::uniform_int_distribution<> distr(min, max);
-
-		return distr();
+		return min + T(rand()) / T(RAND_MAX) * (max - min);
 	}
+
 	static float32 to_radians(float32 degrees)
 	{
 		float32 radians(degrees * DEG_TO_RAD);

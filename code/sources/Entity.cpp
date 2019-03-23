@@ -32,7 +32,14 @@ namespace prz
 				jointDef->bodyB = bodies_[bodyNameB];
 				jointDef->collideConnected = collide;
 
-				return joints_.back(); // Return the joint for external desired modifications
+				joints_.push_back(scene_.create_joint(jointDef));
+
+				if (revolute)
+				{
+					revoluteJoints_.push_back((b2RevoluteJoint*)joints_.back());
+				}
+				
+				return revoluteJoints_.back(); // Return the joint for external desired modifications
 			}
 		}
 
