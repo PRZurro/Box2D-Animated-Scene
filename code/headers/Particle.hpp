@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef PARTICLE_H
-#define PARTICLE_H
+#ifndef BOX2D_ANIMATED_SCENE_PARTICLE_H_
+#define BOX2D_ANIMATED_SCENE_PARTICLE_H_
 
 #include "internal/declarations/Declarations.hpp"
 #include "Entity.hpp"
@@ -25,42 +25,111 @@ namespace prz
 	{
 	public:
 
-		Particle(PString* firstTexturePath, size_t nSprite)
+		Particle(const Texture & texture, float posX, float posY)
 			:
-			curTimeOfLife_(.0f)
-		{
-			Texture texture; 
-			texture.loadFromFile(*firstTexturePath);
-
-			set_texture(texture);
-		}
-
-		~Particle()
-		{
-
-		}
+			curTimeOfLife_(.0f),
+			sprite_(texture)
+		{}
 		
 	public:
 
 		void update(float deltaTime)
 		{
-			curTimeOfLife_ += deltaTime;
+			if (isActive_)
+			{
+				curTimeOfLife_ += deltaTime;
+				
+				auxiliar_update(deltaTime);
+			}
+		}
+
+
+		virtual void auxiliar_update(float deltaTime) = 0;
+
+		void reset(float posX, float posY, bool isActive = true)
+		{
+			positionX_ = posX;
+			positionY_ = posY;
+			isActive_ =	isActive;
+			curTimeOfLife_ = 0.f;
 		}
 
 	public:
 
-		void set_texture(Texture & texture)
+		void set_sprite_texture(const Texture & texture)
 		{
-			sprite_->setTexture(texture);
+			sprite_.setTexture(texture);
 		}
 
-	private:
+		//void set_sprite(Sprite * sprite)
+		//{
+		//	sprite_.reset(sprite);
+		//}
 
-		PShared_ptr<Sprite> sprite_;
+		void set_position_x(float positionX)
+		{
+			positionX = positionX;
+		}
+
+		void set_position_y(float positionY)
+		{
+			positionY_ = positionY;
+		}
+
+		void set_position(float positionX, float positionY)
+		{
+			positionX_ = positionX;
+			positionY_ = positionY;
+		}
+
+		void set_id(int id)
+		{
+			id_ = id;
+		}
+
+	public:
+
+		inline bool isActive()
+		{
+			return isActive_;
+		}
+
+		inline float positionX()
+		{
+			return positionX_;
+		}
+
+		inline float positionY()
+		{
+			return positionY_;
+		}
+
+		inline float currentTimeOfLife()
+		{
+			return curTimeOfLife_;
+		}
+
+		inline int id()
+		{
+			return id_;
+		}
+
+	protected:
+
+		Sprite sprite_;
 
 		float curTimeOfLife_;
+		bool isActive_;
+		 
+	protected:
 
+		float positionX_;
+		float positionY_;
+
+	protected:
+
+		int id_;
 	};
 }
 
-#endif // !PARTICLE_H
+#endif // !BOX2D_ANIMATED_SCENE_PARTICLE_H_

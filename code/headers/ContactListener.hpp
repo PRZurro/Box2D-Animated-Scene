@@ -1,5 +1,5 @@
 /**
- * @file Scene.hpp
+ * @file ContactListener.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief
  * @version 0.1
@@ -12,24 +12,27 @@
 #ifndef BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_
 #define BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_
 
+#include "Internal/Declarations/Declarations.hpp"
+
 #include <Box2D/Box2D.h>
+
+#include <functional>
 
 namespace prz
 {
 	template<class ContactHandler>
 	class ContactListener : public b2ContactListener
 	{
-		typedef void (*ContactHandler::ContactHandlerFn) (b2Contact* contact, const ContactState& state);
-
+		using ContactHandlerFn = void(ContactHandler::*) (b2Contact* contact, const ContactState& state);
+	
 	public:
 
 		ContactListener()
 			:
 			fnContactHandler_(nullptr),
 			contactHandler_(nullptr)
+		{}
 
-		{
-		}
 		ContactListener(ContactHandlerFn fnContactHandler, ContactHandler* contactHandler)
 			:
 			fnContactHandler_(fnContactHandler),
@@ -38,8 +41,28 @@ namespace prz
 
 	public:
 
-		void BeginContact(b2Contact* contact) override;
-		void EndContact(b2Contact* contact) override;
+		void BeginContact(b2Contact* contact) override
+		{
+			if (fnContactHandler_ && contactHandler_)
+			{
+				std::cout << "Contact began \n" << std::endl;
+
+				/*std::function<void()> handlerCall = std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
+				handlerCall();*/ // Another method to call a generic function from generic object
+
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::Begin);
+			}
+		}
+
+		void EndContact(b2Contact* contact) override
+		{
+			if (fnContactHandler_ && contactHandler_)
+			{
+				std::cout << "Contact finished \n" << std::endl;
+				
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::End);
+			}
+		}
 
 	public:
 

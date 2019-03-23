@@ -2,7 +2,7 @@
 #define BOX2D_ANIMATED_SCENE_INTERNAL_EXTERNAL_LIBRARIES_UTILITIES_H_
 
 #include <SFML/Graphics.hpp>
-#include "internal/declarations/Declarations.hpp"
+
 #include <Box2D/Box2D.h>
 
 using namespace sf;
@@ -18,20 +18,5 @@ namespace prz
 	{
 		return Vector2f(box2d_position.x, window_height - box2d_position.y);
 	}
-
-	static float32 to_radians(float32 degrees)
-	{
-		float32 radians(degrees * DEG_TO_RAD);
-
-		return radians;
-	}
-
-	static float32 to_degrees(float32 radians)
-	{
-		float32 degrees(radians * RAD_TO_DEG);
-
-		return degrees;
-	}
 }
-
 #endif // !BOX2D_ANIMATED_SCENE_INTERNAL_EXTERNAL_LIBRARIES_UTILITIES_H_

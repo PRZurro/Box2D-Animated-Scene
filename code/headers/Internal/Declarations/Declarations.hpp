@@ -1,12 +1,14 @@
 #ifndef DECLARATIONS_H
 #define DECLARATIONS_H
 
+#include <Box2D/Box2D.h>
+
 #include <memory>
 #include <vector>
 #include <unordered_map>
 #include <string>
 
-#include <Box2D/Box2D.h>
+#include <iostream>
 
 namespace prz
 {
@@ -21,18 +23,19 @@ namespace prz
 
 	using PString = std::string;
 
-	using PBodyType = b2BodyType;
-	using PTransform = b2Transform;
-
-	#define DEG_TO_RAD 0.0174533f
-	#define RAD_TO_DEG 57.295779513f
+	constexpr float PI			= 3.14159f;
+	constexpr float DELTA_TIME	= 0.01667f;          // ~60 fps
+	
+	constexpr float DEG_TO_RAD	= 0.01745f;
+	constexpr float RAD_TO_DEG	= 57.29578f;
+	
 
 	enum EntityCategory 
 	{
 		Floor = 0x0001,
 		Platform = 0x0002,
-		Car = 0x0004,
-		ParticleGenerator = 0x0008,
+		Vehicle = 0x0004,
+		ParticleEmitter = 0x0008,
 		Finish = 0x00010
 	};
 

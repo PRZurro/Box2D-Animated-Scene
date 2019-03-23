@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef BOX2D_ANIMATED_SAMPLE_SCENE_MAKER_H_
-#define BOX2D_ANIMATED_SAMPLE_SCENE_MAKER_H_
+#ifndef BOX2D_ANIMATED_SCENE_SAMPLE_SCENE_H_
+#define BOX2D_ANIMATED_SCENE_SAMPLE_SCENE_H_
 
 #include "Scene.hpp"
 
@@ -20,8 +20,8 @@ namespace prz
 	{
 	public:
 
-		SampleScene(float posX, float posY);
-
+		SampleScene(float posX, float posY, float worldWidth, float worldHeight);
+	
 	private:
 
 		void create_car();
@@ -33,4 +33,4 @@ namespace prz
 	};
 }
 
-#endif // !BOX2D_ANIMATED_SAMPLE_SCENE_MAKER_H_
+#endif // !BOX2D_ANIMATED_SCENE_SAMPLE_SCENE_H_

@@ -13,7 +13,7 @@
 #define BOX2D_ANIMATED_SCENE_ENTITY_H_
 
 #include "internal/declarations/Declarations.hpp"
-#include "Box2D/Box2D.h"
+#include <Box2D/Box2D.h>
 
 namespace prz
 {
@@ -23,17 +23,37 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, const PString & name, b2Transform & transform, bool active = true)
+		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
 			:
 			scene_(scene),
 			name_(name),
 			isActive_(active),
-			startTransform_(transform)
+			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees))
 		{}
+
+		Entity(const Entity& other)
+			:
+			bodies_(other.bodies_),
+			joints_(other.joints_),
+			bodiesStartPositions_(other.bodiesStartPositions_),
+			startTransform_(other.startTransform_),
+			scene_(other.scene_),
+			isActive_(other.isActive_),
+			name_(other.name_),
+			entityCategory_(other.entityCategory_)
+		{
+		}
+
+		~Entity()
+		{
+			bodies_.clear();
+			joints_.clear();
+			bodiesStartPositions_.clear();
+		}
 
 	public:
 
-		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const PBodyType& bodyType = b2BodyType::b2_staticBody);
+		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const b2BodyType& bodyType = b2BodyType::b2_staticBody);
 
 		void add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
 		{
@@ -52,8 +72,10 @@ namespace prz
 		{
 			for (auto& pair : bodies_)
 			{
-				PTransform* tempT = bodiesStartPositions_[pair.first].get();
-				pair.second->SetTransform(tempT->p, tempT->q.GetAngle());
+				b2Transform& tempT = bodiesStartPositions_[pair.first];
+				pair.second->SetTransform(tempT.p, tempT.q.GetAngle());
+				pair.second->SetLinearVelocity(b2Vec2(0, 0));
+				pair.second->SetAngularVelocity(0);
 			}
 		}
 
@@ -89,21 +111,22 @@ namespace prz
 			return name_;
 		}
 
-		inline PShared_ptr<b2Body> get_body(const PString& name)
+		inline b2Body* get_body(const PString& name)
 		{
 			if (exists_body(name))
 			{
-				return PShared_ptr<b2Body>(bodies_[name]);
+				return bodies_[name];
 			}
 
-			return PShared_ptr<b2Body>();
+			return nullptr;
 		}
 
 	protected:
 
-		PMap< PString, PShared_ptr<b2Body> >		bodies_;
-		PBuffer< PShared_ptr<b2Joint> >				joints_;
-		PMap< PString, PShared_ptr<PTransform> >	bodiesStartPositions_;
+		PMap< PString, b2Body* >		bodies_;
+		PBuffer< b2Joint* >				joints_;
+		PBuffer< b2RevoluteJoint* >		revoluteJoints_;
+		PMap< PString, b2Transform >	bodiesStartPositions_;
 
 	protected:
 
