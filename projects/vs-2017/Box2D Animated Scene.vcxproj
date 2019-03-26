@@ -36,12 +36,10 @@
     <ClInclude Include="..\..\code\headers\VehicleEntity.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\code\sources\BonfireParticleEmitter.cpp" />
     <ClCompile Include="..\..\code\sources\ContactListener.cpp" />
     <ClCompile Include="..\..\code\sources\Entity.cpp" />
     <ClCompile Include="..\..\code\sources\GameController.cpp" />
     <ClCompile Include="..\..\code\sources\main.cpp" />
-    <ClCompile Include="..\..\code\sources\ParticleEmitter.cpp" />
     <ClCompile Include="..\..\code\sources\SampleScene.cpp" />
     <ClCompile Include="..\..\code\sources\Scene.cpp" />
   </ItemGroup>

@@ -12,13 +12,24 @@ namespace prz
 		PBuffer<b2Vec2> points = 
 		{
 			{0, 0},
+			{0, 300},
+			{400, 300},
+			{600,100},
+			{600, 0}
+		};
+		add_entity(FloorEntity(points, *this, "low_floor01", 0.f, 0.f, 0.f));
+
+		points.clear();
+		points =
+		{
+			{0,0},
 			{0, 100},
-			{100, 100},
-			{200, 30},
-			{200, 0}
+			{1000, 100},
+			{1000, 0}
 		};
 
-		add_entity(FloorEntity(points, *this, "floor01", 500.f, 500.f, 0.f));
+		add_entity(FloorEntity(points, *this, "low_floor02", 600.f, 0.f, 0.f));
+
 
 		//// CÍRCULO
 		//{

@@ -35,6 +35,7 @@ namespace prz
 			:
 			bodies_(other.bodies_),
 			joints_(other.joints_),
+			revoluteJoints_(other.revoluteJoints_),
 			bodiesStartPositions_(other.bodiesStartPositions_),
 			startTransform_(other.startTransform_),
 			scene_(other.scene_),
@@ -141,5 +142,4 @@ namespace prz
 		EntityCategory entityCategory_;
 	};
 }
-
 #endif // !BOX2D_ANIMATED_SCENE_ENTITY_H_

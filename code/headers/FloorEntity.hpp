@@ -25,7 +25,7 @@ namespace prz
 	{
 	public:
 
-		FloorEntity(PBuffer<b2Vec2>& polygonPoints ,Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
+		FloorEntity(PBuffer<b2Vec2>& polygonPoints,Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
 			:
 			Entity(scene, name, posX, posY, angleDegrees, active)
 		{
@@ -33,7 +33,7 @@ namespace prz
 			bodyDef.position.Set(posX, posY);
 		
 			b2PolygonShape bodyShape;
-			bodyShape.Set(polygonPoints.data(), polygonPoints.size());
+			bodyShape.Set(polygonPoints.data(), (int32)polygonPoints.size());
 
 			b2FixtureDef bodyFixture;
 			
@@ -46,11 +46,6 @@ namespace prz
 
 			add_fixture_to(name_ + "_polygon", &bodyFixture);
 		}
-
-	private:
-
-
 	};
-}
-
+} // !namespace prz
 #endif // !BOX2D_ANIMATED_SCENE_FLOOR_ENTITY_H_

@@ -37,33 +37,39 @@ namespace prz
 			speed_(speed)
 		{}
 
+		VehicleEntity(const VehicleEntity& other)
+			:
+			Entity(other),
+			leftKey_(other.leftKey_),
+			rightKey_(other.rightKey_),
+			speed_(other.speed_)
+		{}
+
 	public:
 
 		void update(const InputListener& inputListener)
 		{
-			speed_ = 0.f;
+			float speed = 0.f;
 
 			if (inputListener.is_key_pressed(leftKey_))
 			{
-				speed_ = -20.f;
+				speed = -speed_;			
 			}
 			else if (inputListener.is_key_pressed(rightKey_))
 			{
-				speed_ = 20.f;
-
+				speed = speed_;
 			}
 
 			for (b2RevoluteJoint* revoluteJoint : revoluteJoints_)
 			{
 				revoluteJoint->SetMotorSpeed(speed_);
 			}
-			/*if(Input)*/
 		}
 
 	private:
 		
-		Key& leftKey_;
-		Key& rightKey_;
+		Key leftKey_;
+		Key rightKey_;
 
 		float speed_;
 	};

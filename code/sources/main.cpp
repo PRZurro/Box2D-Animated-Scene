@@ -15,8 +15,8 @@ using namespace prz;
 using namespace sf;
 using namespace std;
 
-#define WINDOW_WIDTH 1280 
-#define WINDOW_HEIGHT 720
+#define WINDOW_WIDTH 1920	 
+#define WINDOW_HEIGHT 1080
 
 	int main()
 	{
