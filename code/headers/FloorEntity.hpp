@@ -1,5 +1,5 @@
 /**
- * @file Particle.hpp
+ * @file FloorEntity.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief
  * @version 0.1
@@ -15,7 +15,6 @@
 #include "internal/declarations/Declarations.hpp"
 
 #include "Entity.hpp"
-#include "Scene.hpp"
 
 using namespace sf;
 
@@ -30,8 +29,7 @@ namespace prz
 			Entity(scene, name, posX, posY, angleDegrees, active)
 		{
 			b2BodyDef bodyDef;
-			bodyDef.position.Set(posX, posY);
-		
+	
 			b2PolygonShape bodyShape;
 			bodyShape.Set(polygonPoints.data(), (int32)polygonPoints.size());
 
@@ -43,7 +41,6 @@ namespace prz
 			bodyFixture.friction = 0.50f;
 
 			b2Body * body = add_body(&bodyDef, name_ + "_polygon", b2_kinematicBody);
-
 			add_fixture_to(name_ + "_polygon", &bodyFixture);
 		}
 	};

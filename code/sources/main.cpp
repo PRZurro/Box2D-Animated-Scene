@@ -3,7 +3,7 @@
 #include "SampleScene.hpp"
 #include "ContactListener.hpp"
 #include "GameController.hpp"
-#include "InputListener.hpp"
+#include "InputManager.hpp"
 
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
@@ -30,8 +30,6 @@ using namespace std;
 		
 		sampleScene.set_contact_listener(&contactListener);
 
-		InputListener inputListener;
-
 		bool running = true;
 
 		Clock timer;
@@ -41,7 +39,6 @@ using namespace std;
 		do
 		{
 			timer.restart();
-			sampleScene.inputListener().clear_keys();
 
 			// Process window events:
 
@@ -54,7 +51,7 @@ using namespace std;
 					running = false;
 				}
 
-				sampleScene.inputListener().update(event);
+				InputManager::instance().update(event);
 			}
 
 			// Update:

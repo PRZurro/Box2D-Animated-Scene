@@ -7,6 +7,7 @@ namespace prz
 	{
 		bodies_[bodyName] = scene_.create_body(bodyDef);
 		bodies_[bodyName]->SetType(bodyType);
+		bodies_[bodyName]->SetTransform(startTransform_.p,startTransform_.q.GetAngle());
 
 		return bodies_[bodyName];
 	}

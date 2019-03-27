@@ -29,18 +29,14 @@ namespace prz
 		return min + T(rand()) / T(RAND_MAX) * (max - min);
 	}
 
-	static float32 to_radians(float32 degrees)
+	static float to_radians(float32 degrees)
 	{
-		float32 radians(degrees * DEG_TO_RAD);
-
-		return radians;
+		return degrees * DEG_TO_RAD;
 	}
 
-	static float32 to_degrees(float32 radians)
+	static float to_degrees(float32 radians)
 	{
-		float32 degrees(radians * RAD_TO_DEG);
-
-		return degrees;
+		return radians * RAD_TO_DEG;
 	}
 
 	static PString split_file_name(const PString& str, const char * separator)

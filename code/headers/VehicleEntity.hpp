@@ -17,7 +17,7 @@
 
 #include "Entity.hpp"
 #include "Scene.hpp"
-#include "InputListener.hpp"
+#include "InputManager.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -25,8 +25,6 @@ namespace prz
 {
 	class VehicleEntity : public Entity
 	{
-		using Key = sf::Keyboard::Key;
-
 	public:
 
 		VehicleEntity(Key& leftKey, Key& rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
@@ -46,14 +44,14 @@ namespace prz
 		{}
 
 	public:
-
+/*
 		void update(const InputListener& inputListener)
 		{
 			float speed = 0.f;
 
 			if (inputListener.is_key_pressed(leftKey_))
 			{
-				speed = -speed_;			
+				speed = -speed_;
 			}
 			else if (inputListener.is_key_pressed(rightKey_))
 			{
@@ -65,7 +63,7 @@ namespace prz
 				revoluteJoint->SetMotorSpeed(speed_);
 			}
 		}
-
+*/
 	private:
 		
 		Key leftKey_;

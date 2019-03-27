@@ -5,11 +5,11 @@ namespace prz
 	{
 		std::cout << "Handling ";
 
-		if (state == ContactState::Begin)
+		if (state == ContactState::BEGIN)
 		{
 			std::cout << "start of contact..." << std::endl;
 		}
-		else if (state == End)
+		else if (state == END)
 		{
 			std::cout << "end of contact..." << std::endl;
 		}

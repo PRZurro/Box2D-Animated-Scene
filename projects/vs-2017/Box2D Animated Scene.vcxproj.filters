@@ -63,9 +63,6 @@
     <ClInclude Include="..\..\code\headers\FloorEntity.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\VehicleEntity.hpp">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\code\headers\BonfireParticleEmitter.hpp">
       <Filter>Header Files\ParticleEmitters</Filter>
     </ClInclude>
@@ -78,7 +75,16 @@
     <ClInclude Include="..\..\Code\Headers\ContactListener.hpp">
       <Filter>Header Files\Listeners</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\InputListener.hpp">
+    <ClInclude Include="..\..\code\headers\BallEntity.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\VehicleEntity.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\CarVehicleEntity.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\InputManager.hpp">
       <Filter>Header Files\Listeners</Filter>
     </ClInclude>
   </ItemGroup>

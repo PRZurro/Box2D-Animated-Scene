@@ -21,15 +21,6 @@ namespace prz
 	public:
 
 		SampleScene(float posX, float posY, float worldWidth, float worldHeight);
-	
-	private:
-
-		void create_car();
-		void create_ball();
-		void create_platforms();
-		void create_floor();
-		void create_fire();
-
 	};
 }
 

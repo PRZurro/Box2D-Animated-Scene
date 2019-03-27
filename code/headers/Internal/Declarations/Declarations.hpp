@@ -2,6 +2,7 @@
 #define DECLARATIONS_H
 
 #include <Box2D/Box2D.h>
+#include "SFML/Graphics.hpp"
 
 #include <memory>
 #include <vector>
@@ -12,6 +13,9 @@
 
 namespace prz
 {
+
+	using Key = sf::Keyboard::Key;
+
 	template<typename T>
 	using PShared_ptr = std::shared_ptr<T>; // Shared pointer
 
@@ -30,19 +34,19 @@ namespace prz
 	constexpr float RAD_TO_DEG	= 57.29578f;
 	
 
-	enum EntityCategory 
+	enum class EntityCategory 
 	{
-		Floor = 0x0001,
-		Platform = 0x0002,
-		Vehicle = 0x0004,
-		ParticleEmitter = 0x0008,
-		Finish = 0x00010
+		FLOOR = 0x0001,
+		PLATFORM = 0x0002,
+		VEHICLE = 0x0004,
+		PARTICLE_EMITTER = 0x0008,
+		FINISH = 0x00010
 	};
 
 	enum ContactState
 	{
-		Begin = 0,
-		End
+		BEGIN = 0,
+		END
 	};
 }
 

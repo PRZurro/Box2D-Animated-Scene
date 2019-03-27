@@ -50,7 +50,7 @@ namespace prz
 				/*std::function<void()> handlerCall = std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
 				handlerCall();*/ // Another method to call a generic function from generic object
 
-				(contactHandler_->*fnContactHandler_)(contact, ContactState::Begin);
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::BEGIN);
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace prz
 			{
 				std::cout << "Contact finished \n" << std::endl;
 				
-				(contactHandler_->*fnContactHandler_)(contact, ContactState::End);
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::END);
 			}
 		}
 
