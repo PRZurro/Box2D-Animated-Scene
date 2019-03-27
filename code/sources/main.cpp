@@ -26,9 +26,12 @@ using namespace std;
 		SampleScene sampleScene(0.0f, -100.f, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 		GameController gameController(sampleScene);
-		ContactListener<GameController> contactListener(&GameController::handle_contact, &gameController);
-		
-		sampleScene.set_contact_listener(&contactListener);
+		//ContactListener<GameController> contactListener(&GameController::handle_contact, &gameController);
+
+		ContactListener<GameController>::instance().set(&GameController::handle_contact, &gameController);
+		ContactListener<GameController>::instance().set_contact_handler_obj(&gameController);
+
+		sampleScene.set_contact_listener(&ContactListener<GameController>::instance());
 
 		bool running = true;
 

@@ -58,13 +58,6 @@ namespace prz
 			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, posX, posY , angleDegrees, active));
 		}
 
-		//PShared_ptr<Entity> add_entity(const Entity& entity)
-		//{
-		//	// Copy the values of input entity to a new one, because it's provenience is unknown
-		//	return entities_[entity.name()] = PShared_ptr<Entity>(new Entity(entity));
-		//}
-
-
 		PShared_ptr<Entity> add_entity(const PShared_ptr<Entity> & entity)
 		{
 			return entities_[entity->name()] = entity; 
