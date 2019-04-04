@@ -27,7 +27,7 @@ namespace prz
 	{
 	public:
 
-		VehicleEntity(Key& leftKey, Key& rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
+		VehicleEntity(Key& leftKey, Key& rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			:
 			Entity(scene, name, posX, posY, angleDegrees, active),
 			leftKey_(leftKey),
@@ -40,31 +40,36 @@ namespace prz
 			Entity(other),
 			leftKey_(other.leftKey_),
 			rightKey_(other.rightKey_),
-			speed_(other.speed_)
+			speed_(other.speed_),
+			wheelJoints_(other.wheelJoints_)
 		{}
 
 	public:
-/*
-		void update(const InputListener& inputListener)
+
+		void update()
 		{
+			InputManager & inputManager = InputManager::instance();
+
 			float speed = 0.f;
 
-			if (inputListener.is_key_pressed(leftKey_))
+			if (inputManager.is_key_pressed(leftKey_))
 			{
 				speed = -speed_;
 			}
-			else if (inputListener.is_key_pressed(rightKey_))
+			else if (inputManager.is_key_pressed(rightKey_))
 			{
 				speed = speed_;
 			}
 
-			for (b2RevoluteJoint* revoluteJoint : revoluteJoints_)
+			for (b2WheelJoint* wheelJoint : wheelJoints_)
 			{
-				revoluteJoint->SetMotorSpeed(speed_);
+				wheelJoint->SetMotorSpeed(speed_);
 			}
 		}
-*/
+
 	private:
+
+		PBuffer< b2WheelJoint* > wheelJoints_;
 		
 		Key leftKey_;
 		Key rightKey_;

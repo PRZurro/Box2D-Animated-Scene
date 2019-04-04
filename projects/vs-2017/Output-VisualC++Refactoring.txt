@@ -1,0 +1,43 @@
+﻿
+Renamed 'chasisBottomLimit' to 'horizontalRectangle':
+-----------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(52, 19)
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(53, 4)
+
+Renamed 'horizontalRectangle' to 'horizontalRectangleShape':
+------------------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(52, 19)
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(53, 4)
+
+Renamed 'chasisVerticalLimit' to 'verticalRectangleShape':
+----------------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(48, 19)
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(49, 4)
+
+Renamed 'wheelShape' to 'circleShape':
+--------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(51, 18)
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(52, 4)
+
+Renamed 'verticalRectangleVerts' to 'leftLimitVerts':
+-----------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(28, 11)
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(54, 31)
+
+Renamed 'verticalRectangleVerts' to 'rightLimitVerts':
+------------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(36, 11)
+
+Renamed 'horizontalRectanglePolygonVertices' to 'chasisBottomLimitVerts':
+-------------------------------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(44, 11)
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(57, 33)
+
+Renamed 'rightLimitVerts' to 'chasisRightLimitVerts':
+-----------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(36, 11)
+
+Renamed 'leftLimitVerts' to 'chasisLeftLimitVerts':
+---------------------------------------------------
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(28, 11)
+D:\Repositories\ESNE\Box2D-Animated-Scene\code\headers\CarVehicleEntity.hpp(54, 31)

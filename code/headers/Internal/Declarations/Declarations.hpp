@@ -32,7 +32,6 @@ namespace prz
 	
 	constexpr float DEG_TO_RAD	= 0.01745f;
 	constexpr float RAD_TO_DEG	= 57.29578f;
-	
 
 	enum class EntityCategory 
 	{

@@ -9,13 +9,13 @@ namespace prz
 	
 		for (VehicleEntity* vehiclePtr : vehicles_)
 		{
-			//vehiclePtr->update();
+			vehiclePtr->update();
 		}
 
 		physicsWorld_->Step(deltaTime, 8, 4);
 
 	}
-	void Scene::render(RenderWindow & window)
+	void Scene::render(RenderWindow& window)
 	{
 		// Se cachea el alto de la ventana en una variable local:
 
@@ -51,7 +51,7 @@ namespace prz
 					CircleShape shape;
 
 					shape.setPosition(box2d_position_to_sfml_position(b2Mul(body_transform, center), window_height) - Vector2f(radius, radius));
-					shape.setFillColor(Color(178., 0, 255));
+					shape.setFillColor(Color(178, 0, 255));
 					shape.setRadius(radius);
 
 					window.draw(shape);

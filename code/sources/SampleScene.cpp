@@ -1,6 +1,7 @@
 #include "SampleScene.hpp"
 #include "FloorEntity.hpp"
 #include "BallEntity.hpp"
+#include "CarVehicleEntity.hpp"
 
 #include "internal/Utilities.hpp"
 
@@ -10,12 +11,12 @@ namespace prz
 		:
 		Scene(posX, posY, worldWidth, worldHeight)
 	{
-		PBuffer<b2Vec2> points = 
+		PBuffer<b2Vec2> points =
 		{
 			{0, 0},
 			{0, 300},
 			{400, 300},
-			{600,100},
+			{600, 100},
 			{600, 0}
 		};
 		add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "lower_floor01", 0.f, -35.f, 0.f)));
@@ -23,7 +24,7 @@ namespace prz
 		points.clear();
 		points =
 		{
-			{0,0},
+			{0, 0},
 			{0, 100},
 			{1000, 100},
 			{1000, 0}
@@ -54,5 +55,10 @@ namespace prz
 		add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "finish_r", 300.f, 850.f, to_radians(135.f))));
 
 		add_entity(std::make_shared<Entity>(BallEntity(12.f, *this, "ball01", 300.f, 750.f)));
+
+		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(CarVehicleEntity(Key::A, Key::D, 300.f, *this, "Car", 400.f, 400.f)));
+		add_vehicle(static_cast<VehicleEntity*>(car.get()));
+
+
 	}
 }

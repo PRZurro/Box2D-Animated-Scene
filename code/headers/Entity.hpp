@@ -23,7 +23,7 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
+		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			:
 			scene_(scene),
 			name_(name),
@@ -35,7 +35,6 @@ namespace prz
 			:
 			bodies_(other.bodies_),
 			joints_(other.joints_),
-			revoluteJoints_(other.revoluteJoints_),
 			bodiesStartPositions_(other.bodiesStartPositions_),
 			startTransform_(other.startTransform_),
 			scene_(other.scene_),
@@ -55,17 +54,20 @@ namespace prz
 	public:
 
 		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const b2BodyType& bodyType = b2BodyType::b2_staticBody);
+		
+		b2Joint* add_joint(const b2JointDef* jointDef);
+		
 
-		void add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
+		b2Fixture* add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
 		{
 			if (exists_body(bodyName))
 			{
 				fixtureDef->isSensor = isSensor;
-				bodies_[bodyName]->CreateFixture(fixtureDef);
+				return bodies_[bodyName]->CreateFixture(fixtureDef);
 			}
-		}
 
-		b2Joint* join(const PString& bodyNameA, const PString& bodyNameB, bool collide = false, bool revolute = false);
+			return nullptr;
+		}
 
 	public:
 
@@ -126,7 +128,6 @@ namespace prz
 
 		PMap< PString, b2Body* >		bodies_;
 		PBuffer< b2Joint* >				joints_;
-		PBuffer< b2RevoluteJoint* >		revoluteJoints_;
 		PMap< PString, b2Transform >	bodiesStartPositions_;
 
 	protected:

@@ -29,7 +29,7 @@ namespace prz
 			Entity(scene, name, posX, posY, angleDegrees, active)
 		{
 			b2BodyDef bodyDef;
-	
+
 			b2PolygonShape bodyShape;
 			bodyShape.Set(polygonPoints.data(), (int32)polygonPoints.size());
 

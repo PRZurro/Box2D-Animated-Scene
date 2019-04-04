@@ -42,7 +42,7 @@ namespace prz
 				std::cout << "Contact began \n" << std::endl;
 
 				/*std::function<void()> handlerCall = std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
-				handlerCall();*/ // Another method to call a generic function from generic object
+				handlerCall();*/ // Another way to call a generic function from generic object
 
 				(contactHandler_->*fnContactHandler_)(contact, ContactState::BEGIN);
 			}
@@ -84,13 +84,10 @@ namespace prz
 			contactHandler_(nullptr)
 		{}
 
-
 	private:
 		
 		ContactHandlerFn fnContactHandler_;
 		ContactHandler* contactHandler_;
 	};
 }
-
-
 #endif // !BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_

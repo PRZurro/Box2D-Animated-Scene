@@ -58,9 +58,14 @@ namespace prz
 			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, posX, posY , angleDegrees, active));
 		}
 
-		PShared_ptr<Entity> add_entity(const PShared_ptr<Entity> & entity)
+		PShared_ptr<Entity> add_entity(PShared_ptr<Entity> entity)
 		{
 			return entities_[entity->name()] = entity; 
+		}
+
+		void add_vehicle(VehicleEntity* vehicleEntity)
+		{
+			vehicles_.push_back(vehicleEntity);
 		}
 
 		b2Body* create_body(const b2BodyDef* bodyDefinition) const
