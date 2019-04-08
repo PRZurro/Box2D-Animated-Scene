@@ -25,6 +25,8 @@ namespace prz
 			:
 			VehicleEntity(leftKey, rightKey, speed, scene, name, posX, posY, angleDegrees, active)
 		{
+			///////////////////////////////////CHASIS CREATION////////////////////////////////////
+
 			const int verticesCount = 4;
 
 			b2Vec2 chasisLeftLimitVerts[verticesCount] =
@@ -61,31 +63,23 @@ namespace prz
 			b2PolygonShape chasisBottomLimitShape;
 			chasisBottomLimitShape.Set(chasisBottomLimitVerts, verticesCount);
 			
-			b2CircleShape circleShape;
-			circleShape.m_radius = 0.5;
-
-			// Create fixture definitions
-			b2FixtureDef wheelFixtureDef;
-			wheelFixtureDef.shape = &circleShape;
-			wheelFixtureDef.density = 1.00f;
-			wheelFixtureDef.restitution = 0.75f;
-			wheelFixtureDef.friction = 0.50f;
+			// Create chasis fixture definitions
 
 			b2FixtureDef chasisLeftFixtureDef;
 			chasisLeftFixtureDef.shape = &chasisLeftLimitShape;
-			chasisLeftFixtureDef.density = 1.00f;
-			chasisLeftFixtureDef.restitution = 0.75f;
+			chasisLeftFixtureDef.density = 10.00f;
+			chasisLeftFixtureDef.restitution = 0.2f;
 			chasisLeftFixtureDef.friction = 0.50f;
 
 			b2FixtureDef chasisRightFixtureDef;
 			chasisRightFixtureDef.shape = &chasisRightLimitShape;
-			chasisRightFixtureDef.density = 1.00f;
-			chasisRightFixtureDef.restitution = 0.75f;
+			chasisRightFixtureDef.density = 10.00f;
+			chasisRightFixtureDef.restitution = 0.2f;
 			chasisRightFixtureDef.friction = 0.50f;
 
 			b2FixtureDef chasisBottomFixtureDef;
 			chasisBottomFixtureDef.shape = &chasisBottomLimitShape;
-			chasisBottomFixtureDef.density = 1.00f;
+			chasisBottomFixtureDef.density = 10.00f;
 			chasisBottomFixtureDef.restitution = 0.75f;
 			chasisBottomFixtureDef.friction = 0.50f;
 
@@ -97,9 +91,70 @@ namespace prz
 			add_fixture_to("chasis", &chasisRightFixtureDef);
 			add_fixture_to("chasis", &chasisBottomFixtureDef);
 
-			//b2WheelJointDef wheelJointDef;
-		}
+			///////////////////////////////////WHEELS CREATION////////////////////////////////////
+			// Left wheel
+			b2Vec2 leftWheelPositionOffset(-30.5f, -0.5f);
 
+			b2BodyDef leftWheelBodyDef;
+
+			b2CircleShape leftWheelBodyShape;
+			leftWheelBodyShape.m_radius = 10;
+
+			b2FixtureDef leftWheelBodyFixture;
+
+			leftWheelBodyFixture.shape = &leftWheelBodyShape;
+			leftWheelBodyFixture.density = 5.0f;
+			leftWheelBodyFixture.restitution = 0.75f;
+			leftWheelBodyFixture.friction = 0.50f;
+
+			b2Body * leftWheelBody = add_body(&leftWheelBodyDef, name_, b2_dynamicBody);
+			leftWheelBody->CreateFixture(&leftWheelBodyFixture);
+
+			b2WheelJointDef leftWheelJointDef;
+			leftWheelJointDef.enableMotor = false;
+			leftWheelJointDef.bodyA = chasis;
+			leftWheelJointDef.bodyB = leftWheelBody;
+			leftWheelJointDef.dampingRatio = 0.7f;
+			leftWheelJointDef.frequencyHz = 4.0f;
+
+			leftWheelJointDef.localAnchorA = leftWheelPositionOffset;
+
+			leftWheelBody->SetTransform(leftWheelBody->GetPosition() + leftWheelPositionOffset, leftWheelBody->GetAngle());
+
+			b2WheelJoint * leftWheelJoint = add_wheel_joint(leftWheelJointDef); 
+
+			// Right wheel
+
+			b2Vec2 rightWheelPositionOffset(30.5f, 0.5f);
+
+			b2BodyDef rightWheelBodyDef;
+
+			b2CircleShape rightWheelBodyShape;
+			rightWheelBodyShape.m_radius = 10;
+
+			b2FixtureDef rightWheelBodyFixture;
+
+			rightWheelBodyFixture.shape = &rightWheelBodyShape;
+			rightWheelBodyFixture.density = 5.0f;
+			rightWheelBodyFixture.restitution = 0.75f;
+			rightWheelBodyFixture.friction = 0.50f;
+
+			b2Body * rightWheelBody = add_body(&rightWheelBodyDef, name_, b2_dynamicBody);
+			rightWheelBody->CreateFixture(&rightWheelBodyFixture);
+
+			b2WheelJointDef rightWheelJointDef;
+			rightWheelJointDef.enableMotor = false;
+			rightWheelJointDef.bodyA = chasis;
+			rightWheelJointDef.bodyB = rightWheelBody;
+			rightWheelJointDef.dampingRatio = 0.7f;
+			rightWheelJointDef.frequencyHz = 4.0f;
+
+			rightWheelJointDef.localAnchorA = rightWheelPositionOffset;
+
+			rightWheelBody->SetTransform(rightWheelBody->GetPosition() + rightWheelPositionOffset, rightWheelBody->GetAngle());
+
+			b2WheelJoint * rightWheelJoint = add_wheel_joint(rightWheelJointDef);
+		}
 	};
 
 } // !namespace prz

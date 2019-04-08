@@ -54,7 +54,7 @@ namespace prz
 	public:
 
 		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const b2BodyType& bodyType = b2BodyType::b2_staticBody);
-		
+
 		b2Joint* add_joint(const b2JointDef* jointDef);
 		
 

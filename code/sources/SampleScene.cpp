@@ -54,11 +54,9 @@ namespace prz
 		add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "finish_l", 300.f, 850.f, to_radians(45.f))));
 		add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "finish_r", 300.f, 850.f, to_radians(135.f))));
 
-		add_entity(std::make_shared<Entity>(BallEntity(12.f, *this, "ball01", 300.f, 750.f)));
+		add_entity(std::make_shared<Entity>(BallEntity(5.f, *this, "ball01", 300.f, 775.f)));
 
-		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(CarVehicleEntity(Key::A, Key::D, 300.f, *this, "Car", 400.f, 400.f)));
+		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(CarVehicleEntity(Key::A, Key::D, 300.f, *this, "Car", 400.f, 250.f)));
 		add_vehicle(static_cast<VehicleEntity*>(car.get()));
-
-
 	}
 }

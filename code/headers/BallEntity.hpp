@@ -34,8 +34,8 @@ namespace prz
 			b2FixtureDef bodyFixture;
 
 			bodyFixture.shape = &bodyShape;
-			bodyFixture.density = 30.00f;
-			bodyFixture.restitution = 0.75f;
+			bodyFixture.density = 300.00f;
+			bodyFixture.restitution = 0.0f;
 			bodyFixture.friction = 0.50f;
 
 			b2Body * body = add_body(&bodyDef, name_, b2_dynamicBody);

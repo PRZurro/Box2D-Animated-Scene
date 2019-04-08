@@ -67,6 +67,16 @@ namespace prz
 			}
 		}
 
+	public:
+
+		b2WheelJoint * add_wheel_joint(const b2WheelJointDef & wheelJointDef)
+		{
+			b2WheelJoint * wheelJoint = static_cast<b2WheelJoint*>(add_joint(&wheelJointDef));
+			wheelJoints_.push_back(wheelJoint);
+
+			return wheelJoint;
+		}
+
 	private:
 
 		PBuffer< b2WheelJoint* > wheelJoints_;
