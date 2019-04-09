@@ -26,7 +26,7 @@ namespace prz
 
 		FloorEntity(PBuffer<b2Vec2>& polygonPoints,Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
 			:
-			Entity(scene, name, posX, posY, angleDegrees, active)
+			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::FLOOR)
 		{
 			b2BodyDef bodyDef;
 

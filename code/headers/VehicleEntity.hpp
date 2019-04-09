@@ -29,7 +29,7 @@ namespace prz
 
 		VehicleEntity(Key& leftKey, Key& rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			:
-			Entity(scene, name, posX, posY, angleDegrees, active),
+			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::VEHICLE),
 			leftKey_(leftKey),
 			rightKey_(rightKey),
 			speed_(speed)

@@ -23,7 +23,7 @@ namespace prz
 
 		BallEntity(float radius, Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			:
-			Entity(scene, name, posX, posY, angleDegrees, active)
+			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::BALL)
 		{
 			b2BodyDef bodyDef;
 

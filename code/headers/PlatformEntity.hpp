@@ -23,7 +23,7 @@ namespace prz
 	{
 		PlatformEntity(b2Body* supportBody, const b2Vec2& anchorSeparation, PBuffer<b2Vec2>& polygonPoints, float upperTranslation, float motorsSpeed, Scene& scene, const PString& name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			: 
-			FloorEntity(polygonPoints, scene, name, posX, posY, angleDegrees, active),
+			FloorEntity(polygonPoints, scene, name, posX, posY, angleDegrees, active, EntityType::PLATFORM),
 			motorsSpeed_(motorsSpeed)
 		{
 			b2Body* mainBody = get_body(name_ + "_polygon");

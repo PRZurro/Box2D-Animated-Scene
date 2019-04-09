@@ -23,13 +23,13 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
+		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true, EntityType type = EntityType::FLOOR)
 			:
 			scene_(scene),
 			name_(name),
 			isActive_(active),
 			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees)),
-			entityCategory_(EntityCategory::FLOOR)
+			type_(type)
 		{}
 
 		Entity(const Entity& other)
@@ -41,7 +41,7 @@ namespace prz
 			scene_(other.scene_),
 			isActive_(other.isActive_),
 			name_(other.name_),
-			entityCategory_(other.entityCategory_)
+			type_(other.type_)
 		{
 		}
 
@@ -93,6 +93,11 @@ namespace prz
 			}
 		}
 
+		void set_type(EntityType type)
+		{
+			type_ = type;
+		}
+
 		bool exists_body(const PString& bodyName)
 		{
 			if (bodies_.find(bodyName) != bodies_.end())
@@ -141,7 +146,7 @@ namespace prz
 		bool isActive_;
 
 		PString name_;
-		EntityCategory entityCategory_;
+		EntityType type_;
 	};
 }
 #endif // !BOX2D_ANIMATED_SCENE_ENTITY_H_

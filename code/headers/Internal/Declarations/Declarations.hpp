@@ -33,13 +33,14 @@ namespace prz
 	constexpr float DEG_TO_RAD	= 0.01745f;
 	constexpr float RAD_TO_DEG	= 57.29578f;
 
-	enum class EntityCategory 
+	enum class EntityType 
 	{
 		FLOOR = 0x0001,
 		PLATFORM = 0x0002,
 		VEHICLE = 0x0004,
 		PARTICLE_EMITTER = 0x0008,
-		FINISH = 0x00010
+		FINISH = 0x00010,
+		BALL = 0x00020
 	};
 
 	enum ContactState
