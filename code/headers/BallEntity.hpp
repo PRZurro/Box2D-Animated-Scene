@@ -34,7 +34,7 @@ namespace prz
 			b2FixtureDef bodyFixture;
 
 			bodyFixture.shape = &bodyShape;
-			bodyFixture.density = 300.00f;
+			bodyFixture.density = 1.00f;
 			bodyFixture.restitution = 0.0f;
 			bodyFixture.friction = 0.50f;
 

@@ -93,85 +93,115 @@ namespace prz
 			add_fixture_to("chasis", &chasisBottomFixtureDef);
 
 			///////////////////////////////////WHEELS CREATION////////////////////////////////////
-			// Left wheel
+			// Wheel positions
 			b2Vec2 leftWheelPositionOffset(-30.5f, -0.5f);
-
+			b2Vec2 rightWheelPositionOffset(30.5f, -0.5f);
+			
+			// Creating both wheels fixtures and bodies
 			b2BodyDef leftWheelBodyDef;
 
 			b2CircleShape leftWheelBodyShape;
-			leftWheelBodyShape.m_radius = 10;
+			leftWheelBodyShape.m_radius = 10.f;
 
 			b2FixtureDef leftWheelBodyFixture;
-
 			leftWheelBodyFixture.shape = &leftWheelBodyShape;
 			leftWheelBodyFixture.density = 1.0f;
 			leftWheelBodyFixture.restitution = 0.75f;
 			leftWheelBodyFixture.friction = 0.50f;
 
-			b2Body * leftWheelBody = add_body(&leftWheelBodyDef, name_, b2_dynamicBody);
+			b2Body* leftWheelBody = add_body(&leftWheelBodyDef, name_, b2_dynamicBody);
 			leftWheelBody->CreateFixture(&leftWheelBodyFixture);
 			leftWheelBody->SetTransform(leftWheelBody->GetPosition() + leftWheelPositionOffset, leftWheelBody->GetAngle());
 
-			/*b2RevoluteJointDef leftWheelRevoluteJointDef;
-			leftWheelRevoluteJointDef.enableMotor = false;
-			leftWheelRevoluteJointDef.bodyA = chasisBody;
-			leftWheelRevoluteJointDef.bodyB = leftWheelBody;
-			leftWheelRevoluteJointDef.localAnchorA = leftWheelPositionOffset;
+			b2BodyDef leftWheelAxleBodyDef;
 
-			b2RevoluteJoint* leftRevoluteWheelJoint = static_cast<b2RevoluteJoint*>(add_joint(&leftWheelRevoluteJointDef));
-*/
-			b2PrismaticJointDef leftWheelPrismaticJointDef;
-			leftWheelPrismaticJointDef.bodyA = leftWheelBody;
-			leftWheelPrismaticJointDef.bodyB = chasisBody;
-			leftWheelPrismaticJointDef.localAnchorB = leftWheelPositionOffset;
-			leftWheelPrismaticJointDef.enableLimit = true;
-			leftWheelPrismaticJointDef.enableMotor = true;
-			leftWheelPrismaticJointDef.motorSpeed = 300.f;
-			leftWheelPrismaticJointDef.maxMotorForce = 10000000000.f;
-			leftWheelPrismaticJointDef.lowerTranslation = 0.f;
-			leftWheelPrismaticJointDef.upperTranslation = 60.f;
-			leftWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
+			b2CircleShape leftWheelAxleBodyShape;
+			leftWheelAxleBodyShape.m_radius = 3.f;
 
-			b2PrismaticJoint* leftWheelPrismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&leftWheelPrismaticJointDef));
+			b2FixtureDef leftWheelAxleBodyFixture;
+			leftWheelAxleBodyFixture.shape = &leftWheelAxleBodyShape;
+			leftWheelAxleBodyFixture.density = 1.0f;
+			leftWheelAxleBodyFixture.restitution = 0.75f;
+			leftWheelAxleBodyFixture.friction = 0.50f;
 
-
-			/*b2GearJointDef leftWheelGearJointDef;
-			leftWheelGearJointDef.bodyA = chasisBody;
-			leftWheelGearJointDef.bodyB = leftWheelBody;
-			leftWheelGearJointDef.joint1 = leftWheelPrismaticJoint;
-			leftWheelGearJointDef.joint2 = leftRevoluteWheelJoint;
-
-			b2GearJoint* leftWheelGearJoint = static_cast<b2GearJoint*>(add_joint(&leftWheelGearJointDef));*/
-
-			// Right wheel
-			b2Vec2 rightWheelPositionOffset(30.5f, 0.5f);
+			b2Body* leftWheelAxleBody = add_body(&leftWheelAxleBodyDef, name_, b2_dynamicBody);
+			leftWheelAxleBody->CreateFixture(&leftWheelAxleBodyFixture);
+			leftWheelAxleBody->SetTransform(leftWheelAxleBody->GetPosition() + leftWheelPositionOffset, leftWheelAxleBody->GetAngle());
 
 			b2BodyDef rightWheelBodyDef;
 
 			b2CircleShape rightWheelBodyShape;
-			rightWheelBodyShape.m_radius = 10;
+			rightWheelBodyShape.m_radius = 10.f;
 
 			b2FixtureDef rightWheelBodyFixture;
-
 			rightWheelBodyFixture.shape = &rightWheelBodyShape;
-			rightWheelBodyFixture.density = 5.0f;
+			rightWheelBodyFixture.density = 1.0f;
 			rightWheelBodyFixture.restitution = 0.75f;
 			rightWheelBodyFixture.friction = 0.50f;
 
-			b2Body * rightWheelBody = add_body(&rightWheelBodyDef, name_, b2_dynamicBody);
+			b2Body* rightWheelBody = add_body(&rightWheelBodyDef, name_, b2_dynamicBody);
 			rightWheelBody->CreateFixture(&rightWheelBodyFixture);
-
-			b2WheelJointDef rightWheelJointDef;
-			rightWheelJointDef.enableMotor = false;
-			rightWheelJointDef.bodyA = chasisBody;
-			rightWheelJointDef.bodyB = rightWheelBody;
-			rightWheelJointDef.dampingRatio = 0.7f;
-			rightWheelJointDef.frequencyHz = 4.0f;
-			rightWheelJointDef.localAnchorA = rightWheelPositionOffset;
-
 			rightWheelBody->SetTransform(rightWheelBody->GetPosition() + rightWheelPositionOffset, rightWheelBody->GetAngle());
 
-			b2WheelJoint * rightWheelJoint = add_wheel_joint(rightWheelJointDef);
+			b2BodyDef rightWheelAxleBodyDef;
+
+			b2CircleShape rightWheelAxleBodyShape;
+			rightWheelAxleBodyShape.m_radius = 3.f;
+
+			b2FixtureDef rightWheelAxleBodyFixture;
+			rightWheelAxleBodyFixture.shape = &rightWheelAxleBodyShape;
+			rightWheelAxleBodyFixture.density = 1.0f;
+			rightWheelAxleBodyFixture.restitution = 0.75f;
+			rightWheelAxleBodyFixture.friction = 0.50f;
+
+			b2Body* rightWheelAxleBody = add_body(&rightWheelAxleBodyDef, name_, b2_dynamicBody);
+			rightWheelAxleBody->CreateFixture(&rightWheelAxleBodyFixture);
+			rightWheelAxleBody->SetTransform(rightWheelAxleBody->GetPosition() + rightWheelPositionOffset, rightWheelAxleBody->GetAngle());
+
+			// Create the joints attached to the pieces
+			b2RevoluteJointDef leftWheelRevoluteJointDef;
+			leftWheelRevoluteJointDef.bodyA = leftWheelAxleBody;
+			leftWheelRevoluteJointDef.bodyB = leftWheelBody;
+			leftWheelRevoluteJointDef.collideConnected = false;
+			leftWheelRevoluteJointDef.enableMotor = true;
+			leftWheelRevoluteJointDef.motorSpeed = 300000.f;
+			b2RevoluteJoint* leftRevoluteWheelJoint = static_cast<b2RevoluteJoint*>(add_joint(&leftWheelRevoluteJointDef));
+
+			b2PrismaticJointDef leftWheelPrismaticJointDef;
+			leftWheelPrismaticJointDef.bodyA = leftWheelAxleBody;
+			leftWheelPrismaticJointDef.bodyB = chasisBody;
+			leftWheelPrismaticJointDef.collideConnected = false;
+			leftWheelPrismaticJointDef.localAnchorB = leftWheelPositionOffset;
+			leftWheelPrismaticJointDef.enableMotor = true;
+			leftWheelPrismaticJointDef.maxMotorForce = 1000000.f;
+			leftWheelPrismaticJointDef.motorSpeed = 0.f;
+			leftWheelPrismaticJointDef.enableLimit = true;
+			leftWheelPrismaticJointDef.lowerTranslation = 10.f;
+			leftWheelPrismaticJointDef.upperTranslation = 60.f;
+			leftWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
+			b2PrismaticJoint* leftWheelPrismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&leftWheelPrismaticJointDef));
+			
+			b2RevoluteJointDef rightWheelRevoluteJointDef;
+			rightWheelRevoluteJointDef.bodyA = rightWheelAxleBody;
+			rightWheelRevoluteJointDef.bodyB = rightWheelBody;
+			rightWheelRevoluteJointDef.collideConnected = false;
+			rightWheelRevoluteJointDef.enableMotor = true;
+			rightWheelRevoluteJointDef.motorSpeed = 300000.f;
+			b2RevoluteJoint* rightRevoluteWheelJoint = static_cast<b2RevoluteJoint*>(add_joint(&rightWheelRevoluteJointDef));
+
+			b2PrismaticJointDef rightWheelPrismaticJointDef;
+			rightWheelPrismaticJointDef.bodyA = rightWheelAxleBody;
+			rightWheelPrismaticJointDef.bodyB = chasisBody;
+			rightWheelPrismaticJointDef.collideConnected = false;
+			rightWheelPrismaticJointDef.localAnchorB = rightWheelPositionOffset;
+			rightWheelPrismaticJointDef.enableMotor = true;
+			rightWheelPrismaticJointDef.maxMotorForce = 1000000.f;
+			rightWheelPrismaticJointDef.motorSpeed = 0.f;
+			rightWheelPrismaticJointDef.enableLimit = true;
+			rightWheelPrismaticJointDef.lowerTranslation = 10.f;
+			rightWheelPrismaticJointDef.upperTranslation = 60.f;
+			rightWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
+			b2PrismaticJoint* rightWheelPrismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&rightWheelPrismaticJointDef));
 		}
 	};
 

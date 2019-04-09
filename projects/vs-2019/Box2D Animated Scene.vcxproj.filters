@@ -78,14 +78,17 @@
     <ClInclude Include="..\..\code\headers\BallEntity.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\code\headers\VehicleEntity.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\code\headers\CarVehicleEntity.hpp">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\code\headers\InputManager.hpp">
       <Filter>Header Files\Listeners</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\PlatformEntity.hpp">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\code\headers\VehicleEntity.hpp">
+      <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
