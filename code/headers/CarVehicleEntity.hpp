@@ -13,6 +13,7 @@
 #define BOX2D_ANIMATED_SCENE_CAR_VEHICLE_ENTITY_H_
 
 #include "internal/declarations/Declarations.hpp"
+#include "Internal/Utilities.hpp"
 #include "VehicleEntity.hpp"
 
 namespace prz
@@ -67,25 +68,25 @@ namespace prz
 
 			b2FixtureDef chasisLeftFixtureDef;
 			chasisLeftFixtureDef.shape = &chasisLeftLimitShape;
-			chasisLeftFixtureDef.density = 10.00f;
+			chasisLeftFixtureDef.density = 1.0f;
 			chasisLeftFixtureDef.restitution = 0.2f;
 			chasisLeftFixtureDef.friction = 0.50f;
 
 			b2FixtureDef chasisRightFixtureDef;
 			chasisRightFixtureDef.shape = &chasisRightLimitShape;
-			chasisRightFixtureDef.density = 10.00f;
+			chasisRightFixtureDef.density = 1.0f;
 			chasisRightFixtureDef.restitution = 0.2f;
 			chasisRightFixtureDef.friction = 0.50f;
 
 			b2FixtureDef chasisBottomFixtureDef;
 			chasisBottomFixtureDef.shape = &chasisBottomLimitShape;
-			chasisBottomFixtureDef.density = 10.00f;
+			chasisBottomFixtureDef.density = 1.0f;
 			chasisBottomFixtureDef.restitution = 0.75f;
 			chasisBottomFixtureDef.friction = 0.50f;
 
 			//Create chasis body and it's fixtures 
 			b2BodyDef chasisBodyDef;
-			b2Body * chasis = add_body(&chasisBodyDef, "chasis", b2_dynamicBody);
+			b2Body * chasisBody = add_body(&chasisBodyDef, "chasis", b2_dynamicBody);
 
 			add_fixture_to("chasis", &chasisLeftFixtureDef);
 			add_fixture_to("chasis", &chasisRightFixtureDef);
@@ -103,25 +104,44 @@ namespace prz
 			b2FixtureDef leftWheelBodyFixture;
 
 			leftWheelBodyFixture.shape = &leftWheelBodyShape;
-			leftWheelBodyFixture.density = 5.0f;
+			leftWheelBodyFixture.density = 1.0f;
 			leftWheelBodyFixture.restitution = 0.75f;
 			leftWheelBodyFixture.friction = 0.50f;
 
 			b2Body * leftWheelBody = add_body(&leftWheelBodyDef, name_, b2_dynamicBody);
 			leftWheelBody->CreateFixture(&leftWheelBodyFixture);
-
-			b2WheelJointDef leftWheelJointDef;
-			leftWheelJointDef.enableMotor = false;
-			leftWheelJointDef.bodyA = chasis;
-			leftWheelJointDef.bodyB = leftWheelBody;
-			leftWheelJointDef.dampingRatio = 0.7f;
-			leftWheelJointDef.frequencyHz = 4.0f;
-
-			leftWheelJointDef.localAnchorA = leftWheelPositionOffset;
-
 			leftWheelBody->SetTransform(leftWheelBody->GetPosition() + leftWheelPositionOffset, leftWheelBody->GetAngle());
 
-			b2WheelJoint * leftWheelJoint = add_wheel_joint(leftWheelJointDef); 
+			/*b2RevoluteJointDef leftWheelRevoluteJointDef;
+			leftWheelRevoluteJointDef.enableMotor = false;
+			leftWheelRevoluteJointDef.bodyA = chasisBody;
+			leftWheelRevoluteJointDef.bodyB = leftWheelBody;
+			leftWheelRevoluteJointDef.localAnchorA = leftWheelPositionOffset;
+
+			b2RevoluteJoint* leftRevoluteWheelJoint = static_cast<b2RevoluteJoint*>(add_joint(&leftWheelRevoluteJointDef));
+*/
+			b2PrismaticJointDef leftWheelPrismaticJointDef;
+			leftWheelPrismaticJointDef.bodyA = leftWheelBody;
+			leftWheelPrismaticJointDef.bodyB = chasisBody;
+			leftWheelPrismaticJointDef.localAnchorB = leftWheelPositionOffset;
+			leftWheelPrismaticJointDef.enableLimit = true;
+			leftWheelPrismaticJointDef.enableMotor = true;
+			leftWheelPrismaticJointDef.motorSpeed = 300.f;
+			leftWheelPrismaticJointDef.maxMotorForce = 10000000000.f;
+			leftWheelPrismaticJointDef.lowerTranslation = 0.f;
+			leftWheelPrismaticJointDef.upperTranslation = 60.f;
+			leftWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
+
+			b2PrismaticJoint* leftWheelPrismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&leftWheelPrismaticJointDef));
+
+
+			/*b2GearJointDef leftWheelGearJointDef;
+			leftWheelGearJointDef.bodyA = chasisBody;
+			leftWheelGearJointDef.bodyB = leftWheelBody;
+			leftWheelGearJointDef.joint1 = leftWheelPrismaticJoint;
+			leftWheelGearJointDef.joint2 = leftRevoluteWheelJoint;
+
+			b2GearJoint* leftWheelGearJoint = static_cast<b2GearJoint*>(add_joint(&leftWheelGearJointDef));*/
 
 			// Right wheel
 			b2Vec2 rightWheelPositionOffset(30.5f, 0.5f);
@@ -143,11 +163,10 @@ namespace prz
 
 			b2WheelJointDef rightWheelJointDef;
 			rightWheelJointDef.enableMotor = false;
-			rightWheelJointDef.bodyA = chasis;
+			rightWheelJointDef.bodyA = chasisBody;
 			rightWheelJointDef.bodyB = rightWheelBody;
 			rightWheelJointDef.dampingRatio = 0.7f;
 			rightWheelJointDef.frequencyHz = 4.0f;
-
 			rightWheelJointDef.localAnchorA = rightWheelPositionOffset;
 
 			rightWheelBody->SetTransform(rightWheelBody->GetPosition() + rightWheelPositionOffset, rightWheelBody->GetAngle());
