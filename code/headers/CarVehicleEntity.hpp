@@ -124,7 +124,6 @@ namespace prz
 			b2WheelJoint * leftWheelJoint = add_wheel_joint(leftWheelJointDef); 
 
 			// Right wheel
-
 			b2Vec2 rightWheelPositionOffset(30.5f, 0.5f);
 
 			b2BodyDef rightWheelBodyDef;

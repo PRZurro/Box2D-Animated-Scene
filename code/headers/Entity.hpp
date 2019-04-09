@@ -28,7 +28,8 @@ namespace prz
 			scene_(scene),
 			name_(name),
 			isActive_(active),
-			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees))
+			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees)),
+			entityCategory_(EntityCategory::FLOOR)
 		{}
 
 		Entity(const Entity& other)
