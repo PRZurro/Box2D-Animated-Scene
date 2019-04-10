@@ -14,7 +14,7 @@ namespace prz
 
 		PShared_ptr<Entity> ball = add_entity(std::make_shared<Entity>(BallEntity(5.f, *this, "ball01", 300.f, 775.f)));
 
-		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(CarVehicleEntity(Key::A, Key::D, 300.f, *this, "Car", 200.f, 400.f)));
+		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(CarVehicleEntity(Key::A, Key::D, 300000000.f, Key::J, Key::K, 30.f,*this, "Car", 200.f, 400.f)));
 		add_vehicle(static_cast<VehicleEntity*>(car.get()));
 
 		PBuffer<b2Vec2> points =

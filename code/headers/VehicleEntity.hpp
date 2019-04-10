@@ -32,7 +32,7 @@ namespace prz
 			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::VEHICLE),
 			leftKey_(leftKey),
 			rightKey_(rightKey),
-			speed_(speed)
+			wheelsSpeed_(speed)
 		{}
 
 		VehicleEntity(const VehicleEntity& other)
@@ -40,8 +40,8 @@ namespace prz
 			Entity(other),
 			leftKey_(other.leftKey_),
 			rightKey_(other.rightKey_),
-			speed_(other.speed_),
-			wheelJoints_(other.wheelJoints_)
+			wheelsSpeed_(other.wheelsSpeed_),
+			revoluteJoints_(other.revoluteJoints_)
 		{}
 
 	public:
@@ -54,37 +54,44 @@ namespace prz
 
 			if (inputManager.is_key_pressed(leftKey_))
 			{
-				speed = -speed_;
+				speed = -wheelsSpeed_;
 			}
 			else if (inputManager.is_key_pressed(rightKey_))
 			{
-				speed = speed_;
+				speed = wheelsSpeed_;
 			}
 
-			for (b2WheelJoint* wheelJoint : wheelJoints_)
+			for (b2RevoluteJoint* revoluteJoint : revoluteJoints_)
 			{
-				wheelJoint->SetMotorSpeed(speed_);
+				revoluteJoint->SetMotorSpeed(speed);
 			}
+
+			auxiliar_update();
 		}
+
+	protected:
+
+		virtual void auxiliar_update()
+		{}
 
 	public:
 
-		b2WheelJoint * add_wheel_joint(const b2WheelJointDef & wheelJointDef)
+		b2RevoluteJoint * add_revolute_joint(const b2RevoluteJointDef & wheelJointDef)
 		{
-			b2WheelJoint * wheelJoint = static_cast<b2WheelJoint*>(add_joint(&wheelJointDef));
-			wheelJoints_.push_back(wheelJoint);
+			b2RevoluteJoint* revoluteJoint = static_cast<b2RevoluteJoint*>(add_joint(&wheelJointDef));
+			revoluteJoints_.push_back(revoluteJoint);
 
-			return wheelJoint;
+			return revoluteJoint;
 		}
 
-	private:
+	protected:
 
-		PBuffer< b2WheelJoint* > wheelJoints_;
+		PBuffer< b2RevoluteJoint* > revoluteJoints_;
 		
 		Key leftKey_;
 		Key rightKey_;
 
-		float speed_;
+		float wheelsSpeed_;
 	};
 }
 

@@ -14,6 +14,7 @@
 
 #include "internal/declarations/Declarations.hpp"
 #include "Internal/Utilities.hpp"
+
 #include "VehicleEntity.hpp"
 
 namespace prz
@@ -22,9 +23,12 @@ namespace prz
 	{
 	public:
 
-		CarVehicleEntity(Key leftKey, Key rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
+		CarVehicleEntity(Key leftKey, Key rightKey, float wheelsSpeed, Key leftPrismaticJointKey, Key rightPrismaticJointKey, float prismaticJointsSpeed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			:
-			VehicleEntity(leftKey, rightKey, speed, scene, name, posX, posY, angleDegrees, active)
+			VehicleEntity(leftKey, rightKey, wheelsSpeed, scene, name, posX, posY, angleDegrees, active),
+			leftPrismaticJointKey_(leftPrismaticJointKey),
+			rightPrismaticJointKey_(rightPrismaticJointKey),
+			prismaticJointsSpeed_(prismaticJointsSpeed)
 		{
 			///////////////////////////////////CHASIS CREATION////////////////////////////////////
 
@@ -122,7 +126,7 @@ namespace prz
 			leftWheelAxleBodyFixture.shape = &leftWheelAxleBodyShape;
 			leftWheelAxleBodyFixture.density = 1.0f;
 			leftWheelAxleBodyFixture.restitution = 0.75f;
-			leftWheelAxleBodyFixture.friction = 0.50f;
+			leftWheelAxleBodyFixture.friction = 0.30f;
 
 			b2Body* leftWheelAxleBody = add_body(&leftWheelAxleBodyDef, name_, b2_dynamicBody);
 			leftWheelAxleBody->CreateFixture(&leftWheelAxleBodyFixture);
@@ -137,7 +141,7 @@ namespace prz
 			rightWheelBodyFixture.shape = &rightWheelBodyShape;
 			rightWheelBodyFixture.density = 1.0f;
 			rightWheelBodyFixture.restitution = 0.75f;
-			rightWheelBodyFixture.friction = 0.50f;
+			rightWheelBodyFixture.friction = 0.3f;
 
 			b2Body* rightWheelBody = add_body(&rightWheelBodyDef, name_, b2_dynamicBody);
 			rightWheelBody->CreateFixture(&rightWheelBodyFixture);
@@ -162,47 +166,82 @@ namespace prz
 			b2RevoluteJointDef leftWheelRevoluteJointDef;
 			leftWheelRevoluteJointDef.bodyA = leftWheelAxleBody;
 			leftWheelRevoluteJointDef.bodyB = leftWheelBody;
-			leftWheelRevoluteJointDef.collideConnected = false;
 			leftWheelRevoluteJointDef.enableMotor = true;
-			leftWheelRevoluteJointDef.motorSpeed = 300000.f;
-			b2RevoluteJoint* leftRevoluteWheelJoint = static_cast<b2RevoluteJoint*>(add_joint(&leftWheelRevoluteJointDef));
+			leftWheelRevoluteJointDef.motorSpeed = 0.f;
+			leftWheelRevoluteJointDef.maxMotorTorque = 100000.f;
+			b2RevoluteJoint* leftRevoluteWheelJoint = add_revolute_joint(leftWheelRevoluteJointDef);
 
 			b2PrismaticJointDef leftWheelPrismaticJointDef;
 			leftWheelPrismaticJointDef.bodyA = leftWheelAxleBody;
 			leftWheelPrismaticJointDef.bodyB = chasisBody;
-			leftWheelPrismaticJointDef.collideConnected = false;
 			leftWheelPrismaticJointDef.localAnchorB = leftWheelPositionOffset;
 			leftWheelPrismaticJointDef.enableMotor = true;
 			leftWheelPrismaticJointDef.maxMotorForce = 1000000.f;
-			leftWheelPrismaticJointDef.motorSpeed = 0.f;
 			leftWheelPrismaticJointDef.enableLimit = true;
-			leftWheelPrismaticJointDef.lowerTranslation = 10.f;
-			leftWheelPrismaticJointDef.upperTranslation = 60.f;
+			leftWheelPrismaticJointDef.lowerTranslation = 20.f;
+			leftWheelPrismaticJointDef.upperTranslation = 70.f;
 			leftWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
-			b2PrismaticJoint* leftWheelPrismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&leftWheelPrismaticJointDef));
+			b2PrismaticJoint* leftWheelPrismaticJoint = add_prismatic_joint(leftWheelPrismaticJointDef);
 			
 			b2RevoluteJointDef rightWheelRevoluteJointDef;
 			rightWheelRevoluteJointDef.bodyA = rightWheelAxleBody;
 			rightWheelRevoluteJointDef.bodyB = rightWheelBody;
-			rightWheelRevoluteJointDef.collideConnected = false;
 			rightWheelRevoluteJointDef.enableMotor = true;
-			rightWheelRevoluteJointDef.motorSpeed = 300000.f;
-			b2RevoluteJoint* rightRevoluteWheelJoint = static_cast<b2RevoluteJoint*>(add_joint(&rightWheelRevoluteJointDef));
+			rightWheelRevoluteJointDef.maxMotorTorque = 100000.f;
+			b2RevoluteJoint* rightRevoluteWheelJoint = add_revolute_joint(rightWheelRevoluteJointDef);
 
 			b2PrismaticJointDef rightWheelPrismaticJointDef;
 			rightWheelPrismaticJointDef.bodyA = rightWheelAxleBody;
 			rightWheelPrismaticJointDef.bodyB = chasisBody;
-			rightWheelPrismaticJointDef.collideConnected = false;
 			rightWheelPrismaticJointDef.localAnchorB = rightWheelPositionOffset;
 			rightWheelPrismaticJointDef.enableMotor = true;
 			rightWheelPrismaticJointDef.maxMotorForce = 1000000.f;
-			rightWheelPrismaticJointDef.motorSpeed = 0.f;
 			rightWheelPrismaticJointDef.enableLimit = true;
-			rightWheelPrismaticJointDef.lowerTranslation = 10.f;
-			rightWheelPrismaticJointDef.upperTranslation = 60.f;
+			rightWheelPrismaticJointDef.lowerTranslation = 20.f;
+			rightWheelPrismaticJointDef.upperTranslation = 70.f;
 			rightWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
-			b2PrismaticJoint* rightWheelPrismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&rightWheelPrismaticJointDef));
+			b2PrismaticJoint* rightWheelPrismaticJoint = add_prismatic_joint(rightWheelPrismaticJointDef);
 		}
+
+	public:
+
+		b2PrismaticJoint* add_prismatic_joint(const b2PrismaticJointDef& prismaticJointDef)
+		{
+			b2PrismaticJoint* prismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&prismaticJointDef));
+			prismaticJoints_.push_back(prismaticJoint);
+
+			return prismaticJoint;
+		}
+
+	private:
+
+		virtual void auxiliar_update() override
+		{
+			InputManager& inputManager = InputManager::instance();
+
+			float speedLeftWheelPrismaticJoint = -10.f , speedRightWheelPrismaticJoint = speedLeftWheelPrismaticJoint;
+
+			if (inputManager.is_key_pressed(leftPrismaticJointKey_))
+			{
+				speedLeftWheelPrismaticJoint = prismaticJointsSpeed_;
+			}
+			else if (inputManager.is_key_pressed(rightPrismaticJointKey_))
+			{
+				speedRightWheelPrismaticJoint = prismaticJointsSpeed_;
+			}
+
+			prismaticJoints_[0]->SetMotorSpeed(speedLeftWheelPrismaticJoint); 
+			prismaticJoints_[1]->SetMotorSpeed(speedRightWheelPrismaticJoint);
+		}
+
+	private:
+
+		PBuffer< b2PrismaticJoint* > prismaticJoints_;
+
+		Key leftPrismaticJointKey_;
+		Key rightPrismaticJointKey_;
+
+		float prismaticJointsSpeed_;
 	};
 
 } // !namespace prz
