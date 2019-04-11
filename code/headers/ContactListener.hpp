@@ -39,7 +39,7 @@ namespace prz
 		{
 			if (fnContactHandler_ && contactHandler_)
 			{
-				std::cout << "Contact began \n" << std::endl;
+				//std::cout << "Contact began \n" << std::endl;
 
 				/*std::function<void()> handlerCall = std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
 				handlerCall();*/ // Another way to call a generic function from generic object
@@ -52,7 +52,7 @@ namespace prz
 		{
 			if (fnContactHandler_ && contactHandler_)
 			{
-				std::cout << "Contact finished \n" << std::endl;
+				//std::cout << "Contact finished \n" << std::endl;
 				
 				(contactHandler_->*fnContactHandler_)(contact, ContactState::END);
 			}

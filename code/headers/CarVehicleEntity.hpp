@@ -92,9 +92,9 @@ namespace prz
 			b2BodyDef chasisBodyDef;
 			b2Body * chasisBody = add_body(&chasisBodyDef, "chasis", b2_dynamicBody);
 
-			add_fixture_to("chasis", &chasisLeftFixtureDef);
-			add_fixture_to("chasis", &chasisRightFixtureDef);
-			add_fixture_to("chasis", &chasisBottomFixtureDef);
+			add_fixture_to(chasisBody, &chasisLeftFixtureDef);
+			add_fixture_to(chasisBody, &chasisRightFixtureDef);
+			add_fixture_to(chasisBody, &chasisBottomFixtureDef);
 
 			///////////////////////////////////WHEELS CREATION////////////////////////////////////
 			// Wheel positions
@@ -113,8 +113,8 @@ namespace prz
 			leftWheelBodyFixture.restitution = 0.75f;
 			leftWheelBodyFixture.friction = 0.50f;
 
-			b2Body* leftWheelBody = add_body(&leftWheelBodyDef, name_, b2_dynamicBody);
-			leftWheelBody->CreateFixture(&leftWheelBodyFixture);
+			b2Body* leftWheelBody = add_body(&leftWheelBodyDef, "Left_Wheel", b2_dynamicBody);
+			add_fixture_to(leftWheelBody, &leftWheelBodyFixture);
 			leftWheelBody->SetTransform(leftWheelBody->GetPosition() + leftWheelPositionOffset, leftWheelBody->GetAngle());
 
 			b2BodyDef leftWheelAxleBodyDef;
@@ -128,8 +128,8 @@ namespace prz
 			leftWheelAxleBodyFixture.restitution = 0.75f;
 			leftWheelAxleBodyFixture.friction = 0.30f;
 
-			b2Body* leftWheelAxleBody = add_body(&leftWheelAxleBodyDef, name_, b2_dynamicBody);
-			leftWheelAxleBody->CreateFixture(&leftWheelAxleBodyFixture);
+			b2Body* leftWheelAxleBody = add_body(&leftWheelAxleBodyDef, "Left_Wheel_Axle", b2_dynamicBody);
+			add_fixture_to(leftWheelAxleBody, &leftWheelAxleBodyFixture);
 			leftWheelAxleBody->SetTransform(leftWheelAxleBody->GetPosition() + leftWheelPositionOffset, leftWheelAxleBody->GetAngle());
 
 			b2BodyDef rightWheelBodyDef;
@@ -143,8 +143,8 @@ namespace prz
 			rightWheelBodyFixture.restitution = 0.75f;
 			rightWheelBodyFixture.friction = 0.3f;
 
-			b2Body* rightWheelBody = add_body(&rightWheelBodyDef, name_, b2_dynamicBody);
-			rightWheelBody->CreateFixture(&rightWheelBodyFixture);
+			b2Body* rightWheelBody = add_body(&rightWheelBodyDef, "Right_Wheel", b2_dynamicBody);
+			add_fixture_to(rightWheelBody, &rightWheelBodyFixture);
 			rightWheelBody->SetTransform(rightWheelBody->GetPosition() + rightWheelPositionOffset, rightWheelBody->GetAngle());
 
 			b2BodyDef rightWheelAxleBodyDef;
@@ -158,8 +158,8 @@ namespace prz
 			rightWheelAxleBodyFixture.restitution = 0.75f;
 			rightWheelAxleBodyFixture.friction = 0.50f;
 
-			b2Body* rightWheelAxleBody = add_body(&rightWheelAxleBodyDef, name_, b2_dynamicBody);
-			rightWheelAxleBody->CreateFixture(&rightWheelAxleBodyFixture);
+			b2Body* rightWheelAxleBody = add_body(&rightWheelAxleBodyDef, "Right_Wheel_Axle", b2_dynamicBody);
+			add_fixture_to(rightWheelAxleBody, &rightWheelAxleBodyFixture);
 			rightWheelAxleBody->SetTransform(rightWheelAxleBody->GetPosition() + rightWheelPositionOffset, rightWheelAxleBody->GetAngle());
 
 			// Create the joints attached to the pieces
@@ -168,7 +168,7 @@ namespace prz
 			leftWheelRevoluteJointDef.bodyB = leftWheelBody;
 			leftWheelRevoluteJointDef.enableMotor = true;
 			leftWheelRevoluteJointDef.motorSpeed = 0.f;
-			leftWheelRevoluteJointDef.maxMotorTorque = 100000.f;
+			leftWheelRevoluteJointDef.maxMotorTorque = 1000000.f;
 			b2RevoluteJoint* leftRevoluteWheelJoint = add_revolute_joint(leftWheelRevoluteJointDef);
 
 			b2PrismaticJointDef leftWheelPrismaticJointDef;
@@ -178,9 +178,9 @@ namespace prz
 			leftWheelPrismaticJointDef.enableMotor = true;
 			leftWheelPrismaticJointDef.maxMotorForce = 1000000.f;
 			leftWheelPrismaticJointDef.enableLimit = true;
-			leftWheelPrismaticJointDef.lowerTranslation = 20.f;
-			leftWheelPrismaticJointDef.upperTranslation = 70.f;
-			leftWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
+			leftWheelPrismaticJointDef.lowerTranslation = 0.f;
+			leftWheelPrismaticJointDef.upperTranslation = 300.f;
+			leftWheelPrismaticJointDef.localAxisA = { 0.f, 1.f };
 			b2PrismaticJoint* leftWheelPrismaticJoint = add_prismatic_joint(leftWheelPrismaticJointDef);
 			
 			b2RevoluteJointDef rightWheelRevoluteJointDef;
@@ -197,9 +197,9 @@ namespace prz
 			rightWheelPrismaticJointDef.enableMotor = true;
 			rightWheelPrismaticJointDef.maxMotorForce = 1000000.f;
 			rightWheelPrismaticJointDef.enableLimit = true;
-			rightWheelPrismaticJointDef.lowerTranslation = 20.f;
-			rightWheelPrismaticJointDef.upperTranslation = 70.f;
-			rightWheelPrismaticJointDef.referenceAngle = -to_radians(90.f);
+			rightWheelPrismaticJointDef.lowerTranslation = 0.f;
+			rightWheelPrismaticJointDef.upperTranslation = 300.f;
+			rightWheelPrismaticJointDef.localAxisA = { 0.f, 1.f };
 			b2PrismaticJoint* rightWheelPrismaticJoint = add_prismatic_joint(rightWheelPrismaticJointDef);
 		}
 
@@ -228,6 +228,10 @@ namespace prz
 			else if (inputManager.is_key_pressed(rightPrismaticJointKey_))
 			{
 				speedRightWheelPrismaticJoint = prismaticJointsSpeed_;
+			}
+			else if (inputManager.is_key_pressed(Key::Space))
+			{
+				speedLeftWheelPrismaticJoint = speedRightWheelPrismaticJoint = prismaticJointsSpeed_;
 			}
 
 			prismaticJoints_[0]->SetMotorSpeed(speedLeftWheelPrismaticJoint); 
