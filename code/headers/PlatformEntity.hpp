@@ -58,7 +58,14 @@ namespace prz
 			{
 				prismaticJoint->EnableMotor(enabled);
 			}
+		} 
+
+		void recieve_collision(EntityType otherType)
+		{
+
 		}
+
+
 
 	private:
 

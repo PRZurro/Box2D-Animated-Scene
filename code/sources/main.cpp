@@ -9,8 +9,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-#include <windows.h>
-
 using namespace prz;
 using namespace sf;
 using namespace std;

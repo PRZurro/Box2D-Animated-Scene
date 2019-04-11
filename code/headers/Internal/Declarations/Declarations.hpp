@@ -13,7 +13,6 @@
 
 namespace prz
 {
-
 	using Key = sf::Keyboard::Key;
 
 	template<typename T>
