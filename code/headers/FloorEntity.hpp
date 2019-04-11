@@ -1,5 +1,5 @@
 /**
- * @file Particle.hpp
+ * @file FloorEntity.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief
  * @version 0.1
@@ -15,7 +15,6 @@
 #include "internal/declarations/Declarations.hpp"
 
 #include "Entity.hpp"
-#include "Scene.hpp"
 
 using namespace sf;
 
@@ -25,15 +24,16 @@ namespace prz
 	{
 	public:
 
-		FloorEntity(PBuffer<b2Vec2>& polygonPoints ,Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
+		FloorEntity(PBuffer<b2Vec2>& polygonPoints,Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
 			:
-			Entity(scene, name, posX, posY, angleDegrees, active)
+			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::FLOOR)
 		{
+			set_collision_filter(EntityType::BALL | EntityType::VEHICLE);
+
 			b2BodyDef bodyDef;
-			bodyDef.position.Set(posX, posY);
-		
+
 			b2PolygonShape bodyShape;
-			bodyShape.Set(polygonPoints.data(), polygonPoints.size());
+			bodyShape.Set(polygonPoints.data(), (int32)polygonPoints.size());
 
 			b2FixtureDef bodyFixture;
 			
@@ -43,14 +43,8 @@ namespace prz
 			bodyFixture.friction = 0.50f;
 
 			b2Body * body = add_body(&bodyDef, name_ + "_polygon", b2_kinematicBody);
-
-			add_fixture_to(name_ + "_polygon", &bodyFixture);
+			add_fixture_to(body, &bodyFixture);
 		}
-
-	private:
-
-
 	};
-}
-
+} // !namespace prz
 #endif // !BOX2D_ANIMATED_SCENE_FLOOR_ENTITY_H_

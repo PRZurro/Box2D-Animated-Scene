@@ -24,20 +24,14 @@ namespace prz
 	class ContactListener : public b2ContactListener
 	{
 		using ContactHandlerFn = void(ContactHandler::*) (b2Contact* contact, const ContactState& state);
-	
+
 	public:
 
-		ContactListener()
-			:
-			fnContactHandler_(nullptr),
-			contactHandler_(nullptr)
-		{}
-
-		ContactListener(ContactHandlerFn fnContactHandler, ContactHandler* contactHandler)
-			:
-			fnContactHandler_(fnContactHandler),
-			contactHandler_(contactHandler)
-		{}
+		static ContactListener<ContactHandler>& instance()
+		{
+			static ContactListener<ContactHandler> instance;
+			return instance;
+		}
 
 	public:
 
@@ -45,12 +39,12 @@ namespace prz
 		{
 			if (fnContactHandler_ && contactHandler_)
 			{
-				std::cout << "Contact began \n" << std::endl;
+				//std::cout << "Contact began \n" << std::endl;
 
 				/*std::function<void()> handlerCall = std::bind(fnContactHandler_, contactHandler_, contact, ContactState::Begin);
-				handlerCall();*/ // Another method to call a generic function from generic object
+				handlerCall();*/ // Another way to call a generic function from generic object
 
-				(contactHandler_->*fnContactHandler_)(contact, ContactState::Begin);
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::BEGIN);
 			}
 		}
 
@@ -58,23 +52,37 @@ namespace prz
 		{
 			if (fnContactHandler_ && contactHandler_)
 			{
-				std::cout << "Contact finished \n" << std::endl;
+				//std::cout << "Contact finished \n" << std::endl;
 				
-				(contactHandler_->*fnContactHandler_)(contact, ContactState::End);
+				(contactHandler_->*fnContactHandler_)(contact, ContactState::END);
 			}
 		}
 
 	public:
 
-		void set_contact_handler_fn(ContactHandlerFn contactHandler)
+		void set(ContactHandlerFn contactHandler, ContactHandler* handlerObj)
 		{
-			fnContactHandler_ = contactHandler;
+			set_contact_handler_fn(contactHandler);
+			set_contact_handler_obj(handlerObj);
 		}
 
-		void set_contact_handler_obj(ContactHandler* handler)
+		void set_contact_handler_fn(ContactHandlerFn fnContactHandler)
 		{
-			contactHandler_ = handler;
+			fnContactHandler_ = fnContactHandler;
 		}
+
+		void set_contact_handler_obj(ContactHandler* handlerObj)
+		{
+			contactHandler_ = handlerObj;
+		}
+
+	private:
+
+		ContactListener()
+			:
+			fnContactHandler_(nullptr),
+			contactHandler_(nullptr)
+		{}
 
 	private:
 		
@@ -82,6 +90,4 @@ namespace prz
 		ContactHandler* contactHandler_;
 	};
 }
-
-
 #endif // !BOX2D_ANIMATED_SCENE_CONTACT_LISTENER_H_

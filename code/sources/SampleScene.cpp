@@ -1,5 +1,10 @@
 #include "SampleScene.hpp"
 #include "FloorEntity.hpp"
+#include "BallEntity.hpp"
+#include "CarVehicleEntity.hpp"
+#include "PlatformEntity.hpp"
+
+#include "internal/Utilities.hpp"
 
 namespace prz
 {
@@ -7,97 +12,100 @@ namespace prz
 		:
 		Scene(posX, posY, worldWidth, worldHeight)
 	{
-		//car->add_body()
-		
-		PBuffer<b2Vec2> points = 
+
+		PShared_ptr<Entity> ball = add_entity(std::make_shared<BallEntity>(5.f, *this, "ball01", 300.f, 775.f));
+
+		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(Key::A, Key::D, 9000000.f, Key::J, Key::K, 30.f,*this, "Car", 200.f, 400.f));
+		add_vehicle(static_cast<VehicleEntity*>(car.get()));
+
+		PBuffer<b2Vec2> points =
+		{
+			{0, 0},
+			{0, 300},
+			{400, 300},
+			{600, 100},
+			{600, 0}
+		};
+
+		PShared_ptr<Entity> lowerFloor1 = add_entity(std::make_shared<FloorEntity>(FloorEntity(points, *this, "lower_floor01", 0.f, -35.f, 0.f)));
+
+		points =
 		{
 			{0, 0},
 			{0, 100},
-			{100, 100},
-			{200, 30},
+			{1000, 100},
+			{1000, 0}
+		};
+
+		PShared_ptr<Entity> lowerFloor2 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "lower_floor02", 600.f, -35.f, 0.f)));
+
+		points =
+		{
+			{0, 0},
+			{0, 50},
+			{300, 50},
+			{300, 0}
+		};
+		PShared_ptr<Entity> lowerFloor3 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "lower_floor03", 1600.f, -85.f, 0.f)));
+		PShared_ptr<Entity> platformLowFloor = add_entity(std::make_shared<Entity>
+		(
+			PlatformEntity(lowerFloor3->get_body("lower_floor03_polygon"), b2Vec2(150.f, 50.f ), points, 885.f, 300000.f, *this, "platform_low_floor", 1600.f, 15.f, 0.f)
+		));
+
+		points =
+		{
+			{0,0},
+			{0, 50},
+			{200, 50},
 			{200, 0}
 		};
 
-		add_entity(FloorEntity(points, *this, "floor01", 500.f, 500.f, 0.f));
+		PShared_ptr<Entity> upperFloor1 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "upper_floor01", 1400.f, 800.f, 0.f)));
 
-		//// CÍRCULO
-		//{
-		//	// Se crea el body a partir de una definición de sus características:
+		points =
+		{
+			{0,0},
+			{0, -50},
+			{-100, -150},
+			{-100, -100}
+		};
 
-		//	b2BodyDef body_definition;
+		PShared_ptr<Entity> upperFloor2 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "upper_floor02", 1400.f, 850.f, 0.f)));
 
-		//	body_definition.type = b2_dynamicBody;
-		//	body_definition.position.Set(worldWidth_ / 2.f, worldHeight_ / 2.f);           // Posición inicial absoluta
+		points =
+		{
+			{0,0},
+			{0, 50},
+			{700, 50},
+			{700, 0}
+		};
 
-		//	b2Body * body = physicsWorld_->CreateBody(&body_definition);
+		PShared_ptr<Entity> upperFloor3 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "upper_floor03", 600.f, 700.f, 0.f)));
+		
+		points =
+		{
+			{0,0},
+			{0, 50},
+			{200, 50},
+			{200, 0}
+		};
 
-		//	// Se añande una fixture al body:
+		PShared_ptr<Entity> upperFloor4 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "upper_floor04", 400.f, 650.f, 0.f)));
 
-		//	b2CircleShape body_shape;
+		PShared_ptr<Entity> platformTopFloor = add_entity(std::make_shared<Entity>
+		(
+			PlatformEntity(upperFloor4->get_body("upper_floor04_polygon"), b2Vec2(100.f, 50.f), points, 300.f, 30.f, *this, "platform_low_floor", 400.f, 700.f, 0.f)
+		));
 
-		//	body_shape.m_radius = 25.f;
+		points =
+		{
+			{0, 0},
+			{0, 50},
+			{150, 50},
+			{150, 0}
+		};
 
-		//	b2FixtureDef body_fixture;
-
-		//	body_fixture.shape = &body_shape;
-		//	body_fixture.density = 1.00f;
-		//	body_fixture.restitution = 0.75f;
-		//	body_fixture.friction = 0.50f;
-
-		//	body->CreateFixture(&body_fixture);
-		//}
-
-		//// CUADRADO
-		//{
-		//	// Se crea el body a partir de una definición de sus características:
-
-		//	b2BodyDef body_definition;
-
-		//	body_definition.type = b2_dynamicBody;
-		//	body_definition.position.Set(worldWidth_ / 2.f, worldHeight_ / 2.f + 200.f);   // Posición inicial absoluta
-		//	body_definition.angle = 0.4f;
-
-		//	b2Body * body = physicsWorld_->CreateBody(&body_definition);
-
-		//	// Se añande una fixture al body:
-
-		//	b2PolygonShape body_shape;
-
-		//	body_shape.SetAsBox(25.f, 25.f);
-
-		//	b2FixtureDef body_fixture;
-
-		//	body_fixture.shape = &body_shape;
-		//	body_fixture.density = 1.00f;
-		//	body_fixture.restitution = 0.50f;
-		//	body_fixture.friction = 0.50f;
-
-		//	body->CreateFixture(&body_fixture);
-		//}
-
-		//// SUELO
-		//{
-		//	// Se crea el body a partir de una definición de sus características:
-
-		//	b2BodyDef body_definition;
-
-		//	body_definition.type = b2_staticBody;
-		//	body_definition.position.Set(0.f, 50.f);                                       // Posición inicial absoluta
-		//	body_definition.angle = 0.f;
-
-		//	b2Body * body = physicsWorld_->CreateBody(&body_definition);
-
-		//	// Se añande una fixture al body:
-
-		//	b2EdgeShape body_shape;
-
-		//	body_shape.Set(b2Vec2(0.f, 0.f), b2Vec2(worldWidth_, 0.f));                    // Coordenadas locales respecto al centro del body
-
-		//	b2FixtureDef body_fixture;
-
-		//	body_fixture.shape = &body_shape;
-
-		//	body->CreateFixture(&body_fixture);
-		//}
+		PShared_ptr<Entity> finishFloor1 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "finish_l", 300.f, 850.f, to_radians(45.f))));
+		PShared_ptr<Entity> finishFloor2 = add_entity(std::make_shared<Entity>(FloorEntity(points, *this, "finish_r", 300.f, 850.f, to_radians(135.f))));
 	}
 }

@@ -17,7 +17,7 @@
 
 #include "Entity.hpp"
 #include "Scene.hpp"
-#include "InputListener.hpp"
+#include "InputManager.hpp"
 
 #include <SFML/Graphics.hpp>
 
@@ -25,47 +25,75 @@ namespace prz
 {
 	class VehicleEntity : public Entity
 	{
-		using Key = sf::Keyboard::Key;
-
 	public:
 
-		VehicleEntity(Key& leftKey, Key& rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
+		VehicleEntity(Key& leftKey, Key& rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			:
-			Entity(scene, name, posX, posY, angleDegrees, active),
+			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::VEHICLE),
 			leftKey_(leftKey),
 			rightKey_(rightKey),
-			speed_(speed)
+			wheelsSpeed_(speed)
+		{
+			set_collision_filter(EntityType::BALL | EntityType::FINISH | EntityType::PARTICLE_EMITTER | EntityType::PLATFORM | EntityType::FLOOR);
+		}
+
+		VehicleEntity(const VehicleEntity& other)
+			:
+			Entity(other),
+			leftKey_(other.leftKey_),
+			rightKey_(other.rightKey_),
+			wheelsSpeed_(other.wheelsSpeed_),
+			revoluteJoints_(other.revoluteJoints_)
 		{}
 
 	public:
 
-		void update(const InputListener& inputListener)
+		void update()
 		{
-			speed_ = 0.f;
+			InputManager & inputManager = InputManager::instance();
 
-			if (inputListener.is_key_pressed(leftKey_))
+			float speed = 0.f;
+
+			if (inputManager.is_key_pressed(leftKey_))
 			{
-				speed_ = -20.f;
+				speed = wheelsSpeed_;
 			}
-			else if (inputListener.is_key_pressed(rightKey_))
+			else if (inputManager.is_key_pressed(rightKey_))
 			{
-				speed_ = 20.f;
-
+				speed = -wheelsSpeed_;
 			}
 
 			for (b2RevoluteJoint* revoluteJoint : revoluteJoints_)
 			{
-				revoluteJoint->SetMotorSpeed(speed_);
+				revoluteJoint->SetMotorSpeed(speed);
 			}
-			/*if(Input)*/
+
+			auxiliar_update();
 		}
 
-	private:
-		
-		Key& leftKey_;
-		Key& rightKey_;
+	protected:
 
-		float speed_;
+		virtual void auxiliar_update()
+		{}
+
+	public:
+
+		b2RevoluteJoint * add_revolute_joint(const b2RevoluteJointDef & wheelJointDef)
+		{
+			b2RevoluteJoint* revoluteJoint = static_cast<b2RevoluteJoint*>(add_joint(&wheelJointDef));
+			revoluteJoints_.push_back(revoluteJoint);
+
+			return revoluteJoint;
+		}
+
+	protected:
+
+		PBuffer< b2RevoluteJoint* > revoluteJoints_;
+		
+		Key leftKey_;
+		Key rightKey_;
+
+		float wheelsSpeed_;
 	};
 }
 

@@ -23,12 +23,14 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
-			:
+		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true, EntityType type = EntityType::UNDEFINED, uint16_t maskBits = EntityType::UNDEFINED | EntityType::FLOOR)
+			: 
 			scene_(scene),
 			name_(name),
 			isActive_(active),
-			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees))
+			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees)),
+			type_(type),
+			maskBits_(maskBits)
 		{}
 
 		Entity(const Entity& other)
@@ -40,9 +42,12 @@ namespace prz
 			scene_(other.scene_),
 			isActive_(other.isActive_),
 			name_(other.name_),
-			entityCategory_(other.entityCategory_)
-		{
-		}
+			type_(other.type_),
+			maskBits_(other.maskBits_)
+		{}
+			//= delete;
+
+		 
 
 		~Entity()
 		{
@@ -55,16 +60,35 @@ namespace prz
 
 		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const b2BodyType& bodyType = b2BodyType::b2_staticBody);
 
-		void add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
+		b2Joint* add_joint(const b2JointDef* jointDef);
+		
+
+		b2Fixture* add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
 		{
 			if (exists_body(bodyName))
 			{
-				fixtureDef->isSensor = isSensor;
-				bodies_[bodyName]->CreateFixture(fixtureDef);
+				add_fixture_to(bodies_[bodyName], fixtureDef, isSensor);
 			}
+
+			return nullptr;
 		}
 
-		b2Joint* join(const PString& bodyNameA, const PString& bodyNameB, bool collide = false, bool revolute = false);
+		b2Fixture* add_fixture_to(b2Body* body, b2FixtureDef* fixtureDef, bool isSensor = false)
+		{
+			if (body && fixtureDef)
+			{
+				fixtureDef->isSensor = isSensor;
+				fixtureDef->filter.categoryBits = type_;
+				fixtureDef->filter.maskBits = maskBits_;
+
+				b2Fixture* fixture = body->CreateFixture(fixtureDef);
+				fixture->SetUserData(this);
+
+				return fixture;
+			}
+				
+			return nullptr;
+		}
 
 	public:
 
@@ -89,6 +113,16 @@ namespace prz
 			}
 		}
 
+		void set_type(EntityType type)
+		{
+			type_ = type;
+		}
+
+		void set_collision_filter(uint16_t maskBits)
+		{
+			maskBits_ = maskBits;
+		}
+
 		bool exists_body(const PString& bodyName)
 		{
 			if (bodies_.find(bodyName) != bodies_.end())
@@ -111,6 +145,11 @@ namespace prz
 			return name_;
 		}
 
+		inline EntityType type()
+		{
+			return type_;
+		}
+
 		inline b2Body* get_body(const PString& name)
 		{
 			if (exists_body(name))
@@ -125,7 +164,6 @@ namespace prz
 
 		PMap< PString, b2Body* >		bodies_;
 		PBuffer< b2Joint* >				joints_;
-		PBuffer< b2RevoluteJoint* >		revoluteJoints_;
 		PMap< PString, b2Transform >	bodiesStartPositions_;
 
 	protected:
@@ -138,8 +176,8 @@ namespace prz
 		bool isActive_;
 
 		PString name_;
-		EntityCategory entityCategory_;
+		EntityType type_;
+		uint16_t maskBits_;
 	};
 }
-
 #endif // !BOX2D_ANIMATED_SCENE_ENTITY_H_

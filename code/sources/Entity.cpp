@@ -7,43 +7,14 @@ namespace prz
 	{
 		bodies_[bodyName] = scene_.create_body(bodyDef);
 		bodies_[bodyName]->SetType(bodyType);
+		bodies_[bodyName]->SetTransform(startTransform_.p,startTransform_.q.GetAngle());
+		bodies_[bodyName]->SetUserData(this);
 
 		return bodies_[bodyName];
 	}
-	b2Joint * prz::Entity::join(const PString & bodyNameA, const PString & bodyNameB, bool collide, bool revolute)
+	b2Joint * Entity::add_joint(const b2JointDef * jointDef)
 	{
-		if (bodyNameA != bodyNameB) // If the bodies are not the same
-		{
-			if (exists_body(bodyNameA) && exists_body(bodyNameB)) // Check if both exist
-			{
-				b2JointDef * jointDef; // Depending if is revolute joint or not we need a pointer to the created joint definition
-
-				if (revolute)
-				{
-					jointDef = new b2RevoluteJointDef();
-				}
-				else
-				{
-					jointDef = new b2JointDef();
-				}
-
-				// Apply the basics of the joint definition
-				jointDef->bodyA = bodies_[bodyNameA];
-				jointDef->bodyB = bodies_[bodyNameB];
-				jointDef->collideConnected = collide;
-
-				joints_.push_back(scene_.create_joint(jointDef));
-
-				if (revolute)
-				{
-					revoluteJoints_.push_back((b2RevoluteJoint*)joints_.back());
-				}
-				
-				return revoluteJoints_.back(); // Return the joint for external desired modifications
-			}
-		}
-
-		return nullptr;
+		joints_.push_back(scene_.create_joint(jointDef));
+		return joints_.back();
 	}
 }
-

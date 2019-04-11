@@ -9,13 +9,13 @@ namespace prz
 	
 		for (VehicleEntity* vehiclePtr : vehicles_)
 		{
-			vehiclePtr->update(inputListener_);
+			vehiclePtr->update();
 		}
 
 		physicsWorld_->Step(deltaTime, 8, 4);
 
 	}
-	void Scene::render(RenderWindow & window)
+	void Scene::render(RenderWindow& window)
 	{
 		// Se cachea el alto de la ventana en una variable local:
 
@@ -51,56 +51,55 @@ namespace prz
 					CircleShape shape;
 
 					shape.setPosition(box2d_position_to_sfml_position(b2Mul(body_transform, center), window_height) - Vector2f(radius, radius));
-					shape.setFillColor(Color::Blue);
+					shape.setFillColor(Color(178, 0, 255));
 					shape.setRadius(radius);
 
 					window.draw(shape);
 				}
-				else
-					if (shape_type == b2Shape::e_edge)
+				else if (shape_type == b2Shape::e_edge)
+				{
+					// Se toman los dos vértices del segmento y se ajusta su posición usando el transform del body.
+					// Los vértices resultantes se convierten y se ponen en un array para finalmente dibujar el segmento
+					// que los une usando la sobrecarga del método draw() que permite dibujar primitivas de OpenGL a
+					// partir de datos de vértices.
+
+					b2EdgeShape * edge = dynamic_cast<b2EdgeShape *>(fixture->GetShape());
+
+					b2Vec2 start = b2Mul(body_transform, edge->m_vertex1);
+					b2Vec2 end = b2Mul(body_transform, edge->m_vertex2);
+
+					Vertex line[] =
 					{
-						// Se toman los dos vértices del segmento y se ajusta su posición usando el transform del body.
-						// Los vértices resultantes se convierten y se ponen en un array para finalmente dibujar el segmento
-						// que los une usando la sobrecarga del método draw() que permite dibujar primitivas de OpenGL a
-						// partir de datos de vértices.
+						Vertex(box2d_position_to_sfml_position(start, window_height), Color::Green),
+						Vertex(box2d_position_to_sfml_position(end, window_height), Color::Green),
+					};
 
-						b2EdgeShape * edge = dynamic_cast<b2EdgeShape *>(fixture->GetShape());
+					window.draw(line, 2, Lines);
+				}
+				else if (shape_type == b2Shape::e_polygon)
+				{
+					// Se toma la forma poligonal de Box2D (siempre es convexa) y se crea a partir de sus vértices un
+					// ConvexShape de SFML. Cada vértice de Box2D hay que transformarlo usando el transform del body.
 
-						b2Vec2 start = b2Mul(body_transform, edge->m_vertex1);
-						b2Vec2 end = b2Mul(body_transform, edge->m_vertex2);
+					b2PolygonShape * box2d_polygon = dynamic_cast<b2PolygonShape *>(fixture->GetShape());
+					ConvexShape       sfml_polygon;
 
-						Vertex line[] =
-						{
-							Vertex(box2d_position_to_sfml_position(start, window_height), Color::Green),
-							Vertex(box2d_position_to_sfml_position(end, window_height), Color::Green),
-						};
+					int number_of_vertices = box2d_polygon->GetVertexCount();
 
-						window.draw(line, 2, Lines);
-					}
-					else if (shape_type == b2Shape::e_polygon)
+					sfml_polygon.setPointCount(number_of_vertices);
+					sfml_polygon.setFillColor(Color(255, 158, 12));
+
+					for (int index = 0; index < number_of_vertices; index++)
 					{
-						// Se toma la forma poligonal de Box2D (siempre es convexa) y se crea a partir de sus vértices un
-						// ConvexShape de SFML. Cada vértice de Box2D hay que transformarlo usando el transform del body.
-
-						b2PolygonShape * box2d_polygon = dynamic_cast<b2PolygonShape *>(fixture->GetShape());
-						ConvexShape       sfml_polygon;
-
-						int number_of_vertices = box2d_polygon->GetVertexCount();
-
-						sfml_polygon.setPointCount(number_of_vertices);
-						sfml_polygon.setFillColor(Color::Yellow);
-
-						for (int index = 0; index < number_of_vertices; index++)
-						{
-							sfml_polygon.setPoint
-							(
-								index,
-								box2d_position_to_sfml_position(b2Mul(body_transform, box2d_polygon->GetVertex(index)), window_height)
-							);
-						}
-
-						window.draw(sfml_polygon);
+						sfml_polygon.setPoint
+						(
+							index,
+							box2d_position_to_sfml_position(b2Mul(body_transform, box2d_polygon->GetVertex(index)), window_height)
+						);
 					}
+
+					window.draw(sfml_polygon);
+				}
 			}
 		}
 	}

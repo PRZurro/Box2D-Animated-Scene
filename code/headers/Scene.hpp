@@ -18,7 +18,6 @@
 #include "Entity.hpp"
 #include "GameController.hpp"
 #include "ContactListener.hpp"
-#include "InputListener.hpp"
 
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
@@ -36,11 +35,11 @@ namespace prz
 	{
 	public:
 
-		Scene(float posX, float posY, float worldWidth, float worldHeight) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
+		Scene(float posX, float posY, float windowWidth, float windowHeight) // CAMBIAR TODOS LOS B2Vec y tipos que encapsulan varias variables
 			:
 			physicsWorld_(new b2World(b2Vec2(posX, posY))),
-			worldWidth_(worldWidth),
-			worldHeight_(worldHeight)
+			windowWidth_(windowWidth),
+			windowHeight_(windowHeight)
 		{}
 
 		~Scene()
@@ -59,21 +58,14 @@ namespace prz
 			return entities_[name] = PShared_ptr<Entity>(new Entity(*this, name, posX, posY , angleDegrees, active));
 		}
 
-		//PShared_ptr<Entity> add_entity(const Entity& entity)
-		//{
-		//	// Copy the values of input entity to a new one, because it's provenience is unknown
-		//	return entities_[entity.name()] = PShared_ptr<Entity>(new Entity(entity));
-		//}
-
-		template<class C>
-		PShared_ptr<Entity> add_entity(const C& entity)
+		PShared_ptr<Entity> add_entity(PShared_ptr<Entity> entity)
 		{
-			if (std::is_base_of<Entity, C>::value || std::is_same<Entity, C>::value)
-			{
-				return entities_[entity.name()] = PShared_ptr<Entity>(new C(entity));
-			}
+			return entities_[entity->name()] = entity; 
+		}
 
-			return PShared_ptr<Entity>();
+		void add_vehicle(VehicleEntity* vehicleEntity)
+		{
+			vehicles_.push_back(vehicleEntity);
 		}
 
 		b2Body* create_body(const b2BodyDef* bodyDefinition) const
@@ -93,13 +85,6 @@ namespace prz
 			physicsWorld_->SetContactListener(contactListener);
 		}
 
-	public:
-
-		InputListener& inputListener()
-		{
-			return inputListener_;
-		}
-
 	protected:
 
 		PShared_ptr< b2World > physicsWorld_;
@@ -109,13 +94,8 @@ namespace prz
 
 	protected:
 
-		float worldHeight_;
-		float worldWidth_;
-
-	protected:
-
-		InputListener inputListener_;
+		float windowHeight_;
+		float windowWidth_;
 	};
 }
-
 #endif // !BOX2D_ANIMATED_SCENE_SCENE_H_
