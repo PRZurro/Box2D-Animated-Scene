@@ -23,10 +23,13 @@ namespace prz
 	{
 	public:
 
-		PlatformEntity(b2Body* supportBody, const b2Vec2& anchorSeparation, PBuffer<b2Vec2>& polygonPoints, float upperTranslation, float motorsSpeed, Scene& scene, const PString& name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
+		PlatformEntity(b2Body* supportBody, PBuffer<b2Vec2>& polygonPoints, float lowerTranslation, float upperTranslation, float timerTime, float motorSpeed, Scene& scene, const PString& name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			: 
 			FloorEntity(polygonPoints, scene, name, posX, posY, angleDegrees, active),
-			motorsSpeed_(motorsSpeed)
+			motorSpeed_(motorSpeed),
+			addTime_(false),
+			curTimerTime_(0.f),
+			timerTime_(timerTime)
 		{
 			type_ = EntityType::PLATFORM;
 
@@ -40,38 +43,58 @@ namespace prz
 			prismaticJointDef.bodyA = mainBody;
 			prismaticJointDef.bodyB = supportBody;
 			prismaticJointDef.collideConnected = false;
-			prismaticJointDef.enableMotor = false;
-			prismaticJointDef.maxMotorForce = 1000000.f;
-			prismaticJointDef.motorSpeed = 200.f;
+			prismaticJointDef.enableMotor = true;
+			prismaticJointDef.maxMotorForce = 10000000000.f;
+			prismaticJointDef.motorSpeed = 0.f;
 			prismaticJointDef.enableLimit = true;
-			prismaticJointDef.lowerTranslation = upperTranslation;
-			prismaticJointDef.upperTranslation =  0.f;
+			prismaticJointDef.lowerTranslation = lowerTranslation;
+			prismaticJointDef.upperTranslation = upperTranslation;
 			prismaticJointDef.localAxisA = {0.f, -1.f};
-			prismaticJoints_.push_back(static_cast<b2PrismaticJoint*>(add_joint(&prismaticJointDef)));
+			prismaticJoint_ = static_cast<b2PrismaticJoint*>(add_joint(&prismaticJointDef));
+		}
+	
+	public:
+
+		virtual void update(float deltaTime) override
+		{
+			float curSpeed = 0.f;
+
+			if (addTime_)
+			{
+				curTimerTime_ += deltaTime;
+			}
+			else
+			{
+				curTimerTime_ = 0.f;
+			}
+
+			if (curTimerTime_ >= timerTime_)
+			{
+				curSpeed = motorSpeed_;
+			}
+
+			prismaticJoint_->SetMotorSpeed(curSpeed);
 		}
 
 	public:
 
-		void enable_motors(bool enabled)
+		void increase_timer()
 		{
-			for (b2PrismaticJoint* prismaticJoint : prismaticJoints_)
-			{
-				prismaticJoint->EnableMotor(enabled);
-			}
-		} 
-
-		void recieve_collision(EntityType otherType)
-		{
-
+			bool addTime_ = true;
 		}
 
-
+		
 
 	private:
 
-		PBuffer<b2PrismaticJoint*> prismaticJoints_;
+		b2PrismaticJoint* prismaticJoint_;
 
-		float motorsSpeed_;
+		float motorSpeed_;
+
+		bool addTime_;
+
+		float curTimerTime_;
+		float timerTime_;
 	};
 } // !namespace prz
 #endif // !BOX2D_ANIMATED_SCENE_PLATFORM_ENTITY_H_

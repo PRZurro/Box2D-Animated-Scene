@@ -48,7 +48,7 @@ namespace prz
 
 	public:
 
-		void update()
+		virtual void update(float deltaTime) override
 		{
 			InputManager & inputManager = InputManager::instance();
 
@@ -67,14 +67,9 @@ namespace prz
 			{
 				revoluteJoint->SetMotorSpeed(speed);
 			}
-
-			auxiliar_update();
 		}
 
 	protected:
-
-		virtual void auxiliar_update()
-		{}
 
 	public:
 

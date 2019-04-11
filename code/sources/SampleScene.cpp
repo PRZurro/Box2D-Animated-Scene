@@ -49,7 +49,7 @@ namespace prz
 		PShared_ptr<Entity> lowerFloor3 = add_entity(std::make_shared<FloorEntity>(points, *this, "lower_floor03", 1600.f, -85.f, 0.f));
 		PShared_ptr<Entity> platformLowFloor = add_entity(std::make_shared<PlatformEntity>
 		(
-			lowerFloor3->get_body("lower_floor03_polygon"), b2Vec2(150.f, 50.f ), points, 885.f, 300000.f, *this, "platform_low_floor", 1600.f, 15.f, 0.f
+			lowerFloor3->get_body("lower_floor03_polygon"), points, 100.f, 885.f, 2.f, 5000.f, *this, "platform_low_floor", 1600.f, 15.f, 0.f
 		));
 
 		points =
@@ -94,7 +94,7 @@ namespace prz
 
 		PShared_ptr<Entity> platformTopFloor = add_entity(std::make_shared<PlatformEntity>
 		(
-			upperFloor4->get_body("upper_floor04_polygon"), b2Vec2(100.f, 50.f), points, 300.f, 30.f, *this, "platform_low_floor", 400.f, 700.f, 0.f
+			upperFloor4->get_body("upper_floor04_polygon"), points, 50.f, 300.f, 2.f, 5000.f, *this, "platform_low_floor", 400.f, 700.f, 0.f
 		));
 
 		points =

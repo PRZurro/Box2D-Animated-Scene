@@ -58,6 +58,22 @@ namespace prz
 
 	public:
 
+		virtual void update(float deltaTime)
+		{}
+
+		void render(RenderWindow& window)
+		{
+			
+			auxiliar_render(window);
+		}
+
+	public:
+
+		virtual void auxiliar_render(RenderWindow& window)
+		{}
+
+	public:
+
 		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const b2BodyType& bodyType = b2BodyType::b2_staticBody);
 
 		b2Joint* add_joint(const b2JointDef* jointDef);

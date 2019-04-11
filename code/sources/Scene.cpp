@@ -6,10 +6,9 @@ namespace prz
 {
 	void Scene::update(float deltaTime)
 	{
-	
-		for (VehicleEntity* vehiclePtr : vehicles_)
+		for (auto& entity : entities_)
 		{
-			vehiclePtr->update();
+			entity.second->update(deltaTime);
 		}
 
 		physicsWorld_->Step(deltaTime, 8, 4);
