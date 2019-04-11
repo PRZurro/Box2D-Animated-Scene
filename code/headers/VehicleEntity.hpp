@@ -33,7 +33,9 @@ namespace prz
 			leftKey_(leftKey),
 			rightKey_(rightKey),
 			wheelsSpeed_(speed)
-		{}
+		{
+			set_collision_filter(EntityType::BALL | EntityType::FINISH | EntityType::PARTICLE_EMITTER | EntityType::PLATFORM | EntityType::FLOOR);
+		}
 
 		VehicleEntity(const VehicleEntity& other)
 			:
@@ -54,11 +56,11 @@ namespace prz
 
 			if (inputManager.is_key_pressed(leftKey_))
 			{
-				speed = -wheelsSpeed_;
+				speed = wheelsSpeed_;
 			}
 			else if (inputManager.is_key_pressed(rightKey_))
 			{
-				speed = wheelsSpeed_;
+				speed = -wheelsSpeed_;
 			}
 
 			for (b2RevoluteJoint* revoluteJoint : revoluteJoints_)

@@ -23,13 +23,14 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true, EntityType type = EntityType::FLOOR)
-			:
+		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true, EntityType type = EntityType::UNDEFINED, uint16_t maskBits = EntityType::UNDEFINED | EntityType::FLOOR)
+			: 
 			scene_(scene),
 			name_(name),
 			isActive_(active),
 			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees)),
-			type_(type)
+			type_(type),
+			maskBits_(maskBits)
 		{}
 
 		Entity(const Entity& other)
@@ -41,9 +42,12 @@ namespace prz
 			scene_(other.scene_),
 			isActive_(other.isActive_),
 			name_(other.name_),
-			type_(other.type_)
-		{
-		}
+			type_(other.type_),
+			maskBits_(other.maskBits_)
+		{}
+			//= delete;
+
+		 
 
 		~Entity()
 		{
@@ -63,10 +67,26 @@ namespace prz
 		{
 			if (exists_body(bodyName))
 			{
-				fixtureDef->isSensor = isSensor;
-				return bodies_[bodyName]->CreateFixture(fixtureDef);
+				add_fixture_to(bodies_[bodyName], fixtureDef, isSensor);
 			}
 
+			return nullptr;
+		}
+
+		b2Fixture* add_fixture_to(b2Body* body, b2FixtureDef* fixtureDef, bool isSensor = false)
+		{
+			if (body && fixtureDef)
+			{
+				fixtureDef->isSensor = isSensor;
+				fixtureDef->filter.categoryBits = type_;
+				fixtureDef->filter.maskBits = maskBits_;
+
+				b2Fixture* fixture = body->CreateFixture(fixtureDef);
+				fixture->SetUserData(this);
+
+				return fixture;
+			}
+				
 			return nullptr;
 		}
 
@@ -98,6 +118,11 @@ namespace prz
 			type_ = type;
 		}
 
+		void set_collision_filter(uint16_t maskBits)
+		{
+			maskBits_ = maskBits;
+		}
+
 		bool exists_body(const PString& bodyName)
 		{
 			if (bodies_.find(bodyName) != bodies_.end())
@@ -118,6 +143,11 @@ namespace prz
 		inline const PString& name() const
 		{
 			return name_;
+		}
+
+		inline EntityType type()
+		{
+			return type_;
 		}
 
 		inline b2Body* get_body(const PString& name)
@@ -147,6 +177,7 @@ namespace prz
 
 		PString name_;
 		EntityType type_;
+		uint16_t maskBits_;
 	};
 }
 #endif // !BOX2D_ANIMATED_SCENE_ENTITY_H_

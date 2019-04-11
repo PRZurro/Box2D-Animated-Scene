@@ -25,6 +25,8 @@ namespace prz
 			:
 			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::BALL)
 		{
+			set_collision_filter(EntityType::BALL | EntityType::FINISH | EntityType::PARTICLE_EMITTER | EntityType::PLATFORM | EntityType::FLOOR | EntityType::VEHICLE);
+
 			b2BodyDef bodyDef;
 
 			b2CircleShape bodyShape;
@@ -39,7 +41,7 @@ namespace prz
 			bodyFixture.friction = 0.50f;
 
 			b2Body * body = add_body(&bodyDef, name_, b2_dynamicBody);
-			body->CreateFixture(&bodyFixture);
+			add_fixture_to(body, &bodyFixture);
 		}
 	};
 }
