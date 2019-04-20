@@ -26,6 +26,7 @@ namespace prz
 			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::BALL)
 		{
 			set_collision_filter(EntityType::BALL | EntityType::FINISH | EntityType::PARTICLE_EMITTER | EntityType::PLATFORM | EntityType::FLOOR | EntityType::VEHICLE);
+			set_circles_color(Color(255, 0, 161));
 
 			b2BodyDef bodyDef;
 

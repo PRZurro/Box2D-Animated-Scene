@@ -9,7 +9,6 @@
  * 
  */
 
-
 #ifndef BOX2D_ANIMATED_SCENE_SCENE_H_
 #define BOX2D_ANIMATED_SCENE_SCENE_H_
 
@@ -22,8 +21,6 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-
-//#include <type_traits>
 
 using namespace sf;
 
@@ -63,11 +60,6 @@ namespace prz
 			return entities_[entity->name()] = entity; 
 		}
 
-		void add_vehicle(VehicleEntity* vehicleEntity)
-		{
-			vehicles_.push_back(vehicleEntity);
-		}
-
 		b2Body* create_body(const b2BodyDef* bodyDefinition) const
 		{
 			return physicsWorld_->CreateBody(bodyDefinition);
@@ -90,7 +82,6 @@ namespace prz
 		PShared_ptr< b2World > physicsWorld_;
 
 		PMap< PString, PShared_ptr<Entity> > entities_;
-		PBuffer< VehicleEntity*> vehicles_;
 
 	protected:
 

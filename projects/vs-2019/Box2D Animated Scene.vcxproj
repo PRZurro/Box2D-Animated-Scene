@@ -39,7 +39,8 @@
     <ClInclude Include="..\..\code\headers\VehicleEntity.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\code\sources\ContactListener.cpp" />
+    <ClCompile Include="..\..\code\headers\PlatformEntity.cpp" />
+    <ClCompile Include="..\..\code\sources\CarVehicleEntity.cpp" />
     <ClCompile Include="..\..\code\sources\Entity.cpp" />
     <ClCompile Include="..\..\code\sources\GameController.cpp" />
     <ClCompile Include="..\..\code\sources\main.cpp" />

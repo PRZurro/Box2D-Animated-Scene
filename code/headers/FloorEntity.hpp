@@ -30,6 +30,8 @@ namespace prz
 		{
 			set_collision_filter(EntityType::BALL | EntityType::VEHICLE);
 
+			set_polygons_color(Color(49, 0, 124));
+
 			b2BodyDef bodyDef;
 
 			b2PolygonShape bodyShape;

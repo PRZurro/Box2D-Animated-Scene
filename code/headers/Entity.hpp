@@ -13,7 +13,9 @@
 #define BOX2D_ANIMATED_SCENE_ENTITY_H_
 
 #include "internal/declarations/Declarations.hpp"
+
 #include <Box2D/Box2D.h>
+#include <SFML/Window.hpp>
 
 namespace prz
 {
@@ -23,31 +25,20 @@ namespace prz
 	{
 	public:
 
-		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true, EntityType type = EntityType::UNDEFINED, uint16_t maskBits = EntityType::UNDEFINED | EntityType::FLOOR)
-			: 
+		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true, EntityType type = EntityType::UNDEFINED, uint16_t maskBits = EntityType::UNDEFINED | EntityType::FLOOR) : 
 			scene_(scene),
 			name_(name),
 			isActive_(active),
 			startTransform_(b2Vec2(posX, posY), b2Rot(angleDegrees)),
 			type_(type),
-			maskBits_(maskBits)
+			maskBits_(maskBits),
+			circlesColor_(178, 0, 255),
+			edgesColor_(Color::Green),
+			polygonsColor_(255, 158, 12)
 		{}
 
-		Entity(const Entity& other)
-			:
-			bodies_(other.bodies_),
-			joints_(other.joints_),
-			bodiesStartPositions_(other.bodiesStartPositions_),
-			startTransform_(other.startTransform_),
-			scene_(other.scene_),
-			isActive_(other.isActive_),
-			name_(other.name_),
-			type_(other.type_),
-			maskBits_(other.maskBits_)
-		{}
-			//= delete;
-
-		 
+		Entity(const Entity& other) = delete;
+		Entity(Entity&& other) = delete;
 
 		~Entity()
 		{
@@ -61,12 +52,8 @@ namespace prz
 		virtual void update(float deltaTime)
 		{}
 
-		void render(RenderWindow& window)
-		{
-			
-			auxiliar_render(window);
-		}
-
+		void render(RenderWindow& window);
+		
 	public:
 
 		virtual void auxiliar_render(RenderWindow& window)
@@ -77,7 +64,6 @@ namespace prz
 		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const b2BodyType& bodyType = b2BodyType::b2_staticBody);
 
 		b2Joint* add_joint(const b2JointDef* jointDef);
-		
 
 		b2Fixture* add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
 		{
@@ -149,6 +135,28 @@ namespace prz
 			return false;
 		}
 
+		void set_colors(const Color& circlesColor, const Color& edgesColor, const Color& polygonsColor)
+		{
+			set_circles_color(circlesColor);
+			set_edges_color(edgesColor);
+			set_polygons_color(polygonsColor);
+		}
+
+		void set_circles_color(const Color& circlesColor)
+		{
+			circlesColor_ = circlesColor;
+		}
+
+		void set_edges_color(const Color& edgesColor)
+		{
+			edgesColor_ = edgesColor;
+		}
+
+		void set_polygons_color(const Color& polygonsColor)
+		{
+			polygonsColor_ = polygonsColor;
+		}
+
 	public:
 
 		inline bool isActive() const
@@ -194,6 +202,12 @@ namespace prz
 		PString name_;
 		EntityType type_;
 		uint16_t maskBits_;
+
+	protected:
+
+		Color circlesColor_;
+		Color edgesColor_;
+		Color polygonsColor_;
 	};
 }
 #endif // !BOX2D_ANIMATED_SCENE_ENTITY_H_
