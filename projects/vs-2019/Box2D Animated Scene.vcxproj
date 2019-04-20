@@ -33,6 +33,7 @@
     <ClInclude Include="..\..\code\headers\internal\Utilities.hpp" />
     <ClInclude Include="..\..\Code\Headers\Particle.hpp" />
     <ClInclude Include="..\..\Code\Headers\ParticleEmitter.hpp" />
+    <ClInclude Include="..\..\code\headers\TextureStore.hpp" />
     <ClInclude Include="..\..\code\headers\PlatformEntity.hpp" />
     <ClInclude Include="..\..\code\headers\SampleScene.hpp" />
     <ClInclude Include="..\..\Code\Headers\Scene.hpp" />

@@ -25,10 +25,14 @@ namespace prz
 	{
 	public:
 
-		Particle(const Texture & texture, float posX, float posY)
+		Particle(const Texture& texture, float posX, float posY)
 			:
 			curTimeOfLife_(.0f),
-			sprite_(texture)
+			sprite_(texture),
+			positionX_(posX),
+			positionY_(positionY_),
+			id_(-1),
+			isActive_(false)
 		{}
 		
 	public:
@@ -56,15 +60,10 @@ namespace prz
 
 	public:
 
-		void set_sprite_texture(const Texture & texture)
+		void set_sprite_texture(const Texture& texture)
 		{
 			sprite_.setTexture(texture);
 		}
-
-		//void set_sprite(Sprite * sprite)
-		//{
-		//	sprite_.reset(sprite);
-		//}
 
 		void set_position_x(float positionX)
 		{

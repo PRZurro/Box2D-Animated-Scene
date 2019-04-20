@@ -16,13 +16,12 @@
 
 #include "ParticleEmitter.hpp"
 #include "FireParticle.hpp"
+#include "TextureStore.hpp"
 
 namespace prz
 {
 	class BonfireParticleEmitter : public ParticleEmitter<FireParticle>
 	{
-		using ParticleEmitter<FireParticle>::exists_texture_with_name;
-
 	public:
 
 		BonfireParticleEmitter
@@ -36,29 +35,33 @@ namespace prz
 			float segmentPointBX, float segmentPointBY
 		)
 			:
-			ParticleEmitter(nParticles, particlesLifeTime, nResetedParticles, timeToRefresh, texturePaths, segmentPointAX, segmentPointAY, segmentPointBX, segmentPointBY)
+			ParticleEmitter(nParticles, particlesLifeTime, nResetedParticles, timeToRefresh, segmentPointAX, segmentPointAY, segmentPointBX, segmentPointBY)
 		{
-			/*if (exists_texture_with_name("fire.png"))
+			TextureStore textureStoreIns = TextureStore::instance();
+
+			if (textureStoreIns.exists_texture_with_name("fire_particle.png"))
 			{
-				for (auto & fireParticle : particles_)
+				for (auto& fireParticle : particles_)
 				{
 					reset_fire_particle(fireParticle);
-					fireParticle.set_sprite_texture(*texturesByName_["fire.png"]);
+					fireParticle.set_sprite_texture(*textureStoreIns.get_texture_by_name("fire_particle.png"));
 				}
-			}*/
+			}
 		}
 
 	protected:
 
-		virtual void auxiliar_update(float deltaTime) override;
+		virtual void auxiliar_update(float deltaTime) override
+		{
 
+		}
 
 		virtual void particle_restablished(FireParticle & fireParticle)
 		{
 			reset_fire_particle(fireParticle);
 		}
 
-		void reset_fire_particle(FireParticle& fireParticle)
+		void reset_fire_particle(FireParticle & fireParticle)
 		{
 			float posX = random<float>(segmentPointAX, segmentPointBX);
 			float posY = (segmentPointBY - segmentPointAY) / (segmentPointBX - segmentPointAX) * (posX - segmentPointAX) + segmentPointAY;
@@ -72,7 +75,6 @@ namespace prz
 				random<float>(MIN_FREQUENCY, MAX_FREQUENCY),
 				random<float>(MIN_PHASE, MAX_PHASE)
 			);
-
 		}
 
 	private:

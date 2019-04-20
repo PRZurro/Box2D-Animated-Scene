@@ -31,19 +31,10 @@ namespace prz
 			float particlesLifeTime,
 			size_t nResetedParticles,
 			float timeToRefresh,
-			PBuffer<PString>& texturePaths,
 			float segmentPointAX, float segmentPointAY,
 			float segmentPointBX, float segmentPointBY
 		)
 		{
-			for (PString & path : texturePaths)
-			{
-				Texture texture;
-				texture.loadFromFile(path);
-				textures_[path] = texture;
-				texturesByName_[split_file_name(path)] = &textures_[path];
-			}
-
 			for (size_t i = 0; i < nParticles; ++i)
 			{
 				particles_[i].set_id(i);
@@ -51,7 +42,6 @@ namespace prz
 			}
 		}
 		
-
 	public:
 
 		void update(float deltaTime)
@@ -99,30 +89,9 @@ namespace prz
 
 	protected:
 
-		bool exists_texture(const PString& texturePath) const
-		{
-			if (textures_.find(texturePath) != textures_.end())
-				return true;
-
-			return false;
-		}
-
-		bool exists_texture_with_name(const PString& textureName) const
-		{
-			if (texturesByName_.find(textureName) != texturesByName_.end())
-				return true;
-
-			return false;
-		}
-
-	protected:
-
 		PBuffer< P >				particles_;
 		PMap< int, Particle* >		activeParticles_; // 4 bytes + 1 byte, the value does nothing
 		PMap< int, Particle* >		inactiveParticles_; // 4 bytes + 1 byte, the value does nothing
-
-		PMap< PString, Texture >     textures_;
-		PMap< PString, Texture* >	 texturesByName_;
 
 	protected:
 

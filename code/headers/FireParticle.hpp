@@ -29,9 +29,13 @@ namespace prz
 			float amplitude,
 			float frequency,
 			float phase 
-		)
-			: 
-			Particle(texture, posX, posY)
+		): 
+			Particle(texture, posX, posY),
+			speed_(speed),
+			amplitude_(amplitude),
+			frequency_(frequency),
+			phase_(phase),
+			scaleFactor_(1.f)
 		{}
 
 	public:
@@ -41,8 +45,8 @@ namespace prz
 			positionY_ += speed_ * deltaTime;
 			positionX_ = amplitude_ * std::sin((2 * PI * frequency_ * deltaTime) + phase_);
 
-			float scaleFactor = 1.f - deltaTime;
-			sprite_.scale(scaleFactor, scaleFactor);
+			scaleFactor_ -= deltaTime;
+			sprite_.setScale({ scaleFactor_, scaleFactor_ });
 		}
 
 	public:
@@ -105,6 +109,10 @@ namespace prz
 		float amplitude_;
 		float frequency_;
 		float phase_;
+
+	private:
+
+		float scaleFactor_;
 	};
 }
 
