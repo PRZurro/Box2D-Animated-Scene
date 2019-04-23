@@ -1,9 +1,9 @@
 /**
- * @file ParticleEmitterFactory.hpp
+ * @file TextureStore.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
  * @brief
  * @version 0.1
- * @date 2019-03-14
+ * @date 2019-04-20
  *
  * @copyright Copyright (c) 2019
  *
@@ -14,8 +14,6 @@
 
 #include "internal/declarations/Declarations.hpp"
 #include "Internal/Utilities.hpp"
-
-
 
 namespace prz
 {

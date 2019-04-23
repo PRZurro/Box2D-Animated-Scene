@@ -3,6 +3,7 @@
 #include "BallEntity.hpp"
 #include "CarVehicleEntity.hpp"
 #include "PlatformEntity.hpp"
+#include "TextureStore.hpp"
 
 #include "internal/Utilities.hpp"
 
@@ -12,6 +13,7 @@ namespace prz
 		:
 		Scene(posX, posY, worldWidth, worldHeight)
 	{
+		TextureStore& textureStore = TextureStore::instance();
 
 		PShared_ptr<Entity> ball = add_entity(std::make_shared<BallEntity>(5.f, *this, "ball01", 300.f, 775.f));
 
