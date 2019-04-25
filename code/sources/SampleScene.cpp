@@ -15,6 +15,9 @@ namespace prz
 	{
 		TextureStore& textureStore = TextureStore::instance();
 
+		PString fireParticlePath = "../../assets/textures/fire_particle.png";
+		textureStore.load_texture(fireParticlePath);
+
 		PShared_ptr<Entity> ball = add_entity(std::make_shared<BallEntity>(5.f, *this, "ball01", 300.f, 775.f));
 
 		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(Key::A, Key::D, 9000000.f, Key::J, Key::K, 30.f,*this, "Car", 300.f, 300.f));

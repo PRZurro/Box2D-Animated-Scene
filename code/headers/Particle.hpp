@@ -30,7 +30,7 @@ namespace prz
 			curTimeOfLife_(.0f),
 			sprite_(texture),
 			positionX_(posX),
-			positionY_(positionY_),
+			positionY_(posY),
 			id_(-1),
 			isActive_(false)
 		{}
@@ -47,6 +47,10 @@ namespace prz
 			}
 		}
 
+		void render(RenderWindow& window)
+		{
+			window.draw(sprite_);
+		}
 
 		virtual void auxiliar_update(float deltaTime) = 0;
 

@@ -81,6 +81,14 @@ namespace prz
 
 			auxiliar_update(deltaTime);
 		}
+
+		void render(RenderWindow& window)
+		{
+			for(Particle & particle : particles_)
+			{
+				particle.render(window);
+			}
+		}
 		
 	protected:
 

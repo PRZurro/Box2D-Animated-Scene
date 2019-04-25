@@ -36,7 +36,7 @@ namespace prz
 
 	public:
 
-		bool create_texture(PString& texturePath)
+		bool load_texture(PString& texturePath)
 		{
 			Texture texture;
 			
@@ -52,13 +52,13 @@ namespace prz
 			return false;
 		}
 
-		int create_textures(PBuffer<PString>& texturesPaths)
+		int load_textures(PBuffer<PString>& texturesPaths)
 		{
 			int i = 0; // Works as index and number of textures loaded
 
 			for (i; i < texturesPaths.size(); ++i)
 			{
-				if (!create_texture(texturesPaths[i]))
+				if (!load_texture(texturesPaths[i]))
 					break;
 			}
 
@@ -69,7 +69,7 @@ namespace prz
 
 		Texture* get_texture_by_path(PString& path)
 		{
-			if (exists_texture(path))
+			if (is_texture_loaded(path))
 			{
 				return &textures_[path];
 			}
@@ -79,7 +79,7 @@ namespace prz
 
 		Texture* get_texture_by_name(const PString & name)
 		{
-			if (exists_texture_with_name(name))
+			if (is_texture_with_name_loaded(name))
 			{
 				return texturesByName_[name];
 			}
@@ -89,7 +89,7 @@ namespace prz
 
 	public:
 
-		bool exists_texture(const PString& texturePath) const
+		bool is_texture_loaded(const PString& texturePath) const
 		{
 			if (textures_.find(texturePath) != textures_.end())
 				return true;
@@ -97,7 +97,7 @@ namespace prz
 			return false;
 		}
 
-		bool exists_texture_with_name(const PString & textureName) const
+		bool is_texture_with_name_loaded(const PString & textureName) const
 		{
 			if (texturesByName_.find(textureName) != texturesByName_.end())
 				return true;

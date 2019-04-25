@@ -101,6 +101,7 @@ namespace prz
 		bodies_[bodyName]->SetType(bodyType);
 		bodies_[bodyName]->SetTransform(startTransform_.p,startTransform_.q.GetAngle());
 		bodies_[bodyName]->SetUserData(this);
+		bodiesStartPositions_[bodyName] = startTransform_;
 
 		return bodies_[bodyName];
 	}

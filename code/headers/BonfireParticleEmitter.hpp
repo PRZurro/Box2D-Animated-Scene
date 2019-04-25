@@ -39,7 +39,7 @@ namespace prz
 		{
 			TextureStore textureStoreIns = TextureStore::instance();
 
-			if (textureStoreIns.exists_texture_with_name("fire_particle.png"))
+			if (textureStoreIns.is_texture_with_name_loaded("fire_particle.png"))
 			{
 				for (auto& fireParticle : particles_)
 				{

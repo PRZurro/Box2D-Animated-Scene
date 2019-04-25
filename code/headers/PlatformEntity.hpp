@@ -29,7 +29,6 @@ namespace prz
 
 		virtual void update(float deltaTime) override;
 		
-
 	public:
 
 		void start_timer()

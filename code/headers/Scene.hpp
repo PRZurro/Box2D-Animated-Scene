@@ -44,9 +44,24 @@ namespace prz
 
 	public:
 
-		virtual void update(float deltaTime);
+		void update(float deltaTime);
 
 		void render(RenderWindow& window);
+
+	public:
+
+		virtual void auxiliar_update(float deltaTime)
+		{}
+		
+	public:
+
+		void reset()
+		{
+			for (auto& entity : entities_)
+			{
+				entity.second->reset();
+			}
+		}
 
 	public:
 

@@ -43,6 +43,24 @@ namespace prz
 	{
 		return str.substr(str.find_last_of(separator) + 1);
 	}
+
+	static Color lerp_rgb(Color finalColor, Color initialColor, float t)
+	{
+		return Color
+		(
+			finalColor.r + (initialColor.r - finalColor.r) * t,
+			finalColor.g + (initialColor.g - finalColor.g) * t,
+			finalColor.b + (initialColor.b - finalColor.b) * t,
+			finalColor.a + (initialColor.a - finalColor.a) * t
+		);
+	}
+
+	static Color greyscale_color(Color colorToGreyscale)
+	{
+		int average = (int)(colorToGreyscale.r + colorToGreyscale.g + colorToGreyscale.b) * 0.333333f;
+
+		return Color(average, average, average, colorToGreyscale.a);
+	}
 }
 
 #endif // !BOX2D_ANIMATED_SCENE_INTERNAL_UTILITIES_H_

@@ -70,6 +70,7 @@ namespace prz
 			}
 			else if (inputManager.is_key_pressed(Key::E))
 			{
+				std::cout << "E" << std::endl;
 				coverJoint_->SetMotorSpeed(-coverJoint_->GetMotorSpeed());
 			}
 
