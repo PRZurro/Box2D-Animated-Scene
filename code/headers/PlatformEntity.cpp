@@ -39,7 +39,7 @@ namespace prz
 		prismaticJointDef.localAxisA = { 0.f, -1.f };
 		prismaticJoint_ = static_cast<b2PrismaticJoint*>(add_joint(&prismaticJointDef));
 	}
-	void PlatformEntity::update(float deltaTime)
+	void PlatformEntity::auxiliar_update(float deltaTime)
 	{
 		float curSpeed = -150.f;
 

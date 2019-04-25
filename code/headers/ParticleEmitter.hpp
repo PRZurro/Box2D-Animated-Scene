@@ -21,7 +21,7 @@
 namespace prz
 {
 	template<class P>
-	class ParticleEmitter
+	class ParticleEmitter : public Entity
 	{
 	public:
 
@@ -33,9 +33,18 @@ namespace prz
 			float timeToRefresh,
 			float segmentPointAX, float segmentPointAY,
 			float segmentPointBX, float segmentPointBY
-		)
+		):
+			nParticles_(nParticles),
+			particlesLifeTime_(particlesLifeTime),
+			nResetedParticles_(nResetedParticles),
+			resetFrequency_(timeToRefresh),
+			segmentPointAX_(segmentPointAX),
+			segmentPointAY_(segmentPointAY),
+			segmentPointBX_(segmentPointBX),
+			segmentPointBY_(segmentPointBY),
+			timer_(0.f)
 		{
-			for (size_t i = 0; i < nParticles; ++i)
+			for (int i = 0; i < nParticles; ++i)
 			{
 				particles_[i].set_id(i);
 				inactiveParticles_[i] = &particles_[i];
@@ -45,6 +54,23 @@ namespace prz
 	public:
 
 		void update(float deltaTime)
+		{
+			
+
+			auxiliar_update(deltaTime);
+		}
+
+		void render(RenderWindow& window)
+		{
+			for(Particle & particle : particles_)
+			{
+				particle.render(window);
+			}
+		}
+		
+	protected:
+
+		virtual void auxiliar_update(float deltaTime) override final 
 		{
 			// Re-establishing inactive particles 
 			if (timer_ >= resetFrequency_)
@@ -79,20 +105,13 @@ namespace prz
 				}
 			}
 
-			auxiliar_update(deltaTime);
+			emitter_auxiliar_update(deltaTime);
 		}
 
-		void render(RenderWindow& window)
-		{
-			for(Particle & particle : particles_)
-			{
-				particle.render(window);
-			}
-		}
-		
 	protected:
 
-		virtual void auxiliar_update(float deltaTime) = 0;
+
+		virtual void emitter_auxiliar_update(float deltaTime) = 0;
 		virtual void particle_restablished(P& particle) = 0;
 
 	protected:
@@ -104,18 +123,18 @@ namespace prz
 	protected:
 
 		size_t nParticles_;
-		size_t particlesLifeTime_;
 		size_t nResetedParticles_;
+		float particlesLifeTime_;
 		float resetFrequency_; // In seconds
 		float timer_;
 
 	protected:
 
-		float segmentPointAX;
-		float segmentPointAY;
+		float segmentPointAX_;
+		float segmentPointAY_;
 
-		float segmentPointBX;
-		float segmentPointBY;
+		float segmentPointBX_;
+		float segmentPointBY_;
 	};
 }
 #endif // !BOX2D_ANIMATED_SCENE_PARTICLE_SYSTEM_H_

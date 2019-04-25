@@ -27,7 +27,7 @@ namespace prz
 	
 	public:
 
-		virtual void update(float deltaTime) override;
+		virtual void auxiliar_update(float deltaTime) override;
 		
 	public:
 

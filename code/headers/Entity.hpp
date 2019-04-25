@@ -12,6 +12,8 @@
 #ifndef BOX2D_ANIMATED_SCENE_ENTITY_H_
 #define BOX2D_ANIMATED_SCENE_ENTITY_H_
 
+#include "BonfireParticleEmitter.hpp"
+
 #include "internal/declarations/Declarations.hpp"
 
 #include <Box2D/Box2D.h>
@@ -49,12 +51,17 @@ namespace prz
 
 	public:
 
-		virtual void update(float deltaTime)
-		{}
+		void update(float deltaTime)
+		{
+			auxiliar_update(deltaTime);
+		}
 
 		void render(RenderWindow& window);
 		
-	public:
+	protected:
+
+		virtual void auxiliar_update(float deltaTime)
+		{}
 
 		virtual void auxiliar_render(RenderWindow& window)
 		{}

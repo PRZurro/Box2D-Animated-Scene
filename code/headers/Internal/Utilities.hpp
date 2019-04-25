@@ -23,7 +23,7 @@ namespace prz
 
 		if (first || seed)
 		{
-			srand(time(NULL));
+			srand((unsigned int)time(NULL));
 		}
 
 		return min + T(rand()) / T(RAND_MAX) * (max - min);

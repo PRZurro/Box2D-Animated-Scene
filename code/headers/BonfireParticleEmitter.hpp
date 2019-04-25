@@ -13,6 +13,7 @@
 #define BOX2D_ANIMATED_SCENE_BONFIRE_PARTICLE_SYSTEM_H_
 
 #include "internal/Utilities.hpp"
+#include "Entity.hpp"
 
 #include "ParticleEmitter.hpp"
 #include "FireParticle.hpp"
@@ -20,7 +21,7 @@
 
 namespace prz
 {
-	class BonfireParticleEmitter : public ParticleEmitter<FireParticle>
+	class BonfireParticleEmitter : public ParticleEmitter<FireParticle> 
 	{
 	public:
 
@@ -56,15 +57,15 @@ namespace prz
 
 		}
 
-		virtual void particle_restablished(FireParticle & fireParticle)
+		virtual void particle_restablished(FireParticle & fireParticle) override
 		{
 			reset_fire_particle(fireParticle);
 		}
 
 		void reset_fire_particle(FireParticle & fireParticle)
 		{
-			float posX = random<float>(segmentPointAX, segmentPointBX);
-			float posY = (segmentPointBY - segmentPointAY) / (segmentPointBX - segmentPointAX) * (posX - segmentPointAX) + segmentPointAY;
+			float posX = random<float>(segmentPointAX_, segmentPointBX_);
+			float posY = (segmentPointBY_ - segmentPointAY_) / (segmentPointBX_ - segmentPointAX_) * (posX - segmentPointAX_) + segmentPointAY_;
 
 			fireParticle.reset(posX, posY, true);
 

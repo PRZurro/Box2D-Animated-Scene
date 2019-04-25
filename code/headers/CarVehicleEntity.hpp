@@ -13,7 +13,7 @@
 #define BOX2D_ANIMATED_SCENE_CAR_VEHICLE_ENTITY_H_
 
 #include "internal/declarations/Declarations.hpp"
-#include "Internal/Utilities.hpp"
+#include "internal/Utilities.hpp"
 
 #include "VehicleEntity.hpp"
 
@@ -50,7 +50,7 @@ namespace prz
 
 	private:
 
-		virtual void auxiliar_update(float deltaTime) override
+		virtual void vehicle_auxiliar_update(float deltaTime) override
 		{
 			InputManager& inputManager = InputManager::instance();
 
