@@ -11,9 +11,10 @@
 
 #include <iostream>
 
+using namespace sf;
+
 namespace prz
 {
-
 	using Key = sf::Keyboard::Key;
 
 	template<typename T>

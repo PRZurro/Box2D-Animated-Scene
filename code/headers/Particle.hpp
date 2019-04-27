@@ -25,10 +25,24 @@ namespace prz
 	{
 	public:
 
-		Particle(const Texture & texture, float posX, float posY)
-			:
+		Particle() :
 			curTimeOfLife_(.0f),
-			sprite_(texture)
+			sprite_(),
+			positionX_(0.f),
+			positionY_(0.f),
+			id_(-1),
+			isActive_(false),
+			scale_(1.f)
+		{}
+
+		Particle(const Texture& texture, float posX, float posY, float scale = 1.f, bool isActive = false) :
+			curTimeOfLife_(.0f),
+			sprite_(texture),
+			positionX_(posX),
+			positionY_(posY),
+			id_(-1),
+			scale_(scale),
+			isActive_(isActive)
 		{}
 		
 	public:
@@ -39,32 +53,43 @@ namespace prz
 			{
 				curTimeOfLife_ += deltaTime;
 				
+				sprite_.setPosition(positionX_, positionY_);
+				sprite_.setScale({ scale_, scale_ });
+
 				auxiliar_update(deltaTime);
 			}
 		}
 
+		void render(RenderWindow& window)
+		{
+			if (isActive_)
+			{
+				window.draw(sprite_);
+			}
+		}
 
 		virtual void auxiliar_update(float deltaTime) = 0;
 
-		void reset(float posX, float posY, bool isActive = true)
+		void reset(float posX, float posY, float scale, bool isActive = true)
 		{
 			positionX_ = posX;
 			positionY_ = posY;
+			scale_ = scale;
 			isActive_ =	isActive;
 			curTimeOfLife_ = 0.f;
 		}
 
 	public:
 
-		void set_sprite_texture(const Texture & texture)
+		void set_active(bool active)
+		{
+			isActive_ = active;
+		}
+
+		void set_sprite_texture(const Texture& texture)
 		{
 			sprite_.setTexture(texture);
 		}
-
-		//void set_sprite(Sprite * sprite)
-		//{
-		//	sprite_.reset(sprite);
-		//}
 
 		void set_position_x(float positionX)
 		{
@@ -125,6 +150,8 @@ namespace prz
 
 		float positionX_;
 		float positionY_;
+
+		float scale_;
 
 	protected:
 

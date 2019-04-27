@@ -33,16 +33,18 @@
     <ClInclude Include="..\..\code\headers\internal\Utilities.hpp" />
     <ClInclude Include="..\..\Code\Headers\Particle.hpp" />
     <ClInclude Include="..\..\Code\Headers\ParticleEmitter.hpp" />
+    <ClInclude Include="..\..\code\headers\TextureStore.hpp" />
     <ClInclude Include="..\..\code\headers\PlatformEntity.hpp" />
     <ClInclude Include="..\..\code\headers\SampleScene.hpp" />
     <ClInclude Include="..\..\Code\Headers\Scene.hpp" />
     <ClInclude Include="..\..\code\headers\VehicleEntity.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\code\sources\ContactListener.cpp" />
+    <ClCompile Include="..\..\code\sources\CarVehicleEntity.cpp" />
     <ClCompile Include="..\..\code\sources\Entity.cpp" />
     <ClCompile Include="..\..\code\sources\GameController.cpp" />
     <ClCompile Include="..\..\code\sources\main.cpp" />
+    <ClCompile Include="..\..\code\sources\PlatformEntity.cpp" />
     <ClCompile Include="..\..\code\sources\SampleScene.cpp" />
     <ClCompile Include="..\..\code\sources\Scene.cpp" />
   </ItemGroup>

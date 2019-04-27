@@ -23,12 +23,17 @@ namespace prz
 	{
 	public:
 
-		GameController(Scene & scene)
+		GameController(Scene & scene):
+			scene_(scene)
 		{}
 
 	public:
 		
 		void handle_contact(b2Contact* contact, const ContactState& state);
+
+	private:
+
+		Scene& scene_;
 	};
 }
 

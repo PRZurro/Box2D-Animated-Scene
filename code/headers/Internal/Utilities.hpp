@@ -3,7 +3,9 @@
 
 #include "internal/declarations/Declarations.hpp"
 
-#include <time.h>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <cstdlib>
+#include <ctime>
 #include <random>
 
 #include <iostream>       // std::cout
@@ -23,10 +25,13 @@ namespace prz
 
 		if (first || seed)
 		{
-			srand(time(NULL));
+			srand(static_cast <unsigned> (time(0)));
+			first = false;
 		}
 
-		return min + T(rand()) / T(RAND_MAX) * (max - min);
+		T randNumber = min + T(rand()) / T(RAND_MAX / (max - min));
+
+		return min + static_cast<T>(rand()) / static_cast<T>(RAND_MAX / (max - min));
 	}
 
 	static float to_radians(float32 degrees)
@@ -42,6 +47,24 @@ namespace prz
 	static PString split_file_name(const PString& str, const char * separator)
 	{
 		return str.substr(str.find_last_of(separator) + 1);
+	}
+
+	static Color lerp_rgb(Color finalColor, Color initialColor, float t)
+	{
+		return Color
+		(
+			(uint8_t)(finalColor.r + (initialColor.r - finalColor.r) * t),
+			(uint8_t)(finalColor.g + (initialColor.g - finalColor.g) * t),
+			(uint8_t)(finalColor.b + (initialColor.b - finalColor.b) * t),
+			(uint8_t)(finalColor.a + (initialColor.a - finalColor.a) * t)
+		);
+	}
+
+	static Color greyscale_color(Color colorToGreyscale)
+	{
+		int average = (int)((colorToGreyscale.r + colorToGreyscale.g + colorToGreyscale.b) * 0.333333f);
+
+		return Color(average, average, average, colorToGreyscale.a);
 	}
 }
 

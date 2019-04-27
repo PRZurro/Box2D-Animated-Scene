@@ -9,7 +9,6 @@
  * 
  */
 
-
 #ifndef BOX2D_ANIMATED_SCENE_SCENE_H_
 #define BOX2D_ANIMATED_SCENE_SCENE_H_
 
@@ -22,8 +21,6 @@
 #include <Box2D/Box2D.h>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-
-//#include <type_traits>
 
 using namespace sf;
 
@@ -39,7 +36,8 @@ namespace prz
 			:
 			physicsWorld_(new b2World(b2Vec2(posX, posY))),
 			windowWidth_(windowWidth),
-			windowHeight_(windowHeight)
+			windowHeight_(windowHeight),
+			mustReset_(false)
 		{}
 
 		~Scene()
@@ -47,7 +45,7 @@ namespace prz
 
 	public:
 
-		virtual void update(float deltaTime);
+		void update(float deltaTime);
 
 		void render(RenderWindow& window);
 
@@ -63,11 +61,6 @@ namespace prz
 			return entities_[entity->name()] = entity; 
 		}
 
-		void add_vehicle(VehicleEntity* vehicleEntity)
-		{
-			vehicles_.push_back(vehicleEntity);
-		}
-
 		b2Body* create_body(const b2BodyDef* bodyDefinition) const
 		{
 			return physicsWorld_->CreateBody(bodyDefinition);
@@ -80,6 +73,13 @@ namespace prz
 
 	public:
 
+		void must_reset()
+		{
+			mustReset_ = true;
+		}
+
+	public:
+
 		void set_contact_listener(b2ContactListener* contactListener)
 		{
 			physicsWorld_->SetContactListener(contactListener);
@@ -87,15 +87,33 @@ namespace prz
 
 	protected:
 
+		virtual void auxiliar_update(float deltaTime)
+		{}
+
+	protected:
+
+		void reset()
+		{
+			for (auto& entity : entities_)
+			{
+				entity.second->reset();
+			}
+		}
+
+	protected:
+
 		PShared_ptr< b2World > physicsWorld_;
 
 		PMap< PString, PShared_ptr<Entity> > entities_;
-		PBuffer< VehicleEntity*> vehicles_;
 
 	protected:
 
 		float windowHeight_;
 		float windowWidth_;
+
+	protected:
+		
+		bool mustReset_;
 	};
 }
 #endif // !BOX2D_ANIMATED_SCENE_SCENE_H_

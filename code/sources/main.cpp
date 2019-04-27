@@ -9,8 +9,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-#include <windows.h>
-
 using namespace prz;
 using namespace sf;
 using namespace std;
@@ -26,7 +24,6 @@ int main()
 	SampleScene sampleScene(0.0f, -100.f, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	GameController gameController(sampleScene);
-	//ContactListener<GameController> contactListener(&GameController::handle_contact, &gameController);
 
 	ContactListener<GameController>::instance().set(&GameController::handle_contact, &gameController);
 	ContactListener<GameController>::instance().set_contact_handler_obj(&gameController);

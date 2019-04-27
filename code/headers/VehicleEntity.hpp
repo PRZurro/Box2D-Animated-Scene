@@ -35,20 +35,13 @@ namespace prz
 			wheelsSpeed_(speed)
 		{
 			set_collision_filter(EntityType::BALL | EntityType::FINISH | EntityType::PARTICLE_EMITTER | EntityType::PLATFORM | EntityType::FLOOR);
-		}
 
-		VehicleEntity(const VehicleEntity& other)
-			:
-			Entity(other),
-			leftKey_(other.leftKey_),
-			rightKey_(other.rightKey_),
-			wheelsSpeed_(other.wheelsSpeed_),
-			revoluteJoints_(other.revoluteJoints_)
-		{}
+			set_colors(Color(38, 255, 0), Color::Magenta, Color(255, 102, 0));
+		}
 
 	public:
 
-		void update()
+		virtual void auxiliar_update(float deltaTime) override
 		{
 			InputManager & inputManager = InputManager::instance();
 
@@ -68,12 +61,12 @@ namespace prz
 				revoluteJoint->SetMotorSpeed(speed);
 			}
 
-			auxiliar_update();
+			vehicle_auxiliar_update(deltaTime);
 		}
 
-	protected:
+	public:
 
-		virtual void auxiliar_update()
+		virtual void vehicle_auxiliar_update(float deltaTime)
 		{}
 
 	public:

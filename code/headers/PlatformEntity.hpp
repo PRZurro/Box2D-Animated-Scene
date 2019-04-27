@@ -23,48 +23,39 @@ namespace prz
 	{
 	public:
 
-		PlatformEntity(b2Body* supportBody, const b2Vec2& anchorSeparation, PBuffer<b2Vec2>& polygonPoints, float upperTranslation, float motorsSpeed, Scene& scene, const PString& name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
-			: 
-			FloorEntity(polygonPoints, scene, name, posX, posY, angleDegrees, active),
-			motorsSpeed_(motorsSpeed)
-		{
-			type_ = EntityType::PLATFORM;
-
-			bodies_[name_+"_polygon"]->SetType(b2_dynamicBody);
-
-			set_collision_filter(EntityType::BALL | EntityType::VEHICLE);
-
-			b2Body* mainBody = get_body(name_ + "_polygon");
-
-			b2PrismaticJointDef prismaticJointDef;
-			prismaticJointDef.bodyA = mainBody;
-			prismaticJointDef.bodyB = supportBody;
-			prismaticJointDef.collideConnected = false;
-			prismaticJointDef.enableMotor = false;
-			prismaticJointDef.maxMotorForce = 1000000.f;
-			prismaticJointDef.motorSpeed = 200.f;
-			prismaticJointDef.enableLimit = true;
-			prismaticJointDef.lowerTranslation = upperTranslation;
-			prismaticJointDef.upperTranslation =  0.f;
-			prismaticJointDef.localAxisA = {0.f, -1.f};
-			prismaticJoints_.push_back(static_cast<b2PrismaticJoint*>(add_joint(&prismaticJointDef)));
-		}
-
+		PlatformEntity(b2Body* supportBody, PBuffer<b2Vec2>& polygonPoints, float lowerTranslation, float upperTranslation, float timerTime, float motorSpeed, Scene& scene, const PString& name, float posX, float posY, float angleDegrees = 0.f, bool active = true);
+	
 	public:
 
-		void enable_motors(bool enabled)
+		virtual void auxiliar_update(float deltaTime) override;
+		
+	public:
+
+		void start_timer()
 		{
-			for (b2PrismaticJoint* prismaticJoint : prismaticJoints_)
-			{
-				prismaticJoint->EnableMotor(enabled);
-			}
+			addEndContactTime_ = false;
+			addStartContactTime_ = true;
+			timeSinceEndContact_ = 0.f;
 		}
 
+		void end_timer()
+		{
+			addStartContactTime_ = false;
+			addEndContactTime_ = true;
+		}
+	
 	private:
 
-		PBuffer<b2PrismaticJoint*> prismaticJoints_;
+		b2PrismaticJoint* prismaticJoint_;
 
-		float motorsSpeed_;
+		float motorSpeed_;
+
+		bool addStartContactTime_;
+		bool addEndContactTime_;
+
+		float timeSinceStartContact_;
+		float timeSinceEndContact_;
+		float timerTime_;
 	};
 } // !namespace prz
 #endif // !BOX2D_ANIMATED_SCENE_PLATFORM_ENTITY_H_
