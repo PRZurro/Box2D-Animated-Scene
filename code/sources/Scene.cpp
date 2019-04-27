@@ -6,8 +6,9 @@ namespace prz
 {
 	void Scene::update(float deltaTime)
 	{
-		if (InputManager::instance().is_key_pressed(Key::R))
+		if (mustReset_ || InputManager::instance().is_key_pressed(Key::R))
 		{
+			mustReset_ = false;
 			reset();
 		}
 

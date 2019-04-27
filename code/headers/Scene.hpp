@@ -36,7 +36,8 @@ namespace prz
 			:
 			physicsWorld_(new b2World(b2Vec2(posX, posY))),
 			windowWidth_(windowWidth),
-			windowHeight_(windowHeight)
+			windowHeight_(windowHeight),
+			mustReset_(false)
 		{}
 
 		~Scene()
@@ -47,21 +48,6 @@ namespace prz
 		void update(float deltaTime);
 
 		void render(RenderWindow& window);
-
-	public:
-
-		virtual void auxiliar_update(float deltaTime)
-		{}
-		
-	public:
-
-		void reset()
-		{
-			for (auto& entity : entities_)
-			{
-				entity.second->reset();
-			}
-		}
 
 	public:
 
@@ -87,9 +73,31 @@ namespace prz
 
 	public:
 
+		void must_reset()
+		{
+			mustReset_ = true;
+		}
+
+	public:
+
 		void set_contact_listener(b2ContactListener* contactListener)
 		{
 			physicsWorld_->SetContactListener(contactListener);
+		}
+
+	protected:
+
+		virtual void auxiliar_update(float deltaTime)
+		{}
+
+	protected:
+
+		void reset()
+		{
+			for (auto& entity : entities_)
+			{
+				entity.second->reset();
+			}
 		}
 
 	protected:
@@ -102,6 +110,10 @@ namespace prz
 
 		float windowHeight_;
 		float windowWidth_;
+
+	protected:
+		
+		bool mustReset_;
 	};
 }
 #endif // !BOX2D_ANIMATED_SCENE_SCENE_H_

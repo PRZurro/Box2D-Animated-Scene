@@ -4,6 +4,7 @@
 #include "CarVehicleEntity.hpp"
 #include "PlatformEntity.hpp"
 #include "TextureStore.hpp"
+#include "BonfireParticleEmitter.hpp"
 
 #include "internal/Utilities.hpp"
 
@@ -21,6 +22,8 @@ namespace prz
 		PShared_ptr<Entity> ball = add_entity(std::make_shared<BallEntity>(5.f, *this, "ball01", 300.f, 775.f));
 
 		PShared_ptr<Entity> car = add_entity(std::make_shared<CarVehicleEntity>(Key::A, Key::D, 9000000.f, Key::J, Key::K, 30.f,*this, "Car", 300.f, 300.f));
+
+		PShared_ptr<Entity> bonfire = add_entity((std::make_shared<BonfireParticleEmitter>(1000, 1.5f, 10, 0.05f, 900.f, 80.f, 1000.f, 80.f, *this, "bonfire_emitter", worldHeight)));
 
 		PBuffer<b2Vec2> points =
 		{

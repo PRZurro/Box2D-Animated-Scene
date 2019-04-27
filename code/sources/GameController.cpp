@@ -38,9 +38,34 @@ namespace prz
 			platform = static_cast<PlatformEntity*>(entityB);
 		}
 
+		bool ball = false;
+		bool fire = false;
+
+		if (typeA == BALL)
+		{
+			ball = true;
+		}
+		if (typeB == BALL)
+		{
+			ball = true;
+		}
+		if (typeA == PARTICLE_EMITTER)
+		{
+			fire = true;
+		}
+		if (typeB == PARTICLE_EMITTER)
+		{
+			fire = true;
+		}
+
 		if (state == ContactState::BEGIN)
 		{
-			if (vehicle && platform)
+			if (ball && fire)
+			{
+				std::cout << "tiene que resetear" << std::endl;
+ 				scene_.must_reset();
+			}
+			else if (vehicle && platform)
 			{
 				platform->start_timer();
 			}

@@ -18,5 +18,6 @@ namespace prz
 	{
 		return Vector2f(box2d_position.x * scale, (window_height - box2d_position.y) * scale);
 	}
+
 }
 #endif // !BOX2D_ANIMATED_SCENE_INTERNAL_EXTERNAL_LIBRARIES_UTILITIES_H_

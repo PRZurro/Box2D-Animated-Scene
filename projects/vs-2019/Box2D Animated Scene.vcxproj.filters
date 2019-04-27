@@ -110,10 +110,10 @@
     <ClCompile Include="..\..\code\sources\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\headers\PlatformEntity.cpp">
+    <ClCompile Include="..\..\code\sources\CarVehicleEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\sources\CarVehicleEntity.cpp">
+    <ClCompile Include="..\..\code\sources\PlatformEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

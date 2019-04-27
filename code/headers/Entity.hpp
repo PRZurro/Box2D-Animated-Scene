@@ -12,8 +12,6 @@
 #ifndef BOX2D_ANIMATED_SCENE_ENTITY_H_
 #define BOX2D_ANIMATED_SCENE_ENTITY_H_
 
-#include "BonfireParticleEmitter.hpp"
-
 #include "internal/declarations/Declarations.hpp"
 
 #include <Box2D/Box2D.h>

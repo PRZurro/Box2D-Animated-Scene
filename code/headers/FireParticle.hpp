@@ -20,6 +20,13 @@ namespace prz
 	{
 	public:
 
+		FireParticle():
+			speed_(-1.f),
+			amplitude_(-1.f),
+			frequency_(-1.f),
+			phase_(-1.f)
+		{}
+
 		FireParticle
 		(
 			const Texture & texture, 
@@ -28,14 +35,15 @@ namespace prz
 			float speed,
 			float amplitude,
 			float frequency,
-			float phase 
+			float phase,
+			float scale = 1.f,
+			bool isActive = false
 		): 
-			Particle(texture, posX, posY),
+			Particle(texture, posX, posY, scale, isActive),
 			speed_(speed),
 			amplitude_(amplitude),
 			frequency_(frequency),
-			phase_(phase),
-			scaleFactor_(1.f)
+			phase_(phase)
 		{}
 
 	public:
@@ -43,10 +51,12 @@ namespace prz
 		virtual void auxiliar_update(float deltaTime) override
 		{
 			positionY_ += speed_ * deltaTime;
-			positionX_ = amplitude_ * std::sin((2 * PI * frequency_ * deltaTime) + phase_);
+			positionX_ += amplitude_ * std::sin((2 * PI * frequency_ * deltaTime) + phase_);
 
-			scaleFactor_ -= deltaTime;
-			sprite_.setScale({ scaleFactor_, scaleFactor_ });
+			if (scale_ >= MIN_SCALE)
+			{
+				scale_ -= deltaTime * SCALE_SPEED;
+			}
 		}
 
 	public:
@@ -112,7 +122,8 @@ namespace prz
 
 	private:
 
-		float scaleFactor_;
+		static constexpr float MIN_SCALE = 0.0f;
+		static constexpr float SCALE_SPEED = 0.11f;
 	};
 }
 
