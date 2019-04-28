@@ -1,0 +1,6 @@
+<map id="prz::PlatformEntity" name="prz::PlatformEntity">
+<area shape="rect" id="node1" title="Class to save a platform entity, a floor entity with capacity to move by its prismatic joint." alt="" coords="20,941,151,1063"/>
+<area shape="rect" id="node2" href="$classprz_1_1_floor_entity.html" title="Class to save a floor entity." alt="" coords="30,815,141,892"/>
+<area shape="rect" id="node3" href="$classprz_1_1_entity.html" title=" " alt="" coords="5,365,165,765"/>
+<area shape="rect" id="node4" href="$classprz_1_1_scene.html" title="Class to store the entities and manage the Box2D world." alt="" coords="6,5,165,303"/>
+</map>

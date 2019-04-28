@@ -1,7 +1,7 @@
 /**
  * @file FloorEntity.hpp
- * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief
+ * @author Pablo Rodrï¿½guez Zurro (przuro@gmail.com)
+ * @brief Entity to save a floor (rectangular shape)
  * @version 0.1
  * @date 2019-03-23
  *
@@ -20,10 +20,25 @@ using namespace sf;
 
 namespace prz
 {
+	/**
+	 * @brief Class to save a floor entity
+	 * 
+	 */
 	class FloorEntity : public Entity
 	{
 	public:
 
+		/**
+		 * @brief Construct a new Floor Entity object
+		 * 
+		 * @param polygonPoints 
+		 * @param scene 
+		 * @param name 
+		 * @param posX 
+		 * @param posY 
+		 * @param angleDegrees 
+		 * @param active 
+		 */
 		FloorEntity(PBuffer<b2Vec2>& polygonPoints,Scene & scene, const PString & name, float posX, float posY, float angleDegrees, bool active = true)
 			:
 			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::FLOOR)
@@ -49,4 +64,5 @@ namespace prz
 		}
 	};
 } // !namespace prz
+
 #endif // !BOX2D_ANIMATED_SCENE_FLOOR_ENTITY_H_

@@ -1,7 +1,7 @@
 /**
  * @file CarVehicleEntity.hpp
- * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief
+ * @author Pablo Rodrï¿½guez Zurro (przuro@gmail.com)
+ * @brief Entity composed by prismatic and revolute joints that can be handled by input
  * @version 0.1
  * @date 2019-03-23
  *
@@ -23,6 +23,22 @@ namespace prz
 	{
 	public:
 
+		/**
+		 * @brief Construct a new car
+		 * 
+		 * @param leftKey 
+		 * @param rightKey 
+		 * @param wheelsSpeed 
+		 * @param leftPrismaticJointKey 
+		 * @param rightPrismaticJointKey 
+		 * @param prismaticJointsSpeed 
+		 * @param scene 
+		 * @param name 
+		 * @param posX 
+		 * @param posY 
+		 * @param angleDegrees 
+		 * @param active 
+		 */
 		CarVehicleEntity
 		(
 			Key leftKey,
@@ -40,6 +56,12 @@ namespace prz
 
 	public:
 
+		/**
+		 * @brief Create a prismatic joint by the input definition
+		 * 
+		 * @param prismaticJointDef 
+		 * @return b2PrismaticJoint* 
+		 */
 		b2PrismaticJoint* add_prismatic_joint(const b2PrismaticJointDef& prismaticJointDef)
 		{
 			b2PrismaticJoint* prismaticJoint = static_cast<b2PrismaticJoint*>(add_joint(&prismaticJointDef));
@@ -50,6 +72,11 @@ namespace prz
 
 	private:
 
+		/**
+		 * @brief Add the movement of the car to the parent's update method member by checking the keyboard input 
+		 * 
+		 * @param deltaTime 
+		 */
 		virtual void vehicle_auxiliar_update(float deltaTime) override
 		{
 			InputManager& inputManager = InputManager::instance();
@@ -90,4 +117,5 @@ namespace prz
 	};
 
 } // !namespace prz
+
 #endif // !BOX2D_ANIMATED_SCENE_CAR_VEHICLE_ENTITY_H_

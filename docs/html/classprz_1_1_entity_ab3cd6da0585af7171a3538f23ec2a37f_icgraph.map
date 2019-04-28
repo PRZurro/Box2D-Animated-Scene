@@ -1,0 +1,7 @@
+<map id="prz::Entity::exists_body" name="prz::Entity::exists_body">
+<area shape="rect" id="node1" title="Return true or false depending if exists the body by name received." alt="" coords="447,60,607,87"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#a85188bd22b3d2ed74da08f12947b46ee" title="add a fixture to a body by name" alt="" coords="228,35,399,61"/>
+<area shape="rect" id="node5" href="$classprz_1_1_entity.html#a1408c58452c2479735e794b6cfca1013" title="returns a body by name" alt="" coords="242,85,385,112"/>
+<area shape="rect" id="node3" href="$classprz_1_1_ball_entity.html#a15015e6f8d8fe6c2fca3e6eeb074a081" title=" " alt="" coords="9,5,177,32"/>
+<area shape="rect" id="node4" href="$classprz_1_1_bonfire_particle_emitter.html#a6ef518b72a8fb676864ede0492383193" title="Construct a new Bonfire Particle Emitter object initializing the parent members. Because it is a chil..." alt="" coords="5,57,180,98"/>
+</map>

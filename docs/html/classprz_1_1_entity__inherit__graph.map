@@ -1,0 +1,11 @@
+<map id="prz::Entity" name="prz::Entity">
+<area shape="rect" id="node1" title=" " alt="" coords="309,5,469,420"/>
+<area shape="rect" id="node2" href="$classprz_1_1_particle_emitter.html" title=" " alt="" coords="5,468,180,795"/>
+<area shape="rect" id="node4" href="$classprz_1_1_ball_entity.html" title="Store a body with circular shape." alt="" coords="205,593,309,670"/>
+<area shape="rect" id="node5" href="$classprz_1_1_floor_entity.html" title="Class to save a floor entity." alt="" coords="333,593,444,670"/>
+<area shape="rect" id="node7" href="$classprz_1_1_particle_emitter.html" title="Class template that manage generic particles." alt="" coords="468,475,643,787"/>
+<area shape="rect" id="node8" href="$classprz_1_1_vehicle_entity.html" title="Entity with capacity to rotate bodies joined by revolute joints." alt="" coords="667,549,841,714"/>
+<area shape="rect" id="node3" href="$classprz_1_1_bonfire_particle_emitter.html" title=" " alt="" coords="5,850,180,957"/>
+<area shape="rect" id="node6" href="$classprz_1_1_platform_entity.html" title="Class to save a platform entity, a floor entity with capacity to move by its prismatic joint." alt="" coords="323,843,454,964"/>
+<area shape="rect" id="node9" href="$classprz_1_1_car_vehicle_entity.html" title=" " alt="" coords="677,857,831,949"/>
+</map>

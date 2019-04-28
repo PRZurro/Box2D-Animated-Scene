@@ -1,0 +1,5 @@
+<map id="prz::Entity::get_body" name="prz::Entity::get_body">
+<area shape="rect" id="node1" title="returns a body by name" alt="" coords="5,31,148,57"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#ab3cd6da0585af7171a3538f23ec2a37f" title="Return true or false depending if exists the body by name received." alt="" coords="196,5,356,32"/>
+<area shape="rect" id="node3" href="$classprz_1_1_entity.html#a3dcb8ce07126711bf90f3272b293d980" title="get the name" alt="" coords="215,56,337,83"/>
+</map>

@@ -1,0 +1,20 @@
+<map id="code/headers/internal/Declarations/Declarations.hpp" name="code/headers/internal/Declarations/Declarations.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="865,5,1063,47"/>
+<area shape="rect" id="node2" href="$_ball_entity_8hpp.html" title="Entity to save a ball." alt="" coords="318,177,503,203"/>
+<area shape="rect" id="node3" href="$_entity_8hpp.html" title="Core class to store and handle Box2D elements. Represents a GameObject." alt="" coords="605,95,768,121"/>
+<area shape="rect" id="node5" href="$_particle_emitter_8hpp.html" title="Emitter of generic particles." alt="" coords="225,259,439,285"/>
+<area shape="rect" id="node6" href="$_particle_8hpp.html" title="Class that handles a sprite and its components. Should be a child of Entity, no time." alt="" coords="69,177,243,203"/>
+<area shape="rect" id="node8" href="$_vehicle_entity_8hpp.html" title="Entity with capacity to rotate bodies joined by revolute joints." alt="" coords="1078,259,1285,285"/>
+<area shape="rect" id="node9" href="$_car_vehicle_entity_8hpp.html" title="Entity composed by prismatic and revolute joints that can be handled by input." alt="" coords="1068,341,1295,367"/>
+<area shape="rect" id="node10" href="$_scene_8hpp.html" title="Class to store the entities and manage the Box2D world." alt="" coords="1382,177,1549,203"/>
+<area shape="rect" id="node11" href="$_game_controller_8hpp.html" title="Class that controls the game flow." alt="" coords="1595,259,1813,285"/>
+<area shape="rect" id="node13" href="$_floor_entity_8hpp.html" title="Entity to save a floor (rectangular shape)" alt="" coords="851,177,1043,203"/>
+<area shape="rect" id="node14" href="$_platform_entity_8hpp.html" title="Class to save a platform entity, a floor entity with capacity to move." alt="" coords="843,259,1053,285"/>
+<area shape="rect" id="node15" href="$_utilities_8hpp.html" title=" " alt="" coords="680,169,827,211"/>
+<area shape="rect" id="node16" href="$_texture_store_8hpp.html" title="Class to load and store textures." alt="" coords="515,259,717,285"/>
+<area shape="rect" id="node17" href="$_contact_listener_8hpp.html" title="Listener of Box2D collisions that delegates the collision detection to an unknown method member from ..." alt="" coords="1411,95,1631,121"/>
+<area shape="rect" id="node18" href="$_input_manager_8hpp.html" title="Manage the keyboard input." alt="" coords="1027,95,1234,121"/>
+<area shape="rect" id="node4" href="$_bonfire_particle_emitter_8hpp.html" title=" " alt="" coords="383,333,571,375"/>
+<area shape="rect" id="node7" href="$_fire_particle_8hpp.html" title="Particle with a fire texture and a sinusoidal movement." alt="" coords="5,259,200,285"/>
+<area shape="rect" id="node12" href="$_sample_scene_8hpp.html" title="Sample constructed scene." alt="" coords="1360,259,1571,285"/>
+</map>

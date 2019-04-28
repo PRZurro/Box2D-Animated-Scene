@@ -1,0 +1,4 @@
+<map id="prz::TextureStore::get_texture_by_name" name="prz::TextureStore::get_texture_by_name">
+<area shape="rect" id="node1" title="returns the texture by name" alt="" coords="228,5,375,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_bonfire_particle_emitter.html#a6ef518b72a8fb676864ede0492383193" title="Construct a new Bonfire Particle Emitter object initializing the parent members. Because it is a chil..." alt="" coords="5,5,180,47"/>
+</map>

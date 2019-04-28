@@ -1,0 +1,8 @@
+<map id="code/headers/internal/Utilities.hpp" name="code/headers/internal/Utilities.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="323,5,470,47"/>
+<area shape="rect" id="node2" href="$_particle_emitter_8hpp.html" title="Emitter of generic particles." alt="" coords="5,95,220,121"/>
+<area shape="rect" id="node3" href="$_bonfire_particle_emitter_8hpp.html" title=" " alt="" coords="164,169,352,211"/>
+<area shape="rect" id="node4" href="$_texture_store_8hpp.html" title="Class to load and store textures." alt="" coords="295,95,498,121"/>
+<area shape="rect" id="node5" href="$_car_vehicle_entity_8hpp.html" title="Entity composed by prismatic and revolute joints that can be handled by input." alt="" coords="522,95,749,121"/>
+<area shape="rect" id="node6" href="$_platform_entity_8hpp.html" title="Class to save a platform entity, a floor entity with capacity to move." alt="" coords="773,95,983,121"/>
+</map>

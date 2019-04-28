@@ -1,0 +1,4 @@
+<map id="prz::ParticleEmitter::emitter_auxiliar_update" name="prz::ParticleEmitter::emitter_auxiliar_update">
+<area shape="rect" id="node1" title="Method to add more logic in the update in child classes." alt="" coords="215,13,379,54"/>
+<area shape="rect" id="node2" href="$classprz_1_1_particle_emitter.html#a2b848259da5b8171b4dc2862f65b57b9" title="Inherited method to add in the parent update the logic of this object." alt="" coords="5,5,167,61"/>
+</map>

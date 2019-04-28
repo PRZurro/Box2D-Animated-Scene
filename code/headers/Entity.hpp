@@ -1,7 +1,7 @@
 /**
  * @file Entity.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief 
+ * @brief Core class to store and handle Box2D elements. Represents a GameObject.    
  * @version 0.1
  * @date 2019-03-14
  * 
@@ -25,6 +25,18 @@ namespace prz
 	{
 	public:
 
+		/**
+		 * @brief Construct a new Entity object
+		 * 
+		 * @param scene 
+		 * @param name 
+		 * @param posX 
+		 * @param posY 
+		 * @param angleDegrees 
+		 * @param active 
+		 * @param type 
+		 * @param maskBits 
+		 */
 		Entity(Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true, EntityType type = EntityType::UNDEFINED, uint16_t maskBits = EntityType::UNDEFINED | EntityType::FLOOR) : 
 			scene_(scene),
 			name_(name),
@@ -40,6 +52,10 @@ namespace prz
 		Entity(const Entity& other) = delete;
 		Entity(Entity&& other) = delete;
 
+		/**
+		 * @brief Destroy the Entity object
+		 * 
+		 */
 		~Entity()
 		{
 			bodies_.clear();
@@ -49,27 +65,61 @@ namespace prz
 
 	public:
 
+		/**
+		 * @brief Update this object
+		 * 
+		 * @param deltaTime 
+		 */
 		void update(float deltaTime)
 		{
 			auxiliar_update(deltaTime);
 		}
 
+		/**
+		 * @brief render the elements of this object in the received window
+		 * 
+		 * @param window 
+		 */
 		void render(RenderWindow& window);
 		
 	protected:
 
+		/**
+		 * @brief complementary method to add more logic to the update method inchild objects 
+		 * 
+		 * @param deltaTime 
+		 */
 		virtual void auxiliar_update(float deltaTime)
 		{}
 
+		/**
+		 * @brief complementary method to render elements from child objects 
+		 * 
+		 * @param window 
+		 */
 		virtual void auxiliar_render(RenderWindow& window)
 		{}
 
 	public:
 
+		/**
+		 * @brief add a Box2D body with the definitions received
+		 * 
+		 * @param bodyDef 
+		 * @param bodyName 
+		 * @param bodyType 
+		 * @return b2Body* 
+		 */
 		b2Body* add_body(const b2BodyDef* bodyDef, const PString& bodyName, const b2BodyType& bodyType = b2BodyType::b2_staticBody);
 
-		b2Joint* add_joint(const b2JointDef* jointDef);
-
+		/**
+		 * @brief add a fixture to a body by name
+		 * 
+		 * @param bodyName 
+		 * @param fixtureDef 
+		 * @param isSensor 
+		 * @return b2Fixture* 
+		 */
 		b2Fixture* add_fixture_to(const PString & bodyName, b2FixtureDef* fixtureDef, bool isSensor = false)
 		{
 			if (exists_body(bodyName))
@@ -80,6 +130,14 @@ namespace prz
 			return nullptr;
 		}
 
+		/**
+		 * @brief add a fixture to the input body with the definitions
+		 * 
+		 * @param body 
+		 * @param fixtureDef 
+		 * @param isSensor 
+		 * @return b2Fixture* 
+		 */
 		b2Fixture* add_fixture_to(b2Body* body, b2FixtureDef* fixtureDef, bool isSensor = false)
 		{
 			if (body && fixtureDef)
@@ -97,8 +155,20 @@ namespace prz
 			return nullptr;
 		}
 
+		/**
+		 * @brief join two bodies with the definition received
+		 * 
+		 * @param jointDef 
+		 * @return b2Joint* 
+		 */
+		b2Joint* add_joint(const b2JointDef* jointDef);
+
 	public:
 
+		/**
+		 * @brief Reset all bodies
+		 * 
+		 */
 		void reset()
 		{
 			for (auto& pair : bodies_)
@@ -110,6 +180,11 @@ namespace prz
 			}
 		}
 
+		/**
+		 * @brief Set active this
+		 * 
+		 * @param state 
+		 */
 		void set_active(bool state = true)
 		{
 			isActive_ = state; 
@@ -120,16 +195,33 @@ namespace prz
 			}
 		}
 
+		/**
+		 * @brief Set the type
+		 * 
+		 * @param type 
+		 */
 		void set_type(EntityType type)
 		{
 			type_ = type;
 		}
 
+		/**
+		 * @brief Set the collision filter object
+		 * 
+		 * @param maskBits 
+		 */
 		void set_collision_filter(uint16_t maskBits)
 		{
 			maskBits_ = maskBits;
 		}
 
+		/**
+		 * @brief Return true or false depending if exists the body by name received
+		 * 
+		 * @param bodyName 
+		 * @return true 
+		 * @return false 
+		 */
 		bool exists_body(const PString& bodyName)
 		{
 			if (bodies_.find(bodyName) != bodies_.end())
@@ -140,6 +232,13 @@ namespace prz
 			return false;
 		}
 
+		/**
+		 * @brief Set the colors of this object bodies 
+		 * 
+		 * @param circlesColor 
+		 * @param edgesColor 
+		 * @param polygonsColor 
+		 */
 		void set_colors(const Color& circlesColor, const Color& edgesColor, const Color& polygonsColor)
 		{
 			set_circles_color(circlesColor);
@@ -147,16 +246,31 @@ namespace prz
 			set_polygons_color(polygonsColor);
 		}
 
+		/**
+		 * @brief Set the circles color
+		 * 
+		 * @param circlesColor 
+		 */
 		void set_circles_color(const Color& circlesColor)
 		{
 			circlesColor_ = circlesColor;
 		}
 
+		/**
+		 * @brief Set the edges color 
+		 * 
+		 * @param edgesColor 
+		 */
 		void set_edges_color(const Color& edgesColor)
 		{
 			edgesColor_ = edgesColor;
 		}
 
+		/**
+		 * @brief Set the polygons color 
+		 * 
+		 * @param polygonsColor 
+		 */
 		void set_polygons_color(const Color& polygonsColor)
 		{
 			polygonsColor_ = polygonsColor;
@@ -164,21 +278,43 @@ namespace prz
 
 	public:
 
+		/**
+		 * @brief get the active state of this object
+		 * 
+		 * @return true 
+		 * @return false 
+		 */
 		inline bool isActive() const
 		{
 			return isActive_;
 		}
 
+		/**
+		 * @brief get the name
+		 * 
+		 * @return const PString& 
+		 */
 		inline const PString& name() const
 		{
 			return name_;
 		}
 
+		/**
+		 * @brief get the Entity type
+		 * 
+		 * @return EntityType 
+		 */
 		inline EntityType type()
 		{
 			return type_;
 		}
 
+		/**
+		 * @brief returns a body by name
+		 * 
+		 * @param name 
+		 * @return b2Body* 
+		 */
 		inline b2Body* get_body(const PString& name)
 		{
 			if (exists_body(name))
@@ -214,5 +350,6 @@ namespace prz
 		Color edgesColor_;
 		Color polygonsColor_;
 	};
-}
+}// !namespace prz
+
 #endif // !BOX2D_ANIMATED_SCENE_ENTITY_H_

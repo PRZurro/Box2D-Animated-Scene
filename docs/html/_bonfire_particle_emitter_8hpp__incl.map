@@ -1,0 +1,23 @@
+<map id="code/headers/BonfireParticleEmitter.hpp" name="code/headers/BonfireParticleEmitter.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="297,5,485,47"/>
+<area shape="rect" id="node2" href="$_entity_8hpp.html" title="Core class to store and handle Box2D elements. Represents a GameObject." alt="" coords="135,244,216,271"/>
+<area shape="rect" id="node12" href="$_particle_emitter_8hpp.html" title="Emitter of generic particles." alt="" coords="325,95,458,121"/>
+<area shape="rect" id="node14" href="$_utilities_8hpp.html" title=" " alt="" coords="541,244,677,271"/>
+<area shape="rect" id="node20" href="$_fire_particle_8hpp.html" title="Particle with a fire texture and a sinusoidal movement." alt="" coords="187,95,300,121"/>
+<area shape="rect" id="node21" href="$_texture_store_8hpp.html" title="Class to load and store textures." alt="" coords="449,169,571,196"/>
+<area shape="rect" id="node3" href="$_declarations_8hpp.html" title=" " alt="" coords="291,319,430,360"/>
+<area shape="rect" id="node4" title=" " alt="" coords="9,408,123,435"/>
+<area shape="rect" id="node11" title=" " alt="" coords="5,326,137,353"/>
+<area shape="rect" id="node5" title=" " alt="" coords="147,408,286,435"/>
+<area shape="rect" id="node6" title=" " alt="" coords="310,408,379,435"/>
+<area shape="rect" id="node7" title=" " alt="" coords="403,408,459,435"/>
+<area shape="rect" id="node8" title=" " alt="" coords="484,408,595,435"/>
+<area shape="rect" id="node9" title=" " alt="" coords="619,408,673,435"/>
+<area shape="rect" id="node10" title=" " alt="" coords="698,408,770,435"/>
+<area shape="rect" id="node13" href="$_particle_8hpp.html" title="Class that handles a sprite and its components. Should be a child of Entity, no time." alt="" coords="233,169,323,196"/>
+<area shape="rect" id="node15" title=" " alt="" coords="734,326,795,353"/>
+<area shape="rect" id="node16" title=" " alt="" coords="820,326,880,353"/>
+<area shape="rect" id="node17" title=" " alt="" coords="904,326,959,353"/>
+<area shape="rect" id="node18" title=" " alt="" coords="455,326,520,353"/>
+<area shape="rect" id="node19" title=" " alt="" coords="545,326,609,353"/>
+</map>

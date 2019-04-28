@@ -1,0 +1,5 @@
+<map id="code/headers/InputManager.hpp" name="code/headers/InputManager.hpp">
+<area shape="rect" id="node1" title="Manage the keyboard input." alt="" coords="15,5,222,32"/>
+<area shape="rect" id="node2" href="$_vehicle_entity_8hpp.html" title="Entity with capacity to rotate bodies joined by revolute joints." alt="" coords="15,80,222,107"/>
+<area shape="rect" id="node3" href="$_car_vehicle_entity_8hpp.html" title="Entity composed by prismatic and revolute joints that can be handled by input." alt="" coords="5,155,232,181"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="prz::BonfireParticleEmitter::particle_restablished" name="prz::BonfireParticleEmitter::particle_restablished">
+<area shape="rect" id="node1" title="particle restablished (enabled) by the parent update method" alt="" coords="5,49,180,90"/>
+<area shape="rect" id="node2" href="$classprz_1_1_bonfire_particle_emitter.html#ae75d3fb46261ffbdb2e40e48cf7c326b" title="Reset the input particle with custom values." alt="" coords="228,49,403,90"/>
+<area shape="rect" id="node3" href="$classprz_1_1_particle.html#a1cd0803f429045211fb71b58b78a4e14" title="reset the members to the input values" alt="" coords="453,5,583,32"/>
+<area shape="rect" id="node4" href="$classprz_1_1_entity.html#a6128f2db446bc4ea0d064e62eb9756fd" title="get the active state of this object" alt="" coords="451,56,585,83"/>
+<area shape="rect" id="node5" href="$classprz_1_1_fire_particle.html#a66c74a962233601a5652e227bc05b85d" title="custom reset of this class, to set the special members" alt="" coords="457,107,579,149"/>
+<area shape="rect" id="node6" href="$classprz_1_1_fire_particle.html#a05f0b21b38f8c21f3da09085b2901514" title="get the speed" alt="" coords="633,9,756,50"/>
+<area shape="rect" id="node7" href="$classprz_1_1_fire_particle.html#ab3cefc9cda371e72d7c7ee39c5ce1f42" title="get the amplitude" alt="" coords="633,74,756,115"/>
+<area shape="rect" id="node8" href="$classprz_1_1_fire_particle.html#acd1922dbe86422efa52e7ead2e920f09" title="get the frequency" alt="" coords="633,139,756,181"/>
+<area shape="rect" id="node9" href="$classprz_1_1_fire_particle.html#a6d524adb8151829517a46f94d7b080e7" title="get the phase" alt="" coords="633,205,756,246"/>
+</map>

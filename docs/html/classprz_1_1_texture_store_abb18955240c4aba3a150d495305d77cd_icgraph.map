@@ -1,0 +1,4 @@
+<map id="prz::TextureStore::load_texture" name="prz::TextureStore::load_texture">
+<area shape="rect" id="node1" title="load a texture by path" alt="" coords="184,5,315,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_texture_store.html#a6baee73fa62f168c0e1fdd13af48049d" title="load multiple textures with paths" alt="" coords="5,5,136,47"/>
+</map>

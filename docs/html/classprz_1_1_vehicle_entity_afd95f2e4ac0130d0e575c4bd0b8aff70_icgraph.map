@@ -1,0 +1,4 @@
+<map id="prz::VehicleEntity::vehicle_auxiliar_update" name="prz::VehicleEntity::vehicle_auxiliar_update">
+<area shape="rect" id="node1" title="special method to add more logic to the update in child implementation" alt="" coords="179,5,341,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_vehicle_entity.html#a87f973936365abd868b87f751b3e3ac5" title="method to add speed to the revolute joints by keyboard input" alt="" coords="5,5,131,47"/>
+</map>

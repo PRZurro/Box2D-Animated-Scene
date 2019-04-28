@@ -1,0 +1,5 @@
+<map id="prz::Entity::set_edges_color" name="prz::Entity::set_edges_color">
+<area shape="rect" id="node1" title="Set the edges color." alt="" coords="377,5,528,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#a2304c8d900906f102e78f9366233ced6" title="Set the colors of this object bodies." alt="" coords="179,13,329,39"/>
+<area shape="rect" id="node3" href="$classprz_1_1_vehicle_entity.html#a1fdddf8af6b137de0459c6d968e23199" title="Construct a new Vehicle Entity object." alt="" coords="5,5,131,47"/>
+</map>

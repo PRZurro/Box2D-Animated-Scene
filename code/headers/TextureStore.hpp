@@ -1,7 +1,7 @@
 /**
  * @file TextureStore.hpp
- * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief
+ * @author Pablo Rodrï¿½guez Zurro (przuro@gmail.com)
+ * @brief Class to load and store textures. 
  * @version 0.1
  * @date 2019-04-20
  *
@@ -17,17 +17,19 @@
 
 namespace prz
 {
+	/**
+	 * @brief Class to load and store textures
+	 * 
+	 */
 	class TextureStore
 	{
 	public:
 
-		TextureStore() :
-			textures_(),
-			texturesByName_()
-		{}
-
-	public:
-
+		/**
+		 * @brief Get a static instance object of this class
+		 * 
+		 * @return TextureStore& 
+		 */
 		static TextureStore& instance()
 		{
 			static TextureStore instance;
@@ -35,7 +37,14 @@ namespace prz
 		}
 
 	public:
-
+		
+		/**
+		 * @brief load a texture by path
+		 * 
+		 * @param texturePath 
+		 * @return true 
+		 * @return false 
+		 */
 		bool load_texture(PString& texturePath)
 		{
 			Texture texture;
@@ -52,6 +61,12 @@ namespace prz
 			return false;
 		}
 
+		/**
+		 * @brief load multiple textures with paths 
+		 * 
+		 * @param texturesPaths 
+		 * @return int of the number of textures loaded (when it fails loading breaks the loop)
+		 */
 		int load_textures(PBuffer<PString>& texturesPaths)
 		{
 			int i = 0; // Works as index and number of textures loaded
@@ -67,6 +82,12 @@ namespace prz
 
 	public:
 
+		/**
+		 * @brief returns the texture by path 
+		 * 
+		 * @param path 
+		 * @return Texture* 
+		 */
 		Texture* get_texture_by_path(PString& path)
 		{
 			if (is_texture_loaded(path))
@@ -77,6 +98,12 @@ namespace prz
 			return  nullptr;
 		}
 
+		/**
+		 * @brief returns the texture by name
+		 * 
+		 * @param name 
+		 * @return Texture* 
+		 */
 		Texture* get_texture_by_name(const PString & name)
 		{
 			if (is_texture_with_name_loaded(name))
@@ -89,6 +116,13 @@ namespace prz
 
 	public:
 
+		/**
+		 * @brief Check if a texture is loaded by path
+		 * 
+		 * @param texturePath 
+		 * @return true 
+		 * @return false 
+		 */
 		bool is_texture_loaded(const PString& texturePath) const
 		{
 			if (textures_.find(texturePath) != textures_.end())
@@ -97,6 +131,13 @@ namespace prz
 			return false;
 		}
 
+		/**
+		 * @brief check if a texture is loaded by name
+		 * 
+		 * @param textureName 
+		 * @return true 
+		 * @return false 
+		 */
 		bool is_texture_with_name_loaded(const PString & textureName) const
 		{
 			if (texturesByName_.find(textureName) != texturesByName_.end())
@@ -104,6 +145,17 @@ namespace prz
 
 			return false;
 		}
+
+	private:
+
+		/**
+		 * @brief Construct a new Texture Store object. Private to avoid undesired instantiation
+		 * 
+		 */
+		TextureStore() :
+			textures_(),
+			texturesByName_()
+		{}
 
 	private:
 

@@ -1,0 +1,4 @@
+<map id="prz::VehicleEntity::add_revolute_joint" name="prz::VehicleEntity::add_revolute_joint">
+<area shape="rect" id="node1" title="add a revolute joint with the input definition" alt="" coords="5,5,139,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#ab460f9f8088c0c199e08a60b1dad526e" title="join two bodies with the definition received" alt="" coords="187,13,329,39"/>
+</map>

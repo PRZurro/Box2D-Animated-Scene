@@ -1,0 +1,4 @@
+<map id="prz::InputManager::instance" name="prz::InputManager::instance">
+<area shape="rect" id="node1" title="Get an static instance object of this class." alt="" coords="179,5,313,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_vehicle_entity.html#a87f973936365abd868b87f751b3e3ac5" title="method to add speed to the revolute joints by keyboard input" alt="" coords="5,5,131,47"/>
+</map>

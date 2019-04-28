@@ -1,0 +1,5 @@
+<map id="prz::BallEntity" name="prz::BallEntity">
+<area shape="rect" id="node1" title="Store a body with circular shape." alt="" coords="33,815,137,892"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html" title=" " alt="" coords="5,365,165,765"/>
+<area shape="rect" id="node3" href="$classprz_1_1_scene.html" title="Class to store the entities and manage the Box2D world." alt="" coords="6,5,165,303"/>
+</map>

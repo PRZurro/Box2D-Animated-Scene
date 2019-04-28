@@ -1,0 +1,7 @@
+<map id="code/headers/GameController.hpp" name="code/headers/GameController.hpp">
+<area shape="rect" id="node1" title="Class that controls the game flow." alt="" coords="125,5,344,32"/>
+<area shape="rect" id="node2" href="$_scene_8hpp.html" title="Class to store the entities and manage the Box2D world." alt="" coords="151,80,318,107"/>
+<area shape="rect" id="node3" href="$_vehicle_entity_8hpp.html" title="Entity with capacity to rotate bodies joined by revolute joints." alt="" coords="15,155,222,181"/>
+<area shape="rect" id="node5" href="$_sample_scene_8hpp.html" title="Sample constructed scene." alt="" coords="247,155,457,181"/>
+<area shape="rect" id="node4" href="$_car_vehicle_entity_8hpp.html" title="Entity composed by prismatic and revolute joints that can be handled by input." alt="" coords="5,229,232,256"/>
+</map>

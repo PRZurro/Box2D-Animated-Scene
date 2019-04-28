@@ -1,0 +1,4 @@
+<map id="prz::Particle::update" name="prz::Particle::update">
+<area shape="rect" id="node1" title="Update the members." alt="" coords="215,20,353,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_particle_emitter.html#a2b848259da5b8171b4dc2862f65b57b9" title="Inherited method to add in the parent update the logic of this object." alt="" coords="5,5,167,61"/>
+</map>

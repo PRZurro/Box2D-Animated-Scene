@@ -1,7 +1,7 @@
 /**
  * @file BallEntity.hpp
- * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief
+ * @author Pablo Rodrï¿½guez Zurro (przuro@gmail.com)
+ * @brief Entity to save a ball
  * @version 0.1
  * @date 2019-03-23
  *
@@ -17,6 +17,10 @@
 
 namespace prz
 {
+	/**
+	 * @brief Store a body with circular shape
+	 * 
+	 */
 	class BallEntity : public Entity
 	{
 	public:
@@ -45,6 +49,6 @@ namespace prz
 			add_fixture_to(body, &bodyFixture);
 		}
 	};
-}
+}// !namespace prz
 
 #endif // !BOX2D_ANIMATED_SCENE_BALL_ENTITY_H_

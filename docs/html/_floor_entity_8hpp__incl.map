@@ -1,0 +1,13 @@
+<map id="code/headers/FloorEntity.hpp" name="code/headers/FloorEntity.hpp">
+<area shape="rect" id="node1" title="Entity to save a floor (rectangular shape)" alt="" coords="392,5,584,32"/>
+<area shape="rect" id="node2" href="$_declarations_8hpp.html" title=" " alt="" coords="340,155,479,196"/>
+<area shape="rect" id="node10" href="$_entity_8hpp.html" title="Core class to store and handle Box2D elements. Represents a GameObject." alt="" coords="507,80,589,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="652,244,767,271"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,244,144,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="168,244,237,271"/>
+<area shape="rect" id="node6" title=" " alt="" coords="261,244,317,271"/>
+<area shape="rect" id="node7" title=" " alt="" coords="342,244,453,271"/>
+<area shape="rect" id="node8" title=" " alt="" coords="477,244,531,271"/>
+<area shape="rect" id="node9" title=" " alt="" coords="556,244,628,271"/>
+<area shape="rect" id="node11" title=" " alt="" coords="503,162,635,189"/>
+</map>

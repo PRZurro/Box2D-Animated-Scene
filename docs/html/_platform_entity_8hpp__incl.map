@@ -1,0 +1,20 @@
+<map id="code/headers/PlatformEntity.hpp" name="code/headers/PlatformEntity.hpp">
+<area shape="rect" id="node1" title="Class to save a platform entity, a floor entity with capacity to move." alt="" coords="220,5,431,32"/>
+<area shape="rect" id="node2" href="$_floor_entity_8hpp.html" title="Entity to save a floor (rectangular shape)" alt="" coords="177,80,287,107"/>
+<area shape="rect" id="node3" href="$_declarations_8hpp.html" title=" " alt="" coords="227,229,365,271"/>
+<area shape="rect" id="node13" href="$_utilities_8hpp.html" title=" " alt="" coords="519,155,655,181"/>
+<area shape="rect" id="node11" href="$_entity_8hpp.html" title="Core class to store and handle Box2D elements. Represents a GameObject." alt="" coords="133,155,214,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,319,120,345"/>
+<area shape="rect" id="node5" title=" " alt="" coords="468,319,607,345"/>
+<area shape="rect" id="node6" title=" " alt="" coords="159,319,228,345"/>
+<area shape="rect" id="node7" title=" " alt="" coords="252,319,308,345"/>
+<area shape="rect" id="node8" title=" " alt="" coords="333,319,443,345"/>
+<area shape="rect" id="node9" title=" " alt="" coords="698,319,753,345"/>
+<area shape="rect" id="node10" title=" " alt="" coords="811,319,883,345"/>
+<area shape="rect" id="node12" title=" " alt="" coords="70,237,202,263"/>
+<area shape="rect" id="node14" title=" " alt="" coords="389,237,451,263"/>
+<area shape="rect" id="node15" title=" " alt="" coords="475,237,535,263"/>
+<area shape="rect" id="node16" title=" " alt="" coords="559,237,614,263"/>
+<area shape="rect" id="node17" title=" " alt="" coords="638,237,703,263"/>
+<area shape="rect" id="node18" title=" " alt="" coords="728,237,792,263"/>
+</map>
