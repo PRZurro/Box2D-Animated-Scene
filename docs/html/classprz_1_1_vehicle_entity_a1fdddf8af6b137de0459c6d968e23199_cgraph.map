@@ -1,0 +1,8 @@
+<map id="prz::VehicleEntity::VehicleEntity" name="prz::VehicleEntity::VehicleEntity">
+<area shape="rect" id="node1" title="Construct a new Vehicle Entity object." alt="" coords="5,41,131,83"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#a8cb811eb935b1374186f4e7d8a46780c" title="Set the collision filter object." alt="" coords="179,12,341,53"/>
+<area shape="rect" id="node3" href="$classprz_1_1_entity.html#a2304c8d900906f102e78f9366233ced6" title="Set the colors of this object bodies." alt="" coords="185,78,335,105"/>
+<area shape="rect" id="node4" href="$classprz_1_1_entity.html#aed0976b089bf13321895a04c95d0e504" title="Set the circles color." alt="" coords="396,5,549,47"/>
+<area shape="rect" id="node5" href="$classprz_1_1_entity.html#a682c1b634d5b2eda9cd1d621fccd7b32" title="Set the edges color." alt="" coords="397,71,548,112"/>
+<area shape="rect" id="node6" href="$classprz_1_1_entity.html#ac14b2fa2706073de348d5b58e412ec72" title="Set the polygons color." alt="" coords="389,136,556,177"/>
+</map>

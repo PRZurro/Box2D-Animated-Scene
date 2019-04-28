@@ -1,0 +1,6 @@
+<map id="prz::BonfireParticleEmitter" name="prz::BonfireParticleEmitter">
+<area shape="rect" id="node1" title=" " alt="" coords="5,1191,180,1297"/>
+<area shape="rect" id="node2" href="$classprz_1_1_particle_emitter.html" title=" " alt="" coords="5,815,180,1141"/>
+<area shape="rect" id="node3" href="$classprz_1_1_entity.html" title=" " alt="" coords="13,365,173,765"/>
+<area shape="rect" id="node4" href="$classprz_1_1_scene.html" title="Class to store the entities and manage the Box2D world." alt="" coords="13,5,172,303"/>
+</map>

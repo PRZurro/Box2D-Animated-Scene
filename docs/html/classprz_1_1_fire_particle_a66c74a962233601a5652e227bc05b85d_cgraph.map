@@ -1,0 +1,7 @@
+<map id="prz::FireParticle::custom_reset" name="prz::FireParticle::custom_reset">
+<area shape="rect" id="node1" title="custom reset of this class, to set the special members" alt="" coords="5,104,128,145"/>
+<area shape="rect" id="node2" href="$classprz_1_1_fire_particle.html#a05f0b21b38f8c21f3da09085b2901514" title="get the speed" alt="" coords="176,5,299,47"/>
+<area shape="rect" id="node3" href="$classprz_1_1_fire_particle.html#ab3cefc9cda371e72d7c7ee39c5ce1f42" title="get the amplitude" alt="" coords="176,71,299,112"/>
+<area shape="rect" id="node4" href="$classprz_1_1_fire_particle.html#acd1922dbe86422efa52e7ead2e920f09" title="get the frequency" alt="" coords="176,136,299,177"/>
+<area shape="rect" id="node5" href="$classprz_1_1_fire_particle.html#a6d524adb8151829517a46f94d7b080e7" title="get the phase" alt="" coords="176,201,299,243"/>
+</map>

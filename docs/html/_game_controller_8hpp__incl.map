@@ -1,0 +1,16 @@
+<map id="code/headers/GameController.hpp" name="code/headers/GameController.hpp">
+<area shape="rect" id="node1" title="Class that controls the game flow." alt="" coords="491,5,709,32"/>
+<area shape="rect" id="node2" href="$_scene_8hpp.html" title="Class to store the entities and manage the Box2D world." alt="" coords="558,80,642,107"/>
+<area shape="rect" id="node4" href="$_declarations_8hpp.html" title=" " alt="" coords="329,229,468,271"/>
+<area shape="rect" id="node5" title=" " alt="" coords="652,319,767,345"/>
+<area shape="rect" id="node3" href="$_entity_8hpp.html" title="Core class to store and handle Box2D elements. Represents a GameObject." alt="" coords="693,155,774,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,319,144,345"/>
+<area shape="rect" id="node12" title=" " alt="" coords="746,237,878,263"/>
+<area shape="rect" id="node13" href="$_contact_listener_8hpp.html" title="Listener of Box2D collisions that delegates the collision detection to an unknown method member from ..." alt="" coords="469,155,608,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="168,319,237,345"/>
+<area shape="rect" id="node8" title=" " alt="" coords="261,319,317,345"/>
+<area shape="rect" id="node9" title=" " alt="" coords="342,319,453,345"/>
+<area shape="rect" id="node10" title=" " alt="" coords="477,319,531,345"/>
+<area shape="rect" id="node11" title=" " alt="" coords="556,319,628,345"/>
+<area shape="rect" id="node14" title=" " alt="" coords="492,237,569,263"/>
+</map>

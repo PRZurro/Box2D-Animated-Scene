@@ -1,0 +1,5 @@
+<map id="prz::VehicleEntity" name="prz::VehicleEntity">
+<area shape="rect" id="node1" title="Entity with capacity to rotate bodies joined by revolute joints." alt="" coords="5,815,180,980"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html" title=" " alt="" coords="13,365,173,765"/>
+<area shape="rect" id="node3" href="$classprz_1_1_scene.html" title="Class to store the entities and manage the Box2D world." alt="" coords="13,5,172,303"/>
+</map>

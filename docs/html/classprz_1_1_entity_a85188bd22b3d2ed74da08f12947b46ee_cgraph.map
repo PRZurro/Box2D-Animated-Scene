@@ -1,0 +1,4 @@
+<map id="prz::Entity::add_fixture_to" name="prz::Entity::add_fixture_to">
+<area shape="rect" id="node1" title="add a fixture to a body by name" alt="" coords="5,5,176,32"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#ab3cd6da0585af7171a3538f23ec2a37f" title="Return true or false depending if exists the body by name received." alt="" coords="224,5,384,32"/>
+</map>

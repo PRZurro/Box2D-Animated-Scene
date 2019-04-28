@@ -1,0 +1,5 @@
+<map id="prz::Entity::add_joint" name="prz::Entity::add_joint">
+<area shape="rect" id="node1" title="join two bodies with the definition received" alt="" coords="199,46,341,73"/>
+<area shape="rect" id="node2" href="$classprz_1_1_car_vehicle_entity.html#a191a411abc335ca13c294d8c1da79574" title="Create a prismatic joint by the input definition." alt="" coords="5,5,151,47"/>
+<area shape="rect" id="node3" href="$classprz_1_1_vehicle_entity.html#ab6c09d91ff1bf4a2aea2ad3a8893f0bb" title="add a revolute joint with the input definition" alt="" coords="11,71,145,112"/>
+</map>

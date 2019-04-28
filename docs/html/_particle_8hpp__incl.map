@@ -1,0 +1,13 @@
+<map id="code/headers/Particle.hpp" name="code/headers/Particle.hpp">
+<area shape="rect" id="node1" title="Class that handles a sprite and its components. Should be a child of Entity, no time." alt="" coords="403,5,576,32"/>
+<area shape="rect" id="node2" href="$_entity_8hpp.html" title="Core class to store and handle Box2D elements. Represents a GameObject." alt="" coords="449,80,530,107"/>
+<area shape="rect" id="node3" href="$_declarations_8hpp.html" title=" " alt="" coords="313,155,452,196"/>
+<area shape="rect" id="node5" title=" " alt="" coords="628,244,767,271"/>
+<area shape="rect" id="node4" title=" " alt="" coords="489,244,604,271"/>
+<area shape="rect" id="node11" title=" " alt="" coords="527,162,659,189"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,244,75,271"/>
+<area shape="rect" id="node7" title=" " alt="" coords="99,244,155,271"/>
+<area shape="rect" id="node8" title=" " alt="" coords="179,244,290,271"/>
+<area shape="rect" id="node9" title=" " alt="" coords="314,244,369,271"/>
+<area shape="rect" id="node10" title=" " alt="" coords="393,244,465,271"/>
+</map>

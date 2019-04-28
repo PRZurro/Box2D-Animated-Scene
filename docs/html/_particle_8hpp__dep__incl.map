@@ -1,0 +1,6 @@
+<map id="code/headers/Particle.hpp" name="code/headers/Particle.hpp">
+<area shape="rect" id="node1" title="Class that handles a sprite and its components. Should be a child of Entity, no time." alt="" coords="141,5,314,32"/>
+<area shape="rect" id="node2" href="$_particle_emitter_8hpp.html" title="Emitter of generic particles." alt="" coords="5,80,220,107"/>
+<area shape="rect" id="node4" href="$_fire_particle_8hpp.html" title="Particle with a fire texture and a sinusoidal movement." alt="" coords="245,80,439,107"/>
+<area shape="rect" id="node3" href="$_bonfire_particle_emitter_8hpp.html" title=" " alt="" coords="133,155,321,196"/>
+</map>

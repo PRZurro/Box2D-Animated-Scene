@@ -1,8 +1,7 @@
-#pragma once
 /**
  * @file VehicleEntity.hpp
- * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief
+ * @author Pablo Rodrï¿½guez Zurro (przuro@gmail.com)
+ * @brief Entity with capacity to rotate bodies joined by revolute joints 
  * @version 0.1
  * @date 2019-03-23
  *
@@ -13,20 +12,37 @@
 #ifndef BOX2D_ANIMATED_SCENE_VEHICLE_ENTITY_H_
 #define BOX2D_ANIMATED_SCENE_VEHICLE_ENTITY_H_
 
-#include "internal/declarations/Declarations.hpp"
-
 #include "Entity.hpp"
 #include "Scene.hpp"
 #include "InputManager.hpp"
+
+#include "internal/declarations/Declarations.hpp"
 
 #include <SFML/Graphics.hpp>
 
 namespace prz
 {
+	/**
+	 * @brief Entity with capacity to rotate bodies joined by revolute joints 
+	 * 
+	 */
 	class VehicleEntity : public Entity
 	{
 	public:
 
+		/**
+		 * @brief Construct a new Vehicle Entity object
+		 * 
+		 * @param leftKey 
+		 * @param rightKey 
+		 * @param speed 
+		 * @param scene 
+		 * @param name 
+		 * @param posX 
+		 * @param posY 
+		 * @param angleDegrees 
+		 * @param active 
+		 */
 		VehicleEntity(Key& leftKey, Key& rightKey, float speed, Scene & scene, const PString & name, float posX, float posY, float angleDegrees = 0.f, bool active = true)
 			:
 			Entity(scene, name, posX, posY, angleDegrees, active, EntityType::VEHICLE),
@@ -41,6 +57,11 @@ namespace prz
 
 	public:
 
+		/**
+		 * @brief method to add speed to the revolute joints by keyboard input
+		 * 
+		 * @param deltaTime 
+		 */
 		virtual void auxiliar_update(float deltaTime) override
 		{
 			InputManager & inputManager = InputManager::instance();
@@ -66,11 +87,22 @@ namespace prz
 
 	public:
 
+		/**
+		 * @brief special method to add more logic to the update in child implementation
+		 * 
+		 * @param deltaTime 
+		 */
 		virtual void vehicle_auxiliar_update(float deltaTime)
 		{}
 
 	public:
 
+		/**
+		 * @brief add a revolute joint with the input definition
+		 * 
+		 * @param wheelJointDef 
+		 * @return b2RevoluteJoint* 
+		 */
 		b2RevoluteJoint * add_revolute_joint(const b2RevoluteJointDef & wheelJointDef)
 		{
 			b2RevoluteJoint* revoluteJoint = static_cast<b2RevoluteJoint*>(add_joint(&wheelJointDef));

@@ -1,0 +1,15 @@
+<map id="code/headers/Entity.hpp" name="code/headers/Entity.hpp">
+<area shape="rect" id="node1" title="Core class to store and handle Box2D elements. Represents a GameObject." alt="" coords="494,5,657,32"/>
+<area shape="rect" id="node2" href="$_ball_entity_8hpp.html" title="Entity to save a ball." alt="" coords="5,80,191,107"/>
+<area shape="rect" id="node3" href="$_bonfire_particle_emitter_8hpp.html" title=" " alt="" coords="280,229,468,271"/>
+<area shape="rect" id="node4" href="$_particle_emitter_8hpp.html" title="Emitter of generic particles." alt="" coords="267,155,481,181"/>
+<area shape="rect" id="node5" href="$_particle_8hpp.html" title="Class that handles a sprite and its components. Should be a child of Entity, no time." alt="" coords="489,80,662,107"/>
+<area shape="rect" id="node7" href="$_vehicle_entity_8hpp.html" title="Entity with capacity to rotate bodies joined by revolute joints." alt="" coords="725,155,932,181"/>
+<area shape="rect" id="node9" href="$_scene_8hpp.html" title="Class to store the entities and manage the Box2D world." alt="" coords="983,80,1149,107"/>
+<area shape="rect" id="node12" href="$_floor_entity_8hpp.html" title="Entity to save a floor (rectangular shape)" alt="" coords="1309,80,1501,107"/>
+<area shape="rect" id="node6" href="$_fire_particle_8hpp.html" title="Particle with a fire texture and a sinusoidal movement." alt="" coords="506,155,701,181"/>
+<area shape="rect" id="node8" href="$_car_vehicle_entity_8hpp.html" title="Entity composed by prismatic and revolute joints that can be handled by input." alt="" coords="715,237,942,263"/>
+<area shape="rect" id="node10" href="$_game_controller_8hpp.html" title="Class that controls the game flow." alt="" coords="957,155,1175,181"/>
+<area shape="rect" id="node11" href="$_sample_scene_8hpp.html" title="Sample constructed scene." alt="" coords="1199,155,1410,181"/>
+<area shape="rect" id="node13" href="$_platform_entity_8hpp.html" title="Class to save a platform entity, a floor entity with capacity to move." alt="" coords="1434,155,1645,181"/>
+</map>

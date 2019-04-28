@@ -1,0 +1,5 @@
+<map id="prz::TextureStore::is_texture_with_name_loaded" name="prz::TextureStore::is_texture_with_name_loaded">
+<area shape="rect" id="node1" title="check if a texture is loaded by name" alt="" coords="423,5,571,61"/>
+<area shape="rect" id="node2" href="$classprz_1_1_bonfire_particle_emitter.html#a6ef518b72a8fb676864ede0492383193" title="Construct a new Bonfire Particle Emitter object initializing the parent members. Because it is a chil..." alt="" coords="5,13,180,54"/>
+<area shape="rect" id="node3" href="$classprz_1_1_texture_store.html#a09a36308055db2f0353fd45b49644529" title="returns the texture by name" alt="" coords="228,42,375,83"/>
+</map>

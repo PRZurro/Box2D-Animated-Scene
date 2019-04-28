@@ -1,0 +1,6 @@
+<map id="prz::VehicleEntity::auxiliar_update" name="prz::VehicleEntity::auxiliar_update">
+<area shape="rect" id="node1" title="method to add speed to the revolute joints by keyboard input" alt="" coords="5,71,131,112"/>
+<area shape="rect" id="node2" href="$classprz_1_1_input_manager.html#ab57051735c5ad50a911d9e5d35496396" title="Get an static instance object of this class." alt="" coords="193,5,327,47"/>
+<area shape="rect" id="node3" href="$classprz_1_1_input_manager.html#ae821f99b401591c066e40f4ecbd91692" title="Get the state of a key." alt="" coords="193,71,327,112"/>
+<area shape="rect" id="node4" href="$classprz_1_1_vehicle_entity.html#afd95f2e4ac0130d0e575c4bd0b8aff70" title="special method to add more logic to the update in child implementation" alt="" coords="179,136,341,177"/>
+</map>

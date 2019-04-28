@@ -1,0 +1,4 @@
+<map id="prz::TextureStore::get_texture_by_path" name="prz::TextureStore::get_texture_by_path">
+<area shape="rect" id="node1" title="returns the texture by path" alt="" coords="5,5,145,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_texture_store.html#aa0052388e8b71bf829666832b46518ae" title="Check if a texture is loaded by path." alt="" coords="193,5,324,47"/>
+</map>

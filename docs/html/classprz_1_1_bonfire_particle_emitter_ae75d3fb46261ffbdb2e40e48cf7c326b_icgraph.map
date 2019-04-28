@@ -1,0 +1,5 @@
+<map id="prz::BonfireParticleEmitter::reset_fire_particle" name="prz::BonfireParticleEmitter::reset_fire_particle">
+<area shape="rect" id="node1" title="Reset the input particle with custom values." alt="" coords="228,39,403,80"/>
+<area shape="rect" id="node2" href="$classprz_1_1_bonfire_particle_emitter.html#a6ef518b72a8fb676864ede0492383193" title="Construct a new Bonfire Particle Emitter object initializing the parent members. Because it is a chil..." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="node3" href="$classprz_1_1_bonfire_particle_emitter.html#a6a12dd763a5d0f8803d39bc6769e3b2c" title="particle restablished (enabled) by the parent update method" alt="" coords="5,71,180,112"/>
+</map>

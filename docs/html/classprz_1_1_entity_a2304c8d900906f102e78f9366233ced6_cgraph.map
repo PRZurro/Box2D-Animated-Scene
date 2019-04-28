@@ -1,0 +1,6 @@
+<map id="prz::Entity::set_colors" name="prz::Entity::set_colors">
+<area shape="rect" id="node1" title="Set the colors of this object bodies." alt="" coords="5,78,156,105"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#aed0976b089bf13321895a04c95d0e504" title="Set the circles color." alt="" coords="211,5,364,47"/>
+<area shape="rect" id="node3" href="$classprz_1_1_entity.html#a682c1b634d5b2eda9cd1d621fccd7b32" title="Set the edges color." alt="" coords="212,71,363,112"/>
+<area shape="rect" id="node4" href="$classprz_1_1_entity.html#ac14b2fa2706073de348d5b58e412ec72" title="Set the polygons color." alt="" coords="204,136,371,177"/>
+</map>

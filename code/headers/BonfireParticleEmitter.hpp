@@ -1,7 +1,7 @@
 /**
  * @file BonfireParticleSystem.hpp
- * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief
+ * @author Pablo Rodrï¿½guez Zurro (przuro@gmail.com)
+ * @brief Particle emitter specialized to manage fire particles
  * @version 0.1
  * @date 2019-03-19
  *
@@ -25,20 +25,22 @@ namespace prz
 	{
 	public:
 
-		BonfireParticleEmitter
-		(
-			size_t nParticles,
-			float particlesLifeTime,
-			size_t nResetedParticles,
-			float timeToRefresh,
-			float segmentPointAX, 
-			float segmentPointAY,
-			float segmentPointBX, 
-			float segmentPointBY,
-			Scene& scene,
-			const PString& name,
-			float windowHeight
-		):
+		/**
+		 * @brief Construct a new Bonfire Particle Emitter object initializing the parent members. Because it is a child of a class template, this file cannot be complemented with a source file.
+		 * 
+		 * @param nParticles 
+		 * @param particlesLifeTime 
+		 * @param nResetedParticles, like a burst of particles
+		 * @param timeToRefresh, period to do a burst of particles
+		 * @param segmentPointAX 
+		 * @param segmentPointAY 
+		 * @param segmentPointBX 
+		 * @param segmentPointBY 
+		 * @param scene 
+		 * @param name 
+		 * @param windowHeight 
+		 */
+		BonfireParticleEmitter(size_t nParticles, float particlesLifeTime, size_t nResetedParticles, float timeToRefresh, float segmentPointAX, float segmentPointAY, float segmentPointBX, float segmentPointBY, Scene& scene, const PString& name, float windowHeight):
 			ParticleEmitter(nParticles, particlesLifeTime, nResetedParticles, timeToRefresh, segmentPointAX, segmentPointAY, segmentPointBX, segmentPointBY, scene, name, windowHeight)
 		{
 			float boxSize = abs(segmentPointBX - segmentPointAX);
@@ -81,11 +83,22 @@ namespace prz
 
 	protected:
 
+		/**
+		 * @brief particle restablished (enabled) by the parent update method
+		 * 
+		 * @param fireParticle restablished
+		 */
 		virtual void particle_restablished(FireParticle & fireParticle) override
 		{
 			reset_fire_particle(fireParticle);
 		}
 
+		/**
+		 * @brief Reset the input particle with custom values
+		 * 
+		 * @param fireParticle to reset
+		 * @param isActive, is active?
+		 */
 		void reset_fire_particle(FireParticle & fireParticle, bool isActive = true)
 		{
 			float posX = random<float>(segmentPointAX_, segmentPointBX_);
@@ -105,6 +118,7 @@ namespace prz
 
 	private:
 
+		// Custom values to this particle emitter
 		static constexpr float MIN_SCALE = 0.05f;
 		static constexpr float MAX_SCALE = 0.12f;
 		static constexpr float MIN_SPEED = -40.f;
@@ -116,6 +130,6 @@ namespace prz
 		static constexpr float MIN_PHASE = 0.2f;
 		static constexpr float MAX_PHASE = 0.5f;
 	};
-}
+}// !namespace prz
 
 #endif // !BOX2D_ANIMATED_SCENE_BONFIRE_PARTICLE_SYSTEM_H_

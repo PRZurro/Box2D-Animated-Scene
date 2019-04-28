@@ -1,0 +1,4 @@
+<map id="prz::FireParticle::set_speed" name="prz::FireParticle::set_speed">
+<area shape="rect" id="node1" title="Set the speed object." alt="" coords="5,5,128,47"/>
+<area shape="rect" id="node2" href="$classprz_1_1_fire_particle.html#a05f0b21b38f8c21f3da09085b2901514" title="get the speed" alt="" coords="176,5,299,47"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="prz::Entity::set_circles_color" name="prz::Entity::set_circles_color">
+<area shape="rect" id="node1" title="Set the circles color." alt="" coords="395,23,548,65"/>
+<area shape="rect" id="node2" href="$classprz_1_1_ball_entity.html#a15015e6f8d8fe6c2fca3e6eeb074a081" title=" " alt="" coords="179,5,347,32"/>
+<area shape="rect" id="node3" href="$classprz_1_1_entity.html#a2304c8d900906f102e78f9366233ced6" title="Set the colors of this object bodies." alt="" coords="187,56,338,83"/>
+<area shape="rect" id="node4" href="$classprz_1_1_vehicle_entity.html#a1fdddf8af6b137de0459c6d968e23199" title="Construct a new Vehicle Entity object." alt="" coords="5,49,131,90"/>
+</map>

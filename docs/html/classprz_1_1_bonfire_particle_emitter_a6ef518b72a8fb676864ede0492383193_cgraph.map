@@ -1,0 +1,17 @@
+<map id="prz::BonfireParticleEmitter::BonfireParticleEmitter" name="prz::BonfireParticleEmitter::BonfireParticleEmitter">
+<area shape="rect" id="node1" title="Construct a new Bonfire Particle Emitter object initializing the parent members. Because it is a chil..." alt="" coords="5,137,180,178"/>
+<area shape="rect" id="node2" href="$classprz_1_1_entity.html#abd674074d77fa7ad78b8beef6a8cc4bf" title="add a Box2D body with the definitions received" alt="" coords="242,5,389,32"/>
+<area shape="rect" id="node3" href="$classprz_1_1_entity.html#a85188bd22b3d2ed74da08f12947b46ee" title="add a fixture to a body by name" alt="" coords="230,56,401,83"/>
+<area shape="rect" id="node5" href="$classprz_1_1_texture_store.html#a04f18a362837e5411fecabc83d451d87" title="Get a static instance object of this class." alt="" coords="250,107,381,149"/>
+<area shape="rect" id="node6" href="$classprz_1_1_texture_store.html#a2eb31c8f1559b87cfe0bdda5120f2831" title="check if a texture is loaded by name" alt="" coords="457,163,605,219"/>
+<area shape="rect" id="node7" href="$classprz_1_1_bonfire_particle_emitter.html#ae75d3fb46261ffbdb2e40e48cf7c326b" title="Reset the input particle with custom values." alt="" coords="228,290,403,331"/>
+<area shape="rect" id="node15" href="$classprz_1_1_texture_store.html#a09a36308055db2f0353fd45b49644529" title="returns the texture by name" alt="" coords="242,225,389,266"/>
+<area shape="rect" id="node4" href="$classprz_1_1_entity.html#ab3cd6da0585af7171a3538f23ec2a37f" title="Return true or false depending if exists the body by name received." alt="" coords="451,56,611,83"/>
+<area shape="rect" id="node8" href="$classprz_1_1_particle.html#a1cd0803f429045211fb71b58b78a4e14" title="reset the members to the input values" alt="" coords="466,247,595,273"/>
+<area shape="rect" id="node9" href="$classprz_1_1_entity.html#a6128f2db446bc4ea0d064e62eb9756fd" title="get the active state of this object" alt="" coords="463,297,598,324"/>
+<area shape="rect" id="node10" href="$classprz_1_1_fire_particle.html#a66c74a962233601a5652e227bc05b85d" title="custom reset of this class, to set the special members" alt="" coords="469,349,592,390"/>
+<area shape="rect" id="node11" href="$classprz_1_1_fire_particle.html#a05f0b21b38f8c21f3da09085b2901514" title="get the speed" alt="" coords="659,250,781,291"/>
+<area shape="rect" id="node12" href="$classprz_1_1_fire_particle.html#ab3cefc9cda371e72d7c7ee39c5ce1f42" title="get the amplitude" alt="" coords="659,315,781,357"/>
+<area shape="rect" id="node13" href="$classprz_1_1_fire_particle.html#acd1922dbe86422efa52e7ead2e920f09" title="get the frequency" alt="" coords="659,381,781,422"/>
+<area shape="rect" id="node14" href="$classprz_1_1_fire_particle.html#a6d524adb8151829517a46f94d7b080e7" title="get the phase" alt="" coords="659,446,781,487"/>
+</map>

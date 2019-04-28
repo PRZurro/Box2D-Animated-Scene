@@ -1,0 +1,8 @@
+<map id="prz::FireParticle::frequency" name="prz::FireParticle::frequency">
+<area shape="rect" id="node1" title="get the frequency" alt="" coords="621,72,744,113"/>
+<area shape="rect" id="node2" href="$classprz_1_1_fire_particle.html#a66c74a962233601a5652e227bc05b85d" title="custom reset of this class, to set the special members" alt="" coords="451,39,573,80"/>
+<area shape="rect" id="node6" href="$classprz_1_1_fire_particle.html#ab8f8dc2608823519f153ce627d40f0d8" title="Set the frequency object." alt="" coords="451,104,573,145"/>
+<area shape="rect" id="node3" href="$classprz_1_1_bonfire_particle_emitter.html#ae75d3fb46261ffbdb2e40e48cf7c326b" title="Reset the input particle with custom values." alt="" coords="228,39,403,80"/>
+<area shape="rect" id="node4" href="$classprz_1_1_bonfire_particle_emitter.html#a6ef518b72a8fb676864ede0492383193" title="Construct a new Bonfire Particle Emitter object initializing the parent members. Because it is a chil..." alt="" coords="5,5,180,47"/>
+<area shape="rect" id="node5" href="$classprz_1_1_bonfire_particle_emitter.html#a6a12dd763a5d0f8803d39bc6769e3b2c" title="particle restablished (enabled) by the parent update method" alt="" coords="5,71,180,112"/>
+</map>

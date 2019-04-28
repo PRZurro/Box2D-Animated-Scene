@@ -1,7 +1,7 @@
 /**
  * @file ParticleEmitter.hpp
  * @author Pablo Rodríguez Zurro (przuro@gmail.com)
- * @brief 
+ * @brief Emitter of generic particles 
  * @version 0.1
  * @date 2019-03-14
  * 
@@ -20,25 +20,32 @@
 
 namespace prz
 {
+	/**
+	 * @brief Class template that manage generic particles
+	 * 
+	 * @tparam P 
+	 */
 	template<class P>
 	class ParticleEmitter : public Entity
 	{
 	public:
 
-		ParticleEmitter
-		(
-			size_t nParticles,
-			float particlesLifeTime,
-			size_t nResetedParticles,
-			float timeToRefresh,
-			float segmentPointAX,
-			float segmentPointAY,
-			float segmentPointBX,
-			float segmentPointBY,
-			Scene& scene,
-			const PString& name,
-			float windowHeight
-		) :
+		/**
+		 * @brief Construct a new Particle Emitter object
+		 * 
+		 * @param nParticles 
+		 * @param particlesLifeTime 
+		 * @param nResetedParticles 
+		 * @param timeToRefresh 
+		 * @param segmentPointAX 
+		 * @param segmentPointAY 
+		 * @param segmentPointBX 
+		 * @param segmentPointBY 
+		 * @param scene 
+		 * @param name 
+		 * @param windowHeight 
+		 */
+		ParticleEmitter(size_t nParticles, float particlesLifeTime,	size_t nResetedParticles, float timeToRefresh, float segmentPointAX, float segmentPointAY, float segmentPointBX, float segmentPointBY, Scene& scene, const PString& name, float windowHeight):
 			Entity(scene, name, segmentPointAX_, segmentPointAY_),
 			nParticles_(nParticles),
 			particles_(),
@@ -70,6 +77,11 @@ namespace prz
 
 	protected:
 
+		/**
+		 * @brief Inherited method to add in the parent update the logic of this object
+		 * 
+		 * @param deltaTime 
+		 */
 		virtual void auxiliar_update(float deltaTime) final 
 		{
 			timer_ += deltaTime;
@@ -123,6 +135,11 @@ namespace prz
 			emitter_auxiliar_update(deltaTime);
 		}
 
+		/**
+		 * @brief Inherited method to add objects to the render 
+		 * 
+		 * @param window 
+		 */
 		virtual void auxiliar_render(RenderWindow& window) final
 		{
 			for (Particle& particle : particles_)
@@ -133,9 +150,25 @@ namespace prz
 
 	protected:
 
-
+		/**
+		 * @brief Method to add more logic in the update in child classes
+		 * 
+		 * @param deltaTime 
+		 */
 		virtual void emitter_auxiliar_update(float deltaTime){}
+
+		/**
+		 * @brief Method to render more in child classes
+		 * 
+		 * @param window 
+		 */
 		virtual void emitter_auxiliar_render(RenderWindow& window){}
+
+		/**
+		 * @brief Method called when a particle is restablished, in case is needed to do something with it
+		 * 
+		 * @param particle 
+		 */
 		virtual void particle_restablished(P& particle){}
 
 	protected:
